@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>ServletController</servlet-name>
+        <servlet-class>Servlet.ServletController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Controller</servlet-name>
+        <servlet-class>Servlet.Controller</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletController</servlet-name>
+        <url-pattern>/ServletController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Controller</servlet-name>
+        <url-pattern>/Controller</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <ejb-local-ref>
+        <ejb-ref-name>gestoreUtente</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>manager.gestoreUtenteLocal</local>
+        <ejb-link>ShareGames-ejb.jar#gestoreUtente</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>gestoreUtente1</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>manager.gestoreUtenteLocal</local>
+        <ejb-link>ShareGames-ejb.jar#gestoreUtente</ejb-link>
+    </ejb-local-ref>
+</web-app>
