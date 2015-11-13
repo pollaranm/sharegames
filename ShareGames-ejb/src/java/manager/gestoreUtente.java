@@ -35,26 +35,30 @@ public class gestoreUtente implements gestoreUtenteLocal {
     }
 
     @Override
-    public boolean find(String idfacebook) {
+    public boolean findFacebook(String idfacebook) {
         
-        
-        boolean b = utenteFacade.findbyface(idfacebook);
-        
-        if(b){
-            return true;
-        }else return false;
+//        
+//        boolean b = utenteFacade.findbyface(idfacebook);
+//        
+//        if(b){
+//            return true;
+//        }else return false;
+//        
+        return utenteFacade.findbyface(idfacebook);
         
         
     }
 
     @Override
-    public boolean findgoogle(String idgoogle) {
+    public boolean findGoogle(String idgoogle) {
         
-        boolean b= utenteFacade.findbygoogle(idgoogle);
+//        boolean b= utenteFacade.findbygoogle(idgoogle);
+//        
+//        if(b){
+//            return true;
+//        }else return false;
         
-        if(b){
-            return true;
-        }else return false;
+        return utenteFacade.findbygoogle(idgoogle);
     }
 
     @Override

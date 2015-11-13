@@ -17,9 +17,9 @@ public interface gestoreUtenteLocal {
 
     void AddUser(String name, String email, String idgoogle, String idfacebook, String telefono);
 
-    boolean find(String idfacebook);
+    boolean findFacebook(String idfacebook);
 
-    boolean findgoogle(String idgoogle);
+    boolean findGoogle(String idgoogle);
 
     boolean removeUtente(String idsocial, String tipo);
     
