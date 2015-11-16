@@ -13,7 +13,7 @@ import javax.ejb.Local;
  * @author Alex
  */
 @Local
-public interface gestoreUtenteLocal {
+public interface GestoreUtenteLocal {
 
     void AddUser(String name, String email, String idgoogle, String idfacebook, String telefono);
 
@@ -22,5 +22,7 @@ public interface gestoreUtenteLocal {
     boolean findGoogle(String idgoogle);
 
     boolean removeUtente(String idsocial, String tipo);
-    
+
+    Utente getObjUtente(String idsocial, String tipo);
+
 }

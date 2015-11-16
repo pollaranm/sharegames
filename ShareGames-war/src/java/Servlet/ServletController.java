@@ -9,7 +9,7 @@ import java.io.*;
 import javax.ejb.EJB;
 import javax.servlet.*;
 import javax.servlet.http.*;
-import manager.gestoreUtenteLocal;
+import manager.GestoreUtenteLocal;
 
 /**
  *
@@ -18,8 +18,9 @@ import manager.gestoreUtenteLocal;
 public class ServletController extends HttpServlet {
 
     @EJB
-    private gestoreUtenteLocal gestoreUtente;
+    private GestoreUtenteLocal gestoreUtente;
 
+    
     String state = "index";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,8 +37,8 @@ public class ServletController extends HttpServlet {
                 if (s.isNew()) { // sessione nuova , caricamento index iniziale
                     RequestDispatcher rdErr = ctx.getRequestDispatcher("/index.jsp");
                     rdErr.forward(request, response);
-                // sessione gia aperta
-                } else if (state.equals("homepageaccess")) { 
+                    // sessione gia aperta
+                } else if (state.equals("homepageaccess")) {
                     // se ci troviamo in homepageaccess e carichiamo la pagina, il browser deve rimaner esulla stessa pagina
                     RequestDispatcher rdErr = ctx.getRequestDispatcher("/homepageaccess.jsp");
                     rdErr.forward(request, response);
@@ -94,14 +95,14 @@ public class ServletController extends HttpServlet {
             String url = request.getParameter("url");
 
             if (gestoreUtente.findGoogle(id) == false) {
-                
+
                 gestoreUtente.AddUser(nome, email, id, "", "");
                 System.out.println("inserito");
-            
+
             } else {
-                
+
                 System.out.println("presente");
-            
+
             }
 
             s.setAttribute("name", nome);

@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Squadra.findByNumerocomponenti", query = "SELECT s FROM Squadra s WHERE s.numerocomponenti = :numerocomponenti"),
     @NamedQuery(name = "Squadra.findByTipologia", query = "SELECT s FROM Squadra s WHERE s.tipologia = :tipologia")})
 public class Squadra implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -125,5 +126,5 @@ public class Squadra implements Serializable {
     public String toString() {
         return "ejb.Squadra[ idsquadra=" + idsquadra + " ]";
     }
-    
+
 }

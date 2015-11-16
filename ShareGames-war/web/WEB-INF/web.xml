@@ -22,15 +22,9 @@
         </session-timeout>
     </session-config>
     <ejb-local-ref>
-        <ejb-ref-name>gestoreUtente</ejb-ref-name>
+        <ejb-ref-name>GestoreUtente</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
-        <local>manager.gestoreUtenteLocal</local>
-        <ejb-link>ShareGames-ejb.jar#gestoreUtente</ejb-link>
-    </ejb-local-ref>
-    <ejb-local-ref>
-        <ejb-ref-name>gestoreUtente1</ejb-ref-name>
-        <ejb-ref-type>Session</ejb-ref-type>
-        <local>manager.gestoreUtenteLocal</local>
-        <ejb-link>ShareGames-ejb.jar#gestoreUtente</ejb-link>
+        <local>manager.GestoreUtenteLocal</local>
+        <ejb-link>ShareGames-ejb.jar#GestoreUtente</ejb-link>
     </ejb-local-ref>
 </web-app>

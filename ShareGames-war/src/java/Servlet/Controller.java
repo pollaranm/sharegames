@@ -5,7 +5,6 @@
  */
 package Servlet;
 
-import manager.gestoreUtenteLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -13,16 +12,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import manager.GestoreUtenteLocal;
 
 /**
  *
  * @author Alex
  */
 public class Controller extends HttpServlet {
+
     @EJB
-    private gestoreUtenteLocal gestoreUtente;
-
-
+    private GestoreUtenteLocal gestoreUtente;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,20 +40,16 @@ public class Controller extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Controller</title>");            
+            out.println("<title>Servlet Controller</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("</body>");
             out.println("</html>");
         }
-        
+
         //gestoreUtente.AddUser("123", "aa", "aa", "123", "123");
-        
-        
-        
         //gestoreImpianto.insertImpianto("impianto_7_nuovo", "Italia", "Piemonte", "Torino", "Torino", "Corso", "333", "000", "08-22", "niente");
         //gestoreSquadra.aggiungiSquadra("123", "5", "calcio7");
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

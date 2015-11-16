@@ -2,20 +2,23 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title> </title>
+        <title>Share Games</title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
-
+        
         <script src="js-h/facebook.js"></script>                
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
-
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
         <script src="https://apis.google.com/js/api:client.js"></script>
-        <script src="js-h/google.js"></script>
-
-
+        <script src="js-h/google.js"></script>        
+        <script src="js-h/jquery.min-h.js"></script>
+        <script src="js-h/jquery.scrolly.min-h.js"></script>
+        <script src="js-h/jquery.poptrox.min-h.js"></script>
+        <script src="js-h/skel.min-h.js"></script>
+        <script src="js-h/init-h.js"></script>
+        <script src="assets-h/js/scripts.js"></script>     
+        <script src="js-h/newjavascript-h.js"></script>    
 
         <script>
             $(window).load(function () {
@@ -23,41 +26,22 @@
                 $(".se-pre-con").delay(1800).fadeOut("slow");
             });
         </script>
-
-
-        <script src="js-h/jquery.min-h.js"></script>
-        <script src="js-h/jquery.scrolly.min-h.js"></script>
-        <script src="js-h/jquery.poptrox.min-h.js"></script>
-        <script src="js-h/skel.min-h.js"></script>
-        <script src="js-h/init-h.js"></script>
-
-
-
         <noscript>
-        <link rel="stylesheet" href="css-h/skel-h.css" />
-        <link rel="stylesheet" href="css-h/style-h.css" />
+            <link rel="stylesheet" href="css-h/skel-h.css" />
+            <link rel="stylesheet" href="css-h/style-h.css" />
         </noscript>
-
-        <script src="assets-h/js/scripts.js"></script>     
-
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="css-h/loading.css"/>   
         <link rel="stylesheet" href="css-h/default.css"/>
         <link rel="stylesheet" href="css-h/component.css"/>
         <link rel="stylesheet" href="css-h/newcss-h.css"/>
-        <script src="js-h/newjavascript-h.js"></script>        
-
 
         <style media="all">@media screen and (max-width: 46.0625em) {}@media screen and (max-width: 25em) {}</style>
         <style media="all">.md-show.md-effect-16 ~ .container{-ms-filter:blur(3px);-webkit-filter:blur(3px);-moz-filter:blur(3px);-o-filter:blur(3px);filter: url(#blur3px)}</style>
         <style media="all"></style>
-
-
-
     </head>
     <body style="">
-
         <div class="se-pre-con"></div>
-
         <!-- Div di autentificazione -->
         <div class="md-modal md-effect-19" id="modal-19">
             <div class="md-content">
@@ -68,14 +52,12 @@
                         <input id="inputlogin" type="password" name="password" placeholder="Password" style="border-radius: 15px">
                         </br><button class="button style2" type="submit" name="submit" style="border-radius: 15px">Sign me in</button>
                         <div class="error"><span></span></div>
-
                         <label for="rememberMe"></label><span>I have read and agree to the <a href="#">Terms of Use </a>and <a href="#">Privacy Policy</a></span>
                     </form>    
                     <div class="social" style="margin-top: 4%"> <span>Oppure usa il tuo social</span></div>
                     <div class="buttons">
                         <a onclick="fb_login();" id="bottone"><button id="bottone" style="font-size: medium; text-transform: capitalize;" class="facebook" ><i class="fa fa-facebook"></i>Facebook</button></a>
                         <a onclick="twitter_login();"><button style="font-size: medium; text-transform: capitalize;" class="twitter" ><i class="fa fa-twitter"></i>Twitter</button></a>
-
                         <div id="buttonGoogle">
                             <button style="font-size: medium; text-transform: capitalize;" class="google"><i class="fa fa-google-plus"></i>Google</button>
                         </div>
@@ -96,29 +78,27 @@
                 <button  style="margin-top: 1%" class="md-trigger md-setperspective button style2"  data-modal="modal-19">Login</button>
                 <button  style="margin-top: 1%" class="md-trigger md-setperspective button style2" data-modal="modal-19">Sign in</button>
             </section>
-            <!--                            <div id="formaccessoindex">
-                                            <form action="<%=request.getContextPath()%>/ServletController" method="get" name="action" id="idform">
-                                                <label>
-                                                    <button id="idform" style="font-size: medium; text-transform: capitalize;" type="submit" class="md-trigger md-setperspective button style1"  name="action" value="login">accesso</button>
-                                                </label>
-                                            </form>
-                                        </div>-->
+            <!--
+            <div id="formaccessoindex">
+                <form action="<%=request.getContextPath()%>/ServletController" method="get" name="action" id="idform">
+                    <label>
+                        <button id="idform" style="font-size: medium; text-transform: capitalize;" type="submit" class="md-trigger md-setperspective button style1"  name="action" value="login">accesso</button>
+                    </label>
+                </form>
+            </div>
+            -->
 
-
-            <footer >
+            <footer>
                 <a href="#banner" class="button style1 scrolly scrolly-centered">Esplora il sito</a>
             </footer>
-
         </section>
-
-
 
         <!-- Banner -->
         <section id="banner">
             <header>
                 <h2>Le preoccupazioni sono finite</h2>
             </header>
-            <p><br />
+            <p><br/>
                 Partecipa ad un evento, conosci nuova gente, crea eventi.<br />
                 Pagamento semplice, veloce, sicuro.</p>
             <footer>

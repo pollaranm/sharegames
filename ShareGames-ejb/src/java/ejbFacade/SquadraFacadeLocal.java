@@ -30,5 +30,4 @@ public interface SquadraFacadeLocal {
 
     int count();
 
-    
 }

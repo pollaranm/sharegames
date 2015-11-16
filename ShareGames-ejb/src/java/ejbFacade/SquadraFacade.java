@@ -17,6 +17,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class SquadraFacade extends AbstractFacade<Squadra> implements SquadraFacadeLocal {
+
     @PersistenceContext(unitName = "ShareGames-ejbPU")
     private EntityManager em;
 
@@ -28,6 +29,5 @@ public class SquadraFacade extends AbstractFacade<Squadra> implements SquadraFac
     public SquadraFacade() {
         super(Squadra.class);
     }
-    
-    
+
 }

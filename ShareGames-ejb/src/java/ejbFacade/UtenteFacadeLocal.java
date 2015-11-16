@@ -31,10 +31,9 @@ public interface UtenteFacadeLocal {
     int count();
 
     boolean findbyface(String idfacebook);
-    
+
     boolean findbygoogle(String idgoogle);
 
-    Utente getObjUtente(String idsocial,String tipo);
+    Utente getObjUtente(String idsocial, String tipo);
 
-    
 }
