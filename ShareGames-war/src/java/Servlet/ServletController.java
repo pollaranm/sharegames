@@ -16,18 +16,17 @@ import manager.GestoreUtenteLocal;
  * @author Alex
  */
 public class ServletController extends HttpServlet {
-
     @EJB
     private GestoreUtenteLocal gestoreUtente;
-
     
     String state = "index";
+    HttpSession s;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ServletContext ctx = getServletContext();
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession s = request.getSession();
+        s = request.getSession();
 
         String action = request.getParameter("action");
 
@@ -57,77 +56,17 @@ public class ServletController extends HttpServlet {
                 rdErr.forward(request, response);
             }
         } else if (action.equals("personal")) {
-            state = "personal";
-            request.getRequestDispatcher("/personal.jsp").forward(request, response);
-
+            doPersonal(request, response);
         } else if (action.equals("accesso")) {
-            state = "home";
-            request.getRequestDispatcher("/homepage.jsp").forward(request, response);
-
+            doAccesso(request, response);
         } else if (action.equals("loginFacebook")) {
-
-            String nome = request.getParameter("name");
-            String id = request.getParameter("id");
-            String email = request.getParameter("email");
-            String url = request.getParameter("url");
-
-            if (gestoreUtente.findFacebook(id) == false) {
-                gestoreUtente.AddUser(nome, email, "", id, "");
-                System.out.println("inserito");
-            } else {
-                System.out.println("presente");
-            }
-
-            s.setAttribute("name", nome);
-            s.setAttribute("id", id);
-            s.setAttribute("tiposocial", "facebook");
-            s.setAttribute("url", "<img src=" + url + ">");
-
-            //metodo per loggare e controllare la persona nel database e linkarlo alla pagina nuova
-            state = "homepageaccess";
-            request.getRequestDispatcher("/homepageaccess.jsp").forward(request, response);
-
+            doLoginFacebook(request, response);
         } else if (action.equals("loginGoogle")) {
-
-            String nome = request.getParameter("name");
-            String id = request.getParameter("id");
-            String email = request.getParameter("email");
-            String url = request.getParameter("url");
-
-            if (gestoreUtente.findGoogle(id) == false) {
-
-                gestoreUtente.AddUser(nome, email, id, "", "");
-                System.out.println("inserito");
-
-            } else {
-
-                System.out.println("presente");
-
-            }
-
-            s.setAttribute("name", nome);
-            s.setAttribute("id", id);
-            s.setAttribute("tiposocial", "google");
-            s.setAttribute("url", "<img src=" + url + ">");
-
-            //metodo per loggare e controllare la persona nel database e linkarlo alla pagina nuova
-            state = "homepageaccess";
-            request.getRequestDispatcher("/homepageaccess.jsp").forward(request, response);
-
+            doLoginGoogle(request, response);
         } else if (action.equals("removeUtente")) {
-
-            gestoreUtente.removeUtente((String) s.getAttribute("id"), (String) s.getAttribute("tiposocial"));
-            state = "index";
-            s.invalidate();
-            request.getSession().invalidate();
-            request.getRequestDispatcher("/homepage.jsp").forward(request, response);
-
+            doRemoveUtente(request, response);
         } else if (action.equals("logout")) {
-            state = "index";
-            s.invalidate();
-            request.getSession().invalidate();
-            request.getRequestDispatcher("/homepage.jsp").forward(request, response);
-
+            doLogout(request, response);
         }
 
     }
@@ -171,4 +110,83 @@ public class ServletController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    /**
+     * Così per ogni chiamata diversa del controller posso scrivere i Jdoc e
+     * dire cosa fa !!!
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    private void doPersonal(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        state = "personal";
+        request.getRequestDispatcher("/personal.jsp").forward(request, response);
+    }
+
+    private void doAccesso(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        state = "home";
+        request.getRequestDispatcher("/homepage.jsp").forward(request, response);
+    }
+
+    private void doLoginFacebook(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String nome = request.getParameter("name");
+        String id = request.getParameter("id");
+        String email = request.getParameter("email");
+        String url = request.getParameter("url");
+        if (gestoreUtente.findFacebook(id) == false) {
+            gestoreUtente.AddUser(nome, email, "", id, "");
+            System.out.println("inserito");
+        } else {
+            System.out.println("presente");
+        }
+        s.setAttribute("name", nome);
+        s.setAttribute("id", id);
+        s.setAttribute("tiposocial", "facebook");
+        s.setAttribute("url", "<img src=" + url + ">");
+        //metodo per loggare e controllare la persona nel database e linkarlo alla pagina nuova
+        state = "homepageaccess";
+        request.getRequestDispatcher("/homepageaccess.jsp").forward(request, response);
+
+    }
+
+    private void doLoginGoogle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String nome = request.getParameter("name");
+        String id = request.getParameter("id");
+        String email = request.getParameter("email");
+        String url = request.getParameter("url");
+        if (gestoreUtente.findGoogle(id) == false) {
+            gestoreUtente.AddUser(nome, email, id, "", "");
+            System.out.println("inserito");
+        } else {
+            System.out.println("presente");
+        }
+        s.setAttribute("name", nome);
+        s.setAttribute("id", id);
+        s.setAttribute("tiposocial", "google");
+        s.setAttribute("url", "<img src=" + url + ">");
+        //metodo per loggare e controllare la persona nel database e linkarlo alla pagina nuova
+        state = "homepageaccess";
+        request.getRequestDispatcher("/homepageaccess.jsp").forward(request, response);
+
+    }
+
+    private void doRemoveUtente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        gestoreUtente.removeUtente((String) s.getAttribute("id"), (String) s.getAttribute("tiposocial"));
+        state = "index";
+        s.invalidate();
+        request.getSession().invalidate();
+        request.getRequestDispatcher("/homepage.jsp").forward(request, response);
+
+    }
+
+    private void doLogout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        state = "index";
+        s.invalidate();
+        request.getSession().invalidate();
+        request.getRequestDispatcher("/homepage.jsp").forward(request, response);
+    }
 }
