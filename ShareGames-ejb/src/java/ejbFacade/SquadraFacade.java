@@ -5,7 +5,6 @@
  */
 package ejbFacade;
 
-import ejbFacade.AbstractFacade;
 import ejb.Squadra;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

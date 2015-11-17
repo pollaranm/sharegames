@@ -35,9 +35,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Utente.findByEmail", query = "SELECT u FROM Utente u WHERE u.email = :email"),
     @NamedQuery(name = "Utente.findByTelefono", query = "SELECT u FROM Utente u WHERE u.telefono = :telefono"),
     @NamedQuery(name = "Utente.findByIdgoogle", query = "SELECT u FROM Utente u WHERE u.idgoogle = :idgoogle"),
-    @NamedQuery(name = "Utente.findByIdfacebook", query = "SELECT u FROM Utente u WHERE u.idfacebook = :idfacebook"),})
+    @NamedQuery(name = "Utente.findByIdfacebook", query = "SELECT u FROM Utente u WHERE u.idfacebook = :idfacebook")})
 public class Utente implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -158,5 +157,5 @@ public class Utente implements Serializable {
     public String toString() {
         return "ejb.Utente[ idutente=" + idutente + " ]";
     }
-
+    
 }
