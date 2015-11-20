@@ -60,6 +60,9 @@ public class Evento implements Serializable {
     @JoinColumn(name = "idimpianto", referencedColumnName = "idimpianto")
     @ManyToOne(optional = false)
     private Impianto idimpianto;
+    @JoinColumn(name = "idutentecreatore", referencedColumnName = "idutente")
+    @ManyToOne(optional = false)
+    private Utente idutentecreatore;
 
     public Evento() {
     }
@@ -132,6 +135,14 @@ public class Evento implements Serializable {
 
     public void setIdimpianto(Impianto idimpianto) {
         this.idimpianto = idimpianto;
+    }
+
+    public Utente getIdutentecreatore() {
+        return idutentecreatore;
+    }
+
+    public void setIdutentecreatore(Utente idutentecreatore) {
+        this.idutentecreatore = idutentecreatore;
     }
 
     @Override

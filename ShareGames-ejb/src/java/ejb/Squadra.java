@@ -33,7 +33,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Squadra.findByIdsquadra", query = "SELECT s FROM Squadra s WHERE s.idsquadra = :idsquadra"),
     @NamedQuery(name = "Squadra.findByNomesquadra", query = "SELECT s FROM Squadra s WHERE s.nomesquadra = :nomesquadra"),
     @NamedQuery(name = "Squadra.findByNumerocomponenti", query = "SELECT s FROM Squadra s WHERE s.numerocomponenti = :numerocomponenti"),
-    @NamedQuery(name = "Squadra.findByTipologia", query = "SELECT s FROM Squadra s WHERE s.tipologia = :tipologia")})
+    @NamedQuery(name = "Squadra.findByTipologia", query = "SELECT s FROM Squadra s WHERE s.tipologia = :tipologia"),
+    @NamedQuery(name = "Squadra.findByCitta", query = "SELECT s FROM Squadra s WHERE s.citta = :citta")})
 public class Squadra implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -50,6 +51,9 @@ public class Squadra implements Serializable {
     @Size(max = 9)
     @Column(name = "tipologia")
     private String tipologia;
+    @Size(max = 45)
+    @Column(name = "citta")
+    private String citta;
     @OneToMany(mappedBy = "idsquadra")
     private Collection<Utente> utenteCollection;
 
@@ -90,6 +94,14 @@ public class Squadra implements Serializable {
 
     public void setTipologia(String tipologia) {
         this.tipologia = tipologia;
+    }
+
+    public String getCitta() {
+        return citta;
+    }
+
+    public void setCitta(String citta) {
+        this.citta = citta;
     }
 
     @XmlTransient

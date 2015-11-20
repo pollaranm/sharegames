@@ -29,5 +29,5 @@ public interface SquadraFacadeLocal {
     List<Squadra> findRange(int[] range);
 
     int count();
-
+    
 }

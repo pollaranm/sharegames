@@ -5,7 +5,7 @@
  */
 package ejbFacade;
 
-import ejb.Squadra;
+import ejb.Listaeventiutente;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Alex
  */
 @Stateless
-public class SquadraFacade extends AbstractFacade<Squadra> implements SquadraFacadeLocal {
+public class ListaeventiutenteFacade extends AbstractFacade<Listaeventiutente> implements ListaeventiutenteFacadeLocal {
     @PersistenceContext(unitName = "ShareGames-ejbPU")
     private EntityManager em;
 
@@ -24,8 +24,8 @@ public class SquadraFacade extends AbstractFacade<Squadra> implements SquadraFac
         return em;
     }
 
-    public SquadraFacade() {
-        super(Squadra.class);
+    public ListaeventiutenteFacade() {
+        super(Listaeventiutente.class);
     }
     
 }

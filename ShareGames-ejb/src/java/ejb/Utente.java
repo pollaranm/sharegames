@@ -6,7 +6,9 @@
 package ejb;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,10 +18,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -64,6 +68,10 @@ public class Utente implements Serializable {
     @JoinColumn(name = "idsquadra", referencedColumnName = "idsquadra")
     @ManyToOne
     private Squadra idsquadra;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idutentecreatore")
+    private Collection<Evento> eventoCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idutente")
+    private Collection<Listaeventiutente> listaeventiutenteCollection;
 
     public Utente() {
     }
@@ -131,6 +139,24 @@ public class Utente implements Serializable {
 
     public void setIdsquadra(Squadra idsquadra) {
         this.idsquadra = idsquadra;
+    }
+
+    @XmlTransient
+    public Collection<Evento> getEventoCollection() {
+        return eventoCollection;
+    }
+
+    public void setEventoCollection(Collection<Evento> eventoCollection) {
+        this.eventoCollection = eventoCollection;
+    }
+
+    @XmlTransient
+    public Collection<Listaeventiutente> getListaeventiutenteCollection() {
+        return listaeventiutenteCollection;
+    }
+
+    public void setListaeventiutenteCollection(Collection<Listaeventiutente> listaeventiutenteCollection) {
+        this.listaeventiutenteCollection = listaeventiutenteCollection;
     }
 
     @Override

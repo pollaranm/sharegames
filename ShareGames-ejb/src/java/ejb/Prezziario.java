@@ -10,6 +10,8 @@ import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,11 +30,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Prezziario.findAll", query = "SELECT p FROM Prezziario p"),
+    @NamedQuery(name = "Prezziario.findByIdprezziario", query = "SELECT p FROM Prezziario p WHERE p.idprezziario = :idprezziario"),
     @NamedQuery(name = "Prezziario.findByPrezzo", query = "SELECT p FROM Prezziario p WHERE p.prezzo = :prezzo"),
-    @NamedQuery(name = "Prezziario.findBySconto", query = "SELECT p FROM Prezziario p WHERE p.sconto = :sconto"),
-    @NamedQuery(name = "Prezziario.findByIdprezziario", query = "SELECT p FROM Prezziario p WHERE p.idprezziario = :idprezziario")})
+    @NamedQuery(name = "Prezziario.findBySconto", query = "SELECT p FROM Prezziario p WHERE p.sconto = :sconto")})
 public class Prezziario implements Serializable {
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "idprezziario")
+    private Integer idprezziario;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @NotNull
@@ -42,11 +49,6 @@ public class Prezziario implements Serializable {
     @NotNull
     @Column(name = "sconto")
     private int sconto;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "idprezziario")
-    private Integer idprezziario;
     @JoinColumn(name = "idcampo", referencedColumnName = "idcampo")
     @ManyToOne(optional = false)
     private Campo idcampo;
@@ -67,6 +69,14 @@ public class Prezziario implements Serializable {
         this.sconto = sconto;
     }
 
+    public Integer getIdprezziario() {
+        return idprezziario;
+    }
+
+    public void setIdprezziario(Integer idprezziario) {
+        this.idprezziario = idprezziario;
+    }
+
     public BigDecimal getPrezzo() {
         return prezzo;
     }
@@ -81,14 +91,6 @@ public class Prezziario implements Serializable {
 
     public void setSconto(int sconto) {
         this.sconto = sconto;
-    }
-
-    public Integer getIdprezziario() {
-        return idprezziario;
-    }
-
-    public void setIdprezziario(Integer idprezziario) {
-        this.idprezziario = idprezziario;
     }
 
     public Campo getIdcampo() {

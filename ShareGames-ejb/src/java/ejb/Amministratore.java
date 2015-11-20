@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Amministratore.findAll", query = "SELECT a FROM Amministratore a"),
-    @NamedQuery(name = "Amministratore.findByCodiceamministratore", query = "SELECT a FROM Amministratore a WHERE a.codiceamministratore = :codiceamministratore"),
+    @NamedQuery(name = "Amministratore.findByIdamministratore", query = "SELECT a FROM Amministratore a WHERE a.idamministratore = :idamministratore"),
     @NamedQuery(name = "Amministratore.findByNome", query = "SELECT a FROM Amministratore a WHERE a.nome = :nome"),
     @NamedQuery(name = "Amministratore.findByCognome", query = "SELECT a FROM Amministratore a WHERE a.cognome = :cognome")})
 public class Amministratore implements Serializable {
@@ -38,8 +38,8 @@ public class Amministratore implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "codiceamministratore")
-    private Integer codiceamministratore;
+    @Column(name = "idamministratore")
+    private Integer idamministratore;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
@@ -57,22 +57,22 @@ public class Amministratore implements Serializable {
     public Amministratore() {
     }
 
-    public Amministratore(Integer codiceamministratore) {
-        this.codiceamministratore = codiceamministratore;
+    public Amministratore(Integer idamministratore) {
+        this.idamministratore = idamministratore;
     }
 
-    public Amministratore(Integer codiceamministratore, String nome, String cognome) {
-        this.codiceamministratore = codiceamministratore;
+    public Amministratore(Integer idamministratore, String nome, String cognome) {
+        this.idamministratore = idamministratore;
         this.nome = nome;
         this.cognome = cognome;
     }
 
-    public Integer getCodiceamministratore() {
-        return codiceamministratore;
+    public Integer getIdamministratore() {
+        return idamministratore;
     }
 
-    public void setCodiceamministratore(Integer codiceamministratore) {
-        this.codiceamministratore = codiceamministratore;
+    public void setIdamministratore(Integer idamministratore) {
+        this.idamministratore = idamministratore;
     }
 
     public String getNome() {
@@ -102,7 +102,7 @@ public class Amministratore implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (codiceamministratore != null ? codiceamministratore.hashCode() : 0);
+        hash += (idamministratore != null ? idamministratore.hashCode() : 0);
         return hash;
     }
 
@@ -113,7 +113,7 @@ public class Amministratore implements Serializable {
             return false;
         }
         Amministratore other = (Amministratore) object;
-        if ((this.codiceamministratore == null && other.codiceamministratore != null) || (this.codiceamministratore != null && !this.codiceamministratore.equals(other.codiceamministratore))) {
+        if ((this.idamministratore == null && other.idamministratore != null) || (this.idamministratore != null && !this.idamministratore.equals(other.idamministratore))) {
             return false;
         }
         return true;
@@ -121,7 +121,7 @@ public class Amministratore implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.Amministratore[ codiceamministratore=" + codiceamministratore + " ]";
+        return "ejb.Amministratore[ idamministratore=" + idamministratore + " ]";
     }
     
 }
