@@ -116,6 +116,16 @@ public class GestoreUtente implements GestoreUtenteLocal {
         squadraFacade.edit(temp);
     }
 
+    @Override
+    public void leaveSquadra(Utente utente) {
+        Squadra temp = utente.getIdsquadra();
+        temp.setNumerocomponenti(temp.getNumerocomponenti() - 1);
+        utente.setIdsquadra(null);
+        utenteFacade.edit(utente);
+        squadraFacade.edit(temp);
+    }
+    
+    
     
     
     

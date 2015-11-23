@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package Servlet;
+
+import ejb.Utente;
 import java.io.*;
 import javax.ejb.EJB;
 import javax.servlet.*;
@@ -16,12 +18,12 @@ import manager.GestoreUtenteLocal;
  * @author Alex
  */
 public class ServletController extends HttpServlet {
+
     @EJB
     private GestoreSquadraLocal gestoreSquadra;
     @EJB
     private GestoreUtenteLocal gestoreUtente;
-    
-    
+
     String state = "index";
     HttpSession s;
 
@@ -148,6 +150,7 @@ public class ServletController extends HttpServlet {
         s.setAttribute("id", id);
         s.setAttribute("tiposocial", "facebook");
         s.setAttribute("url", "<img src=" + url + ">");
+        Utente user = gestoreUtente.getObjUtente(id, "facebook");
         //metodo per loggare e controllare la persona nel database e linkarlo alla pagina nuova
         state = "homepageaccess";
         request.getRequestDispatcher("/homepageaccess.jsp").forward(request, response);
@@ -170,6 +173,7 @@ public class ServletController extends HttpServlet {
         s.setAttribute("id", id);
         s.setAttribute("tiposocial", "google");
         s.setAttribute("url", "<img src=" + url + ">");
+        Utente user = gestoreUtente.getObjUtente(id, "google");
         //metodo per loggare e controllare la persona nel database e linkarlo alla pagina nuova
         state = "homepageaccess";
         request.getRequestDispatcher("/homepageaccess.jsp").forward(request, response);
