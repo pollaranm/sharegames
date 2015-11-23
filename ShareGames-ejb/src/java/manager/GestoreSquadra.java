@@ -5,6 +5,9 @@
  */
 package manager;
 
+import ejb.Squadra;
+import ejbFacade.SquadraFacadeLocal;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
@@ -13,7 +16,13 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestoreSquadra implements GestoreSquadraLocal {
+    @EJB
+    private SquadraFacadeLocal squadraFacade;
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    
+    @Override
+    public Squadra getObjSquadra(Integer idSquadra) {
+        return squadraFacade.getObjSquadra(idSquadra);
+    }
+    
 }

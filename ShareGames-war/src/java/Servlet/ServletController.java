@@ -5,10 +5,13 @@
  */
 package Servlet;
 
+
+import ejb.Utente;
 import java.io.*;
 import javax.ejb.EJB;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import manager.GestoreSquadraLocal;
 import manager.GestoreUtenteLocal;
 
 /**
@@ -17,7 +20,10 @@ import manager.GestoreUtenteLocal;
  */
 public class ServletController extends HttpServlet {
     @EJB
+    private GestoreSquadraLocal gestoreSquadra;
+    @EJB
     private GestoreUtenteLocal gestoreUtente;
+    
     
     String state = "index";
     HttpSession s;

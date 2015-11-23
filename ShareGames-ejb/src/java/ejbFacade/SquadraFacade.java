@@ -9,6 +9,7 @@ import ejb.Squadra;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,5 +28,13 @@ public class SquadraFacade extends AbstractFacade<Squadra> implements SquadraFac
     public SquadraFacade() {
         super(Squadra.class);
     }
+
+    @Override
+    public Squadra getObjSquadra(Integer idSquadra) {
+        Query q = em.createNamedQuery("Squadra.findByIdsquadra");
+        q.setParameter("idsquadra", idSquadra);
+        return (Squadra) q.getResultList().get(0);
+    }
+    
     
 }

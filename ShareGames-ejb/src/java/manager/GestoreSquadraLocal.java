@@ -5,6 +5,7 @@
  */
 package manager;
 
+import ejb.Squadra;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +14,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface GestoreSquadraLocal {
+
+    Squadra getObjSquadra(Integer idSquadra);
     
 }

@@ -29,5 +29,13 @@ public interface SquadraFacadeLocal {
     List<Squadra> findRange(int[] range);
 
     int count();
+
+    /**
+     * Restituisce l'oggetto Squadra associato all'ID passato come parametro.
+     * 
+     * @param idSquadra Id identificativo della squadra
+     * @return L'oggetto Squadra associato a quell'ID
+     */
+    Squadra getObjSquadra(Integer idSquadra);
     
 }

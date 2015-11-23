@@ -6,6 +6,7 @@
 package manager;
 
 import ejb.Utente;
+import ejbFacade.SquadraFacadeLocal;
 import ejbFacade.UtenteFacadeLocal;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -18,10 +19,13 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestoreUtente implements GestoreUtenteLocal {
+    @EJB
+    private SquadraFacadeLocal squadraFacade;
 
     @EJB
     private UtenteFacadeLocal utenteFacade;
 
+    
     /**
      * Metodo costruttore di un oggetto persistente di tipo Utente.
      * 
@@ -101,6 +105,14 @@ public class GestoreUtente implements GestoreUtenteLocal {
     public Utente getObjUtente(String idsocial, String tipo) {
         return utenteFacade.getObjUtente(idsocial, tipo);
     }
+
+    @Override
+    public void joinSquadra(Utente utente, Integer idSquadra) {
+        utente.setIdsquadra(squadraFacade.getObjSquadra(idSquadra));
+        utenteFacade.edit(utente);
+    }
+
+    
     
     
     
