@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 package Servlet;
-
-
-import ejb.Utente;
 import java.io.*;
 import javax.ejb.EJB;
 import javax.servlet.*;

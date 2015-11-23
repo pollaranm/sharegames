@@ -45,9 +45,9 @@ public class Squadra implements Serializable {
     @Size(max = 100)
     @Column(name = "nomesquadra")
     private String nomesquadra;
-    @Size(max = 45)
+    //@Size(max = 11)
     @Column(name = "numerocomponenti")
-    private String numerocomponenti;
+    private Integer numerocomponenti;
     @Size(max = 9)
     @Column(name = "tipologia")
     private String tipologia;
@@ -80,14 +80,14 @@ public class Squadra implements Serializable {
         this.nomesquadra = nomesquadra;
     }
 
-    public String getNumerocomponenti() {
+    public Integer getNumerocomponenti() {
         return numerocomponenti;
     }
 
-    public void setNumerocomponenti(String numerocomponenti) {
+    public void setNumerocomponenti(Integer numerocomponenti) {
         this.numerocomponenti = numerocomponenti;
     }
-
+    
     public String getTipologia() {
         return tipologia;
     }

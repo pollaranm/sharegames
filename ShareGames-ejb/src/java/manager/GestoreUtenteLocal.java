@@ -61,7 +61,9 @@ public interface GestoreUtenteLocal {
     Utente getObjUtente(String idsocial, String tipo);
 
     /**
-     * Inserisce l'Utente passato come parametro nella squadra associata all'ID nei parametri
+     * Inserisce l'Utente passato come parametro nella squadra associata all'ID nei parametri.
+     * Aggiorna inoltre il numero dei componenti della squadra.
+     * 
      * @param utente Oggetto Utente a cui associare la Squadra  
      * @param idSquadra ID della Squadra da associare
      */

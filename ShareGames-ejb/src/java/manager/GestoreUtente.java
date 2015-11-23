@@ -5,6 +5,7 @@
  */
 package manager;
 
+import ejb.Squadra;
 import ejb.Utente;
 import ejbFacade.SquadraFacadeLocal;
 import ejbFacade.UtenteFacadeLocal;
@@ -108,8 +109,11 @@ public class GestoreUtente implements GestoreUtenteLocal {
 
     @Override
     public void joinSquadra(Utente utente, Integer idSquadra) {
+        Squadra temp = squadraFacade.getObjSquadra(idSquadra);
+        temp.setNumerocomponenti(temp.getNumerocomponenti() + 1);
         utente.setIdsquadra(squadraFacade.getObjSquadra(idSquadra));
         utenteFacade.edit(utente);
+        squadraFacade.edit(temp);
     }
 
     

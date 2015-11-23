@@ -25,4 +25,16 @@ public class GestoreSquadra implements GestoreSquadraLocal {
         return squadraFacade.getObjSquadra(idSquadra);
     }
     
+   
+
+    @Override
+    public void addSquadra(String nomeSquadra, String tipologia, String citta) {
+        Squadra s = new Squadra();
+        s.setNomesquadra(nomeSquadra);
+        s.setTipologia(tipologia);
+        s.setCitta(citta);
+        s.setNumerocomponenti(0);
+        squadraFacade.create(s);
+    }
+    
 }
