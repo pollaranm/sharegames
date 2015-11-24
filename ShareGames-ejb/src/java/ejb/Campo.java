@@ -10,8 +10,8 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -32,16 +32,14 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Campo.findAll", query = "SELECT c FROM Campo c"),
-    @NamedQuery(name = "Campo.findByIdcampo", query = "SELECT c FROM Campo c WHERE c.idcampo = :idcampo"),
+    @NamedQuery(name = "Campo.findByIdcampo", query = "SELECT c FROM Campo c WHERE c.campoPK.idcampo = :idcampo"),
+    @NamedQuery(name = "Campo.findByIdimpianto", query = "SELECT c FROM Campo c WHERE c.campoPK.idimpianto = :idimpianto"),
     @NamedQuery(name = "Campo.findByTipologia", query = "SELECT c FROM Campo c WHERE c.tipologia = :tipologia"),
     @NamedQuery(name = "Campo.findByNumerogiocatori", query = "SELECT c FROM Campo c WHERE c.numerogiocatori = :numerogiocatori")})
 public class Campo implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "idcampo")
-    private Integer idcampo;
+    @EmbeddedId
+    protected CampoPK campoPK;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 9)
@@ -55,29 +53,33 @@ public class Campo implements Serializable {
     private Collection<Evento> eventoCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcampo")
     private Collection<Prezziario> prezziarioCollection;
-    @JoinColumn(name = "idimpianto", referencedColumnName = "idimpianto")
+    @JoinColumn(name = "idimpianto", referencedColumnName = "idimpianto", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Impianto idimpianto;
+    private Impianto impianto;
 
     public Campo() {
     }
 
-    public Campo(Integer idcampo) {
-        this.idcampo = idcampo;
+    public Campo(CampoPK campoPK) {
+        this.campoPK = campoPK;
     }
 
-    public Campo(Integer idcampo, String tipologia, int numerogiocatori) {
-        this.idcampo = idcampo;
+    public Campo(CampoPK campoPK, String tipologia, int numerogiocatori) {
+        this.campoPK = campoPK;
         this.tipologia = tipologia;
         this.numerogiocatori = numerogiocatori;
     }
 
-    public Integer getIdcampo() {
-        return idcampo;
+    public Campo(int idcampo, int idimpianto) {
+        this.campoPK = new CampoPK(idcampo, idimpianto);
     }
 
-    public void setIdcampo(Integer idcampo) {
-        this.idcampo = idcampo;
+    public CampoPK getCampoPK() {
+        return campoPK;
+    }
+
+    public void setCampoPK(CampoPK campoPK) {
+        this.campoPK = campoPK;
     }
 
     public String getTipologia() {
@@ -114,18 +116,18 @@ public class Campo implements Serializable {
         this.prezziarioCollection = prezziarioCollection;
     }
 
-    public Impianto getIdimpianto() {
-        return idimpianto;
+    public Impianto getImpianto() {
+        return impianto;
     }
 
-    public void setIdimpianto(Impianto idimpianto) {
-        this.idimpianto = idimpianto;
+    public void setImpianto(Impianto impianto) {
+        this.impianto = impianto;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idcampo != null ? idcampo.hashCode() : 0);
+        hash += (campoPK != null ? campoPK.hashCode() : 0);
         return hash;
     }
 
@@ -136,7 +138,7 @@ public class Campo implements Serializable {
             return false;
         }
         Campo other = (Campo) object;
-        if ((this.idcampo == null && other.idcampo != null) || (this.idcampo != null && !this.idcampo.equals(other.idcampo))) {
+        if ((this.campoPK == null && other.campoPK != null) || (this.campoPK != null && !this.campoPK.equals(other.campoPK))) {
             return false;
         }
         return true;
@@ -144,7 +146,7 @@ public class Campo implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.Campo[ idcampo=" + idcampo + " ]";
+        return "ejb.Campo[ campoPK=" + campoPK + " ]";
     }
     
 }

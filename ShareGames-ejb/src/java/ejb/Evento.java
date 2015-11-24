@@ -6,7 +6,9 @@
 package ejb;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -14,10 +16,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -54,7 +59,7 @@ public class Evento implements Serializable {
     private String completo;
     @Column(name = "giocatoripagato")
     private Integer giocatoripagato;
-    @JoinColumn(name = "idcampo", referencedColumnName = "idcampo")
+    @PrimaryKeyJoinColumn(name = "idcampo", referencedColumnName = "idcampo")
     @ManyToOne(optional = false)
     private Campo idcampo;
     @JoinColumn(name = "idimpianto", referencedColumnName = "idimpianto")
@@ -63,6 +68,8 @@ public class Evento implements Serializable {
     @JoinColumn(name = "idutentecreatore", referencedColumnName = "idutente")
     @ManyToOne(optional = false)
     private Utente idutentecreatore;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
+    private Collection<Listaeventiutente> listaeventiutenteCollection;
 
     public Evento() {
     }
@@ -143,6 +150,15 @@ public class Evento implements Serializable {
 
     public void setIdutentecreatore(Utente idutentecreatore) {
         this.idutentecreatore = idutentecreatore;
+    }
+
+    @XmlTransient
+    public Collection<Listaeventiutente> getListaeventiutenteCollection() {
+        return listaeventiutenteCollection;
+    }
+
+    public void setListaeventiutenteCollection(Collection<Listaeventiutente> listaeventiutenteCollection) {
+        this.listaeventiutenteCollection = listaeventiutenteCollection;
     }
 
     @Override

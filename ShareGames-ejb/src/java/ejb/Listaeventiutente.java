@@ -8,14 +8,13 @@ package ejb;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -30,21 +29,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Listaeventiutente.findAll", query = "SELECT l FROM Listaeventiutente l"),
-    @NamedQuery(name = "Listaeventiutente.findByIdlistaeventiutente", query = "SELECT l FROM Listaeventiutente l WHERE l.idlistaeventiutente = :idlistaeventiutente"),
-    @NamedQuery(name = "Listaeventiutente.findByIdevento", query = "SELECT l FROM Listaeventiutente l WHERE l.idevento = :idevento"),
+    @NamedQuery(name = "Listaeventiutente.findByIdlistaeventiutente", query = "SELECT l FROM Listaeventiutente l WHERE l.listaeventiutentePK.idlistaeventiutente = :idlistaeventiutente"),
+    @NamedQuery(name = "Listaeventiutente.findByIdevento", query = "SELECT l FROM Listaeventiutente l WHERE l.listaeventiutentePK.idevento = :idevento"),
+    @NamedQuery(name = "Listaeventiutente.findByIdutente", query = "SELECT l FROM Listaeventiutente l WHERE l.listaeventiutentePK.idutente = :idutente"),
     @NamedQuery(name = "Listaeventiutente.findByPostopagato", query = "SELECT l FROM Listaeventiutente l WHERE l.postopagato = :postopagato"),
     @NamedQuery(name = "Listaeventiutente.findByProprietario", query = "SELECT l FROM Listaeventiutente l WHERE l.proprietario = :proprietario")})
 public class Listaeventiutente implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "idlistaeventiutente")
-    private Integer idlistaeventiutente;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "idevento")
-    private int idevento;
+    @EmbeddedId
+    protected ListaeventiutentePK listaeventiutentePK;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 10)
@@ -55,38 +48,36 @@ public class Listaeventiutente implements Serializable {
     @Size(min = 1, max = 10)
     @Column(name = "proprietario")
     private String proprietario;
-    @JoinColumn(name = "idutente", referencedColumnName = "idutente")
+    @PrimaryKeyJoinColumn(name = "idevento", referencedColumnName = "idevento")
     @ManyToOne(optional = false)
-    private Utente idutente;
+    private Evento evento;
+    @JoinColumn(name = "idutente", referencedColumnName = "idutente", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Utente utente;
 
     public Listaeventiutente() {
     }
 
-    public Listaeventiutente(Integer idlistaeventiutente) {
-        this.idlistaeventiutente = idlistaeventiutente;
+    public Listaeventiutente(ListaeventiutentePK listaeventiutentePK) {
+        this.listaeventiutentePK = listaeventiutentePK;
     }
 
-    public Listaeventiutente(Integer idlistaeventiutente, int idevento, String postopagato, String proprietario) {
-        this.idlistaeventiutente = idlistaeventiutente;
-        this.idevento = idevento;
+    public Listaeventiutente(ListaeventiutentePK listaeventiutentePK, String postopagato, String proprietario) {
+        this.listaeventiutentePK = listaeventiutentePK;
         this.postopagato = postopagato;
         this.proprietario = proprietario;
     }
 
-    public Integer getIdlistaeventiutente() {
-        return idlistaeventiutente;
+    public Listaeventiutente(int idlistaeventiutente, int idevento, int idutente) {
+        this.listaeventiutentePK = new ListaeventiutentePK(idlistaeventiutente, idevento, idutente);
     }
 
-    public void setIdlistaeventiutente(Integer idlistaeventiutente) {
-        this.idlistaeventiutente = idlistaeventiutente;
+    public ListaeventiutentePK getListaeventiutentePK() {
+        return listaeventiutentePK;
     }
 
-    public int getIdevento() {
-        return idevento;
-    }
-
-    public void setIdevento(int idevento) {
-        this.idevento = idevento;
+    public void setListaeventiutentePK(ListaeventiutentePK listaeventiutentePK) {
+        this.listaeventiutentePK = listaeventiutentePK;
     }
 
     public String getPostopagato() {
@@ -105,18 +96,26 @@ public class Listaeventiutente implements Serializable {
         this.proprietario = proprietario;
     }
 
-    public Utente getIdutente() {
-        return idutente;
+    public Evento getEvento() {
+        return evento;
     }
 
-    public void setIdutente(Utente idutente) {
-        this.idutente = idutente;
+    public void setEvento(Evento evento) {
+        this.evento = evento;
+    }
+
+    public Utente getUtente() {
+        return utente;
+    }
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idlistaeventiutente != null ? idlistaeventiutente.hashCode() : 0);
+        hash += (listaeventiutentePK != null ? listaeventiutentePK.hashCode() : 0);
         return hash;
     }
 
@@ -127,7 +126,7 @@ public class Listaeventiutente implements Serializable {
             return false;
         }
         Listaeventiutente other = (Listaeventiutente) object;
-        if ((this.idlistaeventiutente == null && other.idlistaeventiutente != null) || (this.idlistaeventiutente != null && !this.idlistaeventiutente.equals(other.idlistaeventiutente))) {
+        if ((this.listaeventiutentePK == null && other.listaeventiutentePK != null) || (this.listaeventiutentePK != null && !this.listaeventiutentePK.equals(other.listaeventiutentePK))) {
             return false;
         }
         return true;
@@ -135,7 +134,7 @@ public class Listaeventiutente implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.Listaeventiutente[ idlistaeventiutente=" + idlistaeventiutente + " ]";
+        return "ejb.Listaeventiutente[ listaeventiutentePK=" + listaeventiutentePK + " ]";
     }
     
 }

@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import manager.GestioneEventoLocal;
+import manager.GestoreCampoLocal;
+import manager.GestoreEventoLocal;
+import manager.GestoreImpiantoLocal;
 import manager.GestoreUtenteLocal;
 
 /**
@@ -24,10 +26,13 @@ import manager.GestoreUtenteLocal;
  */
 public class Controller extends HttpServlet {
     @EJB
-    private GestioneEventoLocal gestioneEvento;
-
-    @EJB
+    private GestoreCampoLocal gestoreCampo;
+    private GestoreImpiantoLocal gestoreImpianto;
+    private GestoreEventoLocal gestioneEvento;
     private GestoreUtenteLocal gestoreUtente;
+    
+    
+    
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -39,7 +44,36 @@ public class Controller extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet Controller</title>");
-            gestioneEvento.addEvento();
+            //gestoreImpianto.addImpianto("ImpiantoProva1", "Italia", "Piemonte", "Torino", "Torino", "Corso Regina", "333", "000000000", "08-22", "nessuno");
+            
+//            for(int i=0;i<gestoreImpianto.getImpiantoByCitta("Torino").size();i++){
+//                
+//                String nome = gestoreImpianto.getImpiantoByCitta("Torino").get(i).getNome();
+//                int    id   = gestoreImpianto.getImpiantoByCitta("Torino").get(i).getIdimpianto();
+//                out.println("<p>Nome: "+nome + ", Id: "+id+"<p>");
+//            }
+            
+//            for(int i=0;i<gestoreImpianto.getImpiantoByProvincia("Torino").size();i++){
+//                
+//                String nome = gestoreImpianto.getImpiantoByProvincia("Torino").get(i).getCitta();
+//                int    id   = gestoreImpianto.getImpiantoByProvincia("Torino").get(i).getIdimpianto();
+//                out.println("<p>Nome: "+nome + ", Id: "+id+"<p>");
+//            }
+            
+//            out.println(gestoreImpianto.getObjectImpiantoById(25));
+
+//            gestoreImpianto.updateImpianto("ImpiantoProva1", "Italia", "Piemonte", "Vercelli", "Torino", "Corso Regina", "333", "000000000", "08-22", "nessuno");
+
+            //gestoreCampo.addCampo(2,20,"calcio7",7);
+            gestoreCampo.addCampo(2,22,"calcio7",7);
+            //gestoreCampo.addCampo(1,20,"calcio7",7);
+            //out.println(gestoreCampo.getObjectCampoById(3, 19).getIdimpianto());
+            //gestoreCampo.updateCampo(50, 19, "calcio5", 5);
+            //gestoreCampo.removeCampo(50, 19);
+            
+            //out.println(gestoreCampo.getCampoByImpianto(19));
+            //out.println(gestoreCampo.getCampoByTipologia("calcio5"));
+            
             out.println("andata");
             out.println("</head>");
             out.println("<body>");
@@ -47,9 +81,6 @@ public class Controller extends HttpServlet {
             out.println("</html>");
         }
 
-        //gestoreUtente.AddUser("123", "aa", "aa", "123", "123");
-        //gestoreImpianto.insertImpianto("impianto_7_nuovo", "Italia", "Piemonte", "Torino", "Torino", "Corso", "333", "000", "08-22", "niente");
-        //gestoreSquadra.aggiungiSquadra("123", "5", "calcio7");
     }
     
 

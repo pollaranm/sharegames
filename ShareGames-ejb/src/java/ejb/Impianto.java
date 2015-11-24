@@ -106,7 +106,7 @@ public class Impianto implements Serializable {
     private Collection<Evento> eventoCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idimpianto")
     private Collection<Prezziario> prezziarioCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idimpianto")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "impianto")
     private Collection<Campo> campoCollection;
 
     public Impianto() {

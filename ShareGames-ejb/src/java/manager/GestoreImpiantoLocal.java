@@ -5,6 +5,8 @@
  */
 package manager;
 
+import ejb.Impianto;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +15,19 @@ import javax.ejb.Local;
  */
 @Local
 public interface GestoreImpiantoLocal {
+
+    void addImpianto(String nomeimpianto, String stato, String regione, String provincia, String citta, String indirizzo, String telefono, String partitaiva, String fasciaoraria, String servizi);
+
+    void removeImpianto(int id);
+
+    List<Impianto> getImpiantoByCitta(String citta);
+
+    List<Impianto> getImpiantoByProvincia(String provincia);
+
+    Impianto getObjectImpiantoById(int id);
+
+    void updateImpianto(String nomeimpianto, String stato, String regione, String provincia, 
+                            String citta, String indirizzo, String telefono, String partitaiva, 
+                            String fasciaoraria, String servizi);
     
 }

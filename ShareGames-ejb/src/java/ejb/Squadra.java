@@ -45,7 +45,6 @@ public class Squadra implements Serializable {
     @Size(max = 100)
     @Column(name = "nomesquadra")
     private String nomesquadra;
-    //@Size(max = 11)
     @Column(name = "numerocomponenti")
     private Integer numerocomponenti;
     @Size(max = 9)
@@ -87,7 +86,7 @@ public class Squadra implements Serializable {
     public void setNumerocomponenti(Integer numerocomponenti) {
         this.numerocomponenti = numerocomponenti;
     }
-    
+
     public String getTipologia() {
         return tipologia;
     }

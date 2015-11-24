@@ -17,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -49,7 +50,7 @@ public class Prezziario implements Serializable {
     @NotNull
     @Column(name = "sconto")
     private int sconto;
-    @JoinColumn(name = "idcampo", referencedColumnName = "idcampo")
+    @PrimaryKeyJoinColumn(name = "idcampo", referencedColumnName = "idcampo")
     @ManyToOne(optional = false)
     private Campo idcampo;
     @JoinColumn(name = "idimpianto", referencedColumnName = "idimpianto")

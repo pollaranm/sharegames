@@ -5,6 +5,11 @@
  */
 package manager;
 
+import ejb.Campo;
+import ejb.CampoPK;
+import ejb.Impianto;
+import ejbFacade.CampoFacadeLocal;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
@@ -13,7 +18,77 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestoreCampo implements GestoreCampoLocal {
+    @EJB
+    private CampoFacadeLocal campoFacade;
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    @Override
+    public void addCampo(int idcampo, int idimpianto, String tipologia, int numerogiocatori) {
+        
+        Impianto i = new Impianto();
+        i.setIdimpianto(idimpianto);
+        Campo c = new Campo();
+        CampoPK c_pk = new CampoPK();
+        c_pk.setIdcampo(idcampo);
+        c_pk.setIdimpianto(idimpianto);
+        c.setCampoPK(c_pk);
+        c.setImpianto(i);
+        c.setNumerogiocatori(numerogiocatori);
+        c.setTipologia(tipologia);
+        
+        campoFacade.create(c);
+        
+    }
+    
+
+    @Override
+    public Campo getObjectCampoById(int idcampo, int idimpianto) {
+        
+        return (Campo)campoFacade.getObjectCampo(idcampo,idimpianto);
+
+    }
+
+    @Override
+    public void removeCampo(int idcampo, int idimpianto) {
+        
+        campoFacade.remove(getObjectCampoById(idcampo, idimpianto));
+        
+        
+    }
+
+    @Override
+    public void updateCampo(int idcampo, int idimpianto, String tipologia, int numerogiocatori) {
+        
+        
+        
+        Impianto i = new Impianto();
+        i.setIdimpianto(idimpianto);
+        Campo c = new Campo();
+        CampoPK c_pk = new CampoPK();
+        c_pk.setIdcampo(idcampo);
+        c_pk.setIdimpianto(idimpianto);
+        
+        c.setCampoPK(c_pk);
+        c.setImpianto(i);
+        c.setNumerogiocatori(numerogiocatori);
+        c.setTipologia(tipologia);
+                
+        campoFacade.edit(c);
+        
+    }
+
+    @Override
+    public Campo getCampoByTipologia(String tipologia) {
+        
+        return (Campo)campoFacade.getCampoByTipologia(tipologia);
+    }
+
+    @Override
+    public Campo getCampoByImpianto(int idimpianto) {
+        
+        return (Campo)campoFacade.getCampoByImpianto(idimpianto);
+        
+    }
+
+    
+    
 }

@@ -29,5 +29,11 @@ public interface ImpiantoFacadeLocal {
     List<Impianto> findRange(int[] range);
 
     int count();
+
+    Impianto getObjUtente(int id);
+
+    List<Impianto> getImpiantoByProvincia(String provincia);
+
+    List<Impianto> getImpiantoByCitta(String citta);
     
 }

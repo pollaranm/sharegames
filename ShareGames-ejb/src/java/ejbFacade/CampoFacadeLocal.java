@@ -29,5 +29,11 @@ public interface CampoFacadeLocal {
     List<Campo> findRange(int[] range);
 
     int count();
+
+    Campo getObjectCampo(int idcampo,int idimpianto);
+
+    List<Campo> getCampoByTipologia(String tipologia);
+
+    List<Campo> getCampoByImpianto(int idimpianto);
     
 }

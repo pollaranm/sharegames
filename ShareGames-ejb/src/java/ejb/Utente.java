@@ -70,7 +70,7 @@ public class Utente implements Serializable {
     private Squadra idsquadra;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idutentecreatore")
     private Collection<Evento> eventoCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idutente")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "utente")
     private Collection<Listaeventiutente> listaeventiutenteCollection;
 
     public Utente() {
