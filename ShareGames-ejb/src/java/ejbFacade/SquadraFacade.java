@@ -6,6 +6,7 @@
 package ejbFacade;
 
 import ejb.Squadra;
+import java.util.Collection;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -35,6 +36,24 @@ public class SquadraFacade extends AbstractFacade<Squadra> implements SquadraFac
         q.setParameter("idsquadra", idSquadra);
         return (Squadra) q.getResultList().get(0);
     }
+
+    @Override
+    public Boolean checkNomeSquadra(String name) {
+        Query q = em.createNamedQuery("Squadra.findByNomesquadra");
+        q.setParameter("nomesquadra", name);
+        return q.getResultList().isEmpty();
+    }
+
+    @Override
+    public Collection<Squadra> getSquadraByCitta(String city) {
+        Query q = em.createNamedQuery("Squadra.findByCitta");
+        q.setParameter("citta", city);
+        return q.getResultList();
+    }
+    
+    
+    
+    
     
     
 }

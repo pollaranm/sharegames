@@ -108,7 +108,7 @@
 
         <!-- Feature 1 -->
         <article id="first" class="container box style1 right">
-            <a href="#" class="image fit"><img src="images/pic001.jpg" alt="" /></a>
+            <a href="#" class="image fit"><img src="images/pic01.jpg" alt="" /></a>
             <div class="inner">
                 <header>
                     <h2>Le preoccupazioni<br />
@@ -122,7 +122,7 @@
 
         <!-- Feature 2 -->
         <article class="container box style1 left">
-            <a href="#" class="image fit"><img src="images/pic002.jpg" alt="" /></a>
+            <a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
             <div class="inner">
                 <header>
                     <h2>Gioca, cresci, vinci</h2>

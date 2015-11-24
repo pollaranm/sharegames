@@ -49,5 +49,19 @@ public interface GestoreSquadraLocal {
      */
     Collection<Squadra> getAllSquadra();
 
+    /**
+     * Controlla la disponibilità di un nome per una Squadra, valutando se è già presente.
+     * @param name Nome squadra da controllare
+     * @return <i>True</i> se il nome è disponibile, <i>false</i> se è già stato utilizzato
+     */
+    Boolean checkNomeSquadra(String name);
+
+    /**
+     * Restituisce l'elenco delle squadre che hanno sede nella città passata come parametro.
+     * @param city Città di riferimento per la ricerca della squadre
+     * @return L'elenco delle squadre
+     */
+    Collection<Squadra> getSquadraByCitta(String city);
+
     
 }

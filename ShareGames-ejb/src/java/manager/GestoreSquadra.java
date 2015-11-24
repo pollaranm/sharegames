@@ -34,6 +34,7 @@ public class GestoreSquadra implements GestoreSquadraLocal {
 
     @Override
     public void addSquadra(String nomeSquadra, String tipologia, String citta) {
+        if( !checkNomeSquadra(nomeSquadra) ) return;
         Squadra s = new Squadra();
         s.setNomesquadra(nomeSquadra);
         s.setTipologia(tipologia);
@@ -56,9 +57,16 @@ public class GestoreSquadra implements GestoreSquadraLocal {
     public Collection<Squadra> getAllSquadra() {
         return squadraFacade.findAll();
     }
-    
-    
-    
 
+    @Override
+    public Boolean checkNomeSquadra(String name) {
+        return squadraFacade.checkNomeSquadra(name);
+    }
+
+    @Override
+    public Collection<Squadra> getSquadraByCitta(String city) {
+        return squadraFacade.getSquadraByCitta(city);
+    }
     
+        
 }
