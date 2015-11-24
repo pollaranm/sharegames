@@ -6,7 +6,10 @@
 package manager;
 
 import ejb.Squadra;
+import ejb.Utente;
 import ejbFacade.SquadraFacadeLocal;
+import ejbFacade.UtenteFacadeLocal;
+import java.util.Collection;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -17,15 +20,17 @@ import javax.ejb.Stateless;
 @Stateless
 public class GestoreSquadra implements GestoreSquadraLocal {
     @EJB
-    private SquadraFacadeLocal squadraFacade;
+    private UtenteFacadeLocal utenteFacade;
 
+    @EJB
+    private SquadraFacadeLocal squadraFacade;
     
+    
+
     @Override
     public Squadra getObjSquadra(Integer idSquadra) {
         return squadraFacade.getObjSquadra(idSquadra);
     }
-    
-   
 
     @Override
     public void addSquadra(String nomeSquadra, String tipologia, String citta) {
@@ -36,5 +41,24 @@ public class GestoreSquadra implements GestoreSquadraLocal {
         s.setNumerocomponenti(0);
         squadraFacade.create(s);
     }
+
+    @Override
+    public void removeSquadra(Integer idSquadra) {
+        Squadra temp = squadraFacade.getObjSquadra(idSquadra);
+        for( Utente player : temp.getUtenteCollection() ) {
+            player.setIdsquadra(null);
+            utenteFacade.edit(player);
+        }
+        squadraFacade.remove(temp);
+    }
+
+    @Override
+    public Collection<Squadra> getAllSquadra() {
+        return squadraFacade.findAll();
+    }
+    
+    
+    
+
     
 }

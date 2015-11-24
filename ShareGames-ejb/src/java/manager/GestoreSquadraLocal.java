@@ -6,6 +6,7 @@
 package manager;
 
 import ejb.Squadra;
+import java.util.Collection;
 import javax.ejb.Local;
 
 /**
@@ -32,5 +33,21 @@ public interface GestoreSquadraLocal {
      * @param citta Città di riferimento per il team
      */
     void addSquadra(String nomeSquadra, String tipologia, String citta);
+
+    /**
+     * Elimina la Squadra avente l'Id passato come parametro.
+     * Gli Utenti che vi appartenevano tornano ad avere come Squadra NULL.
+     * @param idSquadra Id della Squadra da eliminare
+     */
+    void removeSquadra(Integer idSquadra);
+
+    /**
+     * Restituisce l'elenco di tutte le squadre presenti nel database.
+     * 
+     * @return Una collezione di tutte le squadre presenti in database
+     * 
+     */
+    Collection<Squadra> getAllSquadra();
+
     
 }

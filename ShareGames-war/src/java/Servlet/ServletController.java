@@ -5,6 +5,7 @@
  */
 package Servlet;
 
+import ejb.Squadra;
 import ejb.Utente;
 import java.io.*;
 import javax.ejb.EJB;
