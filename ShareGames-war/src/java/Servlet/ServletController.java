@@ -10,18 +10,19 @@ import java.io.*;
 import javax.ejb.EJB;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import manager.GestoreUtenteLocal;
 
 /**
  *
  * @author Alex
  */
 public class ServletController extends HttpServlet {
-
-
+    @EJB
+    private GestoreUtenteLocal gestoreUtente;
 
     String state = "index";
     HttpSession s;
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ServletContext ctx = getServletContext();
@@ -135,12 +136,12 @@ public class ServletController extends HttpServlet {
         String id = request.getParameter("id");
         String email = request.getParameter("email");
         String url = request.getParameter("url");
-//        if (gestoreUtente.findFacebook(id) == false) {
-//            gestoreUtente.AddUser(nome, email, "", id, "");
-//            System.out.println("inserito");
-//        } else {
-//            System.out.println("presente");
-//        }
+        if (gestoreUtente.findFacebook(id) == false) {
+            gestoreUtente.AddUser(nome, email, "", id, "");
+            System.out.println("inserito");
+        } else {
+            System.out.println("presente");
+        }
         s.setAttribute("name", nome);
         s.setAttribute("id", id);
         s.setAttribute("tiposocial", "facebook");
@@ -158,12 +159,12 @@ public class ServletController extends HttpServlet {
         String id = request.getParameter("id");
         String email = request.getParameter("email");
         String url = request.getParameter("url");
-//        if (gestoreUtente.findGoogle(id) == false) {
-//            gestoreUtente.AddUser(nome, email, id, "", "");
-//            System.out.println("inserito");
-//        } else {
-//            System.out.println("presente");
-//        }
+        if (gestoreUtente.findGoogle(id) == false) {
+            gestoreUtente.AddUser(nome, email, id, "", "");
+            System.out.println("inserito");
+        } else {
+            System.out.println("presente");
+        }
         s.setAttribute("name", nome);
         s.setAttribute("id", id);
         s.setAttribute("tiposocial", "google");
