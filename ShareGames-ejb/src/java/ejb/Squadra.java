@@ -10,6 +10,7 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Alex
  */
 @Entity
-@Table(name = "squadra")
+@Table(catalog = "newsharegames", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Squadra.findAll", query = "SELECT s FROM Squadra s"),
@@ -40,20 +41,19 @@ public class Squadra implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idsquadra")
+    @Column(nullable = false)
     private Integer idsquadra;
     @Size(max = 100)
-    @Column(name = "nomesquadra")
+    @Column(length = 100)
     private String nomesquadra;
-    @Column(name = "numerocomponenti")
     private Integer numerocomponenti;
     @Size(max = 9)
-    @Column(name = "tipologia")
+    @Column(length = 9)
     private String tipologia;
     @Size(max = 45)
-    @Column(name = "citta")
+    @Column(length = 45)
     private String citta;
-    @OneToMany(mappedBy = "idsquadra")
+    @OneToMany(mappedBy = "idsquadra", fetch = FetchType.LAZY)
     private Collection<Utente> utenteCollection;
 
     public Squadra() {

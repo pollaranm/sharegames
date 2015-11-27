@@ -29,8 +29,7 @@ public class ImpiantoFacade extends AbstractFacade<Impianto> implements Impianto
     public ImpiantoFacade() {
         super(Impianto.class);
     }
-
-
+    
     @Override
     public Impianto getObjUtente(int id) {
         
@@ -58,4 +57,3 @@ public class ImpiantoFacade extends AbstractFacade<Impianto> implements Impianto
     }
     
 }
-    

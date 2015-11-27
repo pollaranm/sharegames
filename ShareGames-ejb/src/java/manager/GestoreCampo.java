@@ -43,7 +43,7 @@ public class GestoreCampo implements GestoreCampoLocal {
     @Override
     public Campo getObjectCampoById(int idcampo, int idimpianto) {
         
-        return (Campo)campoFacade.getObjectCampo(idcampo,idimpianto);
+        return null;
 
     }
 
@@ -58,34 +58,20 @@ public class GestoreCampo implements GestoreCampoLocal {
     @Override
     public void updateCampo(int idcampo, int idimpianto, String tipologia, int numerogiocatori) {
         
-        
-        
-        Impianto i = new Impianto();
-        i.setIdimpianto(idimpianto);
-        Campo c = new Campo();
-        CampoPK c_pk = new CampoPK();
-        c_pk.setIdcampo(idcampo);
-        c_pk.setIdimpianto(idimpianto);
-        
-        c.setCampoPK(c_pk);
-        c.setImpianto(i);
-        c.setNumerogiocatori(numerogiocatori);
-        c.setTipologia(tipologia);
-                
-        campoFacade.edit(c);
+        //creare query
         
     }
 
     @Override
     public Campo getCampoByTipologia(String tipologia) {
         
-        return (Campo)campoFacade.getCampoByTipologia(tipologia);
+        return null;
     }
 
     @Override
     public Campo getCampoByImpianto(int idimpianto) {
         
-        return (Campo)campoFacade.getCampoByImpianto(idimpianto);
+        return null;
         
     }
 

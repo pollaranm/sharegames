@@ -58,7 +58,7 @@ public class GestoreUtente implements GestoreUtenteLocal {
     @Override
     public boolean findFacebook(String idfacebook) {
         
-        return utenteFacade.findbyface(idfacebook);
+        return true;
 
     }
 
@@ -71,7 +71,7 @@ public class GestoreUtente implements GestoreUtenteLocal {
     @Override
     public boolean findGoogle(String idgoogle) {
         
-        return utenteFacade.findbygoogle(idgoogle);
+        return true;
         
     }
 
@@ -85,13 +85,7 @@ public class GestoreUtente implements GestoreUtenteLocal {
     @Override
     public boolean removeUtente(String idsocial, String tipo) {
 
-        Utente t = utenteFacade.getObjUtente(idsocial, tipo);
-        if( t == null ) {
-            return false;
-        } else {
-            utenteFacade.remove(t);
-            return true;
-        }
+        return true;
         
     }
 
@@ -104,16 +98,12 @@ public class GestoreUtente implements GestoreUtenteLocal {
      */
     @Override
     public Utente getObjUtente(String idsocial, String tipo) {
-        return utenteFacade.getObjUtente(idsocial, tipo);
+        return null;
     }
 
     @Override
     public void joinSquadra(Utente utente, Integer idSquadra) {
-        Squadra temp = squadraFacade.getObjSquadra(idSquadra);
-        temp.setNumerocomponenti(temp.getNumerocomponenti() + 1);
-        utente.setIdsquadra(squadraFacade.getObjSquadra(idSquadra));
-        utenteFacade.edit(utente);
-        squadraFacade.edit(temp);
+        
     }
 
     @Override
@@ -124,11 +114,15 @@ public class GestoreUtente implements GestoreUtenteLocal {
         utenteFacade.edit(utente);
         squadraFacade.edit(temp);
     }
-    
-    
-    
-    
-    
-    
 
+    @Override
+    public void updateUtente() {
+        
+        
+        //creazione query personalizzata
+        
+    }
+    
+    
+    
 }

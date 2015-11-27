@@ -30,4 +30,6 @@ public interface AmministratoreFacadeLocal {
 
     int count();
     
+    public Amministratore getObjAmministratore(int idAmministratore);
+    
 }

@@ -30,4 +30,6 @@ public interface PrezziarioFacadeLocal {
 
     int count();
     
+    public Prezziario getObjectPrezziario(int idPrezziario);
+    
 }

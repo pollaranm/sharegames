@@ -19,8 +19,7 @@ import javax.ejb.Stateless;
 public class GestoreImpianto implements GestoreImpiantoLocal {
     @EJB
     private ImpiantoFacadeLocal impiantoFacade;
-
-    @Override
+@Override
     public void addImpianto(String nomeimpianto, String stato, String regione, String provincia, 
                             String citta, String indirizzo, String telefono, String partitaiva, 
                             String fasciaoraria, String servizi) 
@@ -36,7 +35,7 @@ public class GestoreImpianto implements GestoreImpiantoLocal {
     impiantoFacade.create(i);
     
     }
-
+    
     @Override
     public void removeImpianto(int id) {
         
@@ -67,23 +66,13 @@ public class GestoreImpianto implements GestoreImpiantoLocal {
     @Override
     public void updateImpianto(String nomeimpianto, String stato, String regione, String provincia, 
                             String citta, String indirizzo, String telefono, String partitaiva, 
-                            String fasciaoraria, String servizi) 
+                            String fasciaoraria, String servizi,int idimpianto) 
     {
-        Impianto i = new Impianto();
-    
-    i.setNome(nomeimpianto);
-    i.setStato(stato);              i.setRegione(regione);              i.setProvincia(provincia);  
-    i.setCitta(citta);              i.setIndirizzo(indirizzo);          i.setTelefono(telefono);
-    i.setPartitaiva(partitaiva);    i.setFasciaoraria(fasciaoraria);    i.setServizi(servizi);
-    
-    impiantoFacade.edit(i);
+        
+        //creazione query personalizzata
+        
+        
     }
-    
-    
-    
-    
-    
-    
 
     
 }

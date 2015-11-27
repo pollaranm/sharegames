@@ -18,15 +18,15 @@ import javax.validation.constraints.NotNull;
 @Embeddable
 public class ListaeventiutentePK implements Serializable {
     @Basic(optional = false)
-    @Column(name = "idlistaeventiutente")
+    @Column(nullable = false)
     private int idlistaeventiutente;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idevento")
+    @Column(nullable = false)
     private int idevento;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idutente")
+    @Column(nullable = false)
     private int idutente;
 
     public ListaeventiutentePK() {

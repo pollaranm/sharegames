@@ -10,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -25,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Alex
  */
 @Entity
-@Table(name = "listaeventiutente")
+@Table(catalog = "newsharegames", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Listaeventiutente.findAll", query = "SELECT l FROM Listaeventiutente l"),
@@ -41,18 +42,18 @@ public class Listaeventiutente implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 10)
-    @Column(name = "postopagato")
+    @Column(nullable = false, length = 10)
     private String postopagato;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 10)
-    @Column(name = "proprietario")
+    @Column(nullable = false, length = 10)
     private String proprietario;
     @PrimaryKeyJoinColumn(name = "idevento", referencedColumnName = "idevento")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Evento evento;
-    @JoinColumn(name = "idutente", referencedColumnName = "idutente", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+    @PrimaryKeyJoinColumn(name = "idutente", referencedColumnName = "idutente")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Utente utente;
 
     public Listaeventiutente() {

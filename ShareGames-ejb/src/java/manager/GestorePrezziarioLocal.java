@@ -5,6 +5,8 @@
  */
 package manager;
 
+import ejb.Prezziario;
+import java.math.BigDecimal;
 import javax.ejb.Local;
 
 /**
@@ -14,4 +16,11 @@ import javax.ejb.Local;
 @Local
 public interface GestorePrezziarioLocal {
     
+    void addPrezziario(int idCampo, int idImpianto, BigDecimal prezzo, int sconto);
+    
+    Prezziario getObjPrezziario(int idPrezziario);
+
+    boolean removePrezziario(int idPrezziario);
+
+    void updatePrezziario(int idPrezziario, int idCampo, int idImpianto, BigDecimal prezzo, int sconto);
 }

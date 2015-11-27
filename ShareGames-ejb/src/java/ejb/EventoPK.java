@@ -19,24 +19,35 @@ import javax.validation.constraints.Size;
 @Embeddable
 public class EventoPK implements Serializable {
     @Basic(optional = false)
-    @Column(name = "idevento")
+    @Column(nullable = false)
     private int idevento;
     @Basic(optional = false)
     @NotNull
+    @Column(nullable = false,unique = true)
+    
+    private int idimpianto;
+    @Basic(optional = false)
+    @NotNull
+    @Column(nullable = false)
+    private int idcampo;
+    @Basic(optional = false)
+    @NotNull
     @Size(min = 1, max = 10)
-    @Column(name = "data")
+    @Column(nullable = false, length = 10)
     private String data;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "ora")
+    @Column(nullable = false, length = 100)
     private String ora;
 
     public EventoPK() {
     }
 
-    public EventoPK(int idevento, String data, String ora) {
+    public EventoPK(int idevento, int idimpianto, int idcampo, String data, String ora) {
         this.idevento = idevento;
+        this.idimpianto = idimpianto;
+        this.idcampo = idcampo;
         this.data = data;
         this.ora = ora;
     }
@@ -47,6 +58,22 @@ public class EventoPK implements Serializable {
 
     public void setIdevento(int idevento) {
         this.idevento = idevento;
+    }
+
+    public int getIdimpianto() {
+        return idimpianto;
+    }
+
+    public void setIdimpianto(int idimpianto) {
+        this.idimpianto = idimpianto;
+    }
+
+    public int getIdcampo() {
+        return idcampo;
+    }
+
+    public void setIdcampo(int idcampo) {
+        this.idcampo = idcampo;
     }
 
     public String getData() {
@@ -69,6 +96,8 @@ public class EventoPK implements Serializable {
     public int hashCode() {
         int hash = 0;
         hash += (int) idevento;
+        hash += (int) idimpianto;
+        hash += (int) idcampo;
         hash += (data != null ? data.hashCode() : 0);
         hash += (ora != null ? ora.hashCode() : 0);
         return hash;
@@ -84,6 +113,12 @@ public class EventoPK implements Serializable {
         if (this.idevento != other.idevento) {
             return false;
         }
+        if (this.idimpianto != other.idimpianto) {
+            return false;
+        }
+        if (this.idcampo != other.idcampo) {
+            return false;
+        }
         if ((this.data == null && other.data != null) || (this.data != null && !this.data.equals(other.data))) {
             return false;
         }
@@ -95,7 +130,7 @@ public class EventoPK implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.EventoPK[ idevento=" + idevento + ", data=" + data + ", ora=" + ora + " ]";
+        return "ejb.EventoPK[ idevento=" + idevento + ", idimpianto=" + idimpianto + ", idcampo=" + idcampo + ", data=" + data + ", ora=" + ora + " ]";
     }
     
 }

@@ -16,7 +16,7 @@ import javax.ejb.Local;
 @Local
 public interface ListaeventiutenteFacadeLocal {
 
-    void create(Listaeventiutente listaeventiutente);
+   void create(Listaeventiutente listaeventiutente);
 
     void edit(Listaeventiutente listaeventiutente);
 
@@ -29,5 +29,8 @@ public interface ListaeventiutenteFacadeLocal {
     List<Listaeventiutente> findRange(int[] range);
 
     int count();
-    
+
+    List getEventoByUtente(int idutente);
+
+    List getEventoByPagato(int idutente);
 }

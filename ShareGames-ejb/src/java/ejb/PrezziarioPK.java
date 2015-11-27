@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
  * @author Alex
  */
 @Embeddable
-public class CampoPK implements Serializable {
+public class PrezziarioPK implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(nullable = false)
@@ -26,10 +26,10 @@ public class CampoPK implements Serializable {
     @Column(nullable = false)
     private int idimpianto;
 
-    public CampoPK() {
+    public PrezziarioPK() {
     }
 
-    public CampoPK(int idcampo, int idimpianto) {
+    public PrezziarioPK(int idcampo, int idimpianto) {
         this.idcampo = idcampo;
         this.idimpianto = idimpianto;
     }
@@ -61,10 +61,10 @@ public class CampoPK implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CampoPK)) {
+        if (!(object instanceof PrezziarioPK)) {
             return false;
         }
-        CampoPK other = (CampoPK) object;
+        PrezziarioPK other = (PrezziarioPK) object;
         if (this.idcampo != other.idcampo) {
             return false;
         }
@@ -76,7 +76,7 @@ public class CampoPK implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.CampoPK[ idcampo=" + idcampo + ", idimpianto=" + idimpianto + " ]";
+        return "ejb.PrezziarioPK[ idcampo=" + idcampo + ", idimpianto=" + idimpianto + " ]";
     }
     
 }

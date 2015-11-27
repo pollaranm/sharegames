@@ -5,6 +5,9 @@
  */
 package manager;
 
+import ejbFacade.ListaeventiutenteFacadeLocal;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
@@ -16,4 +19,29 @@ public class GestoreListaEventi implements GestoreListaEventiLocal {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+    
+    
+    @EJB
+    private ListaeventiutenteFacadeLocal listaeventiutenteFacade;
+    
+    
+
+    @Override
+    public List getEventoByUtente(int idutente) {
+       return listaeventiutenteFacade.getEventoByUtente(idutente);
+    }
+    
+    
+
+
+
+    // Add business logic below. (Right-click in editor and choose
+    // "Insert Code > Add Business Method")
+
+    @Override
+    public List getEventoByPagato(int idutente) {
+        return listaeventiutenteFacade.getEventoByPagato(idutente);
+    }
+    
+    
 }

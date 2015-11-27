@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Alex
  */
 @Entity
-@Table(name = "impianto")
+@Table(catalog = "newsharegames", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Impianto.findAll", query = "SELECT i FROM Impianto i"),
@@ -48,65 +49,61 @@ public class Impianto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idimpianto")
+    @Column(nullable = false)
     private Integer idimpianto;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "nome")
+    @Column(nullable = false, length = 100)
     private String nome;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "stato")
+    @Column(nullable = false, length = 100)
     private String stato;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "regione")
+    @Column(nullable = false, length = 100)
     private String regione;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "provincia")
+    @Column(nullable = false, length = 100)
     private String provincia;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "citta")
+    @Column(nullable = false, length = 100)
     private String citta;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "indirizzo")
+    @Column(nullable = false, length = 100)
     private String indirizzo;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "telefono")
+    @Column(nullable = false, length = 100)
     private String telefono;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "partitaiva")
+    @Column(nullable = false, length = 100)
     private String partitaiva;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "fasciaoraria")
+    @Column(nullable = false, length = 100)
     private String fasciaoraria;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "servizi")
+    @Column(nullable = false, length = 100)
     private String servizi;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idimpianto")
-    private Collection<Amministratore> amministratoreCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idimpianto")
-    private Collection<Evento> eventoCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idimpianto")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "impianto", fetch = FetchType.LAZY)
     private Collection<Prezziario> prezziarioCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "impianto")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "impianto", fetch = FetchType.LAZY)
     private Collection<Campo> campoCollection;
 
     public Impianto() {
@@ -216,24 +213,6 @@ public class Impianto implements Serializable {
 
     public void setServizi(String servizi) {
         this.servizi = servizi;
-    }
-
-    @XmlTransient
-    public Collection<Amministratore> getAmministratoreCollection() {
-        return amministratoreCollection;
-    }
-
-    public void setAmministratoreCollection(Collection<Amministratore> amministratoreCollection) {
-        this.amministratoreCollection = amministratoreCollection;
-    }
-
-    @XmlTransient
-    public Collection<Evento> getEventoCollection() {
-        return eventoCollection;
-    }
-
-    public void setEventoCollection(Collection<Evento> eventoCollection) {
-        this.eventoCollection = eventoCollection;
     }
 
     @XmlTransient

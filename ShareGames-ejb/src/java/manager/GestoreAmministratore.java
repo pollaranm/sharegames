@@ -7,6 +7,12 @@ package manager;
 
 import javax.ejb.Stateless;
 
+import ejb.Amministratore;
+import ejb.Impianto;
+import ejbFacade.AmministratoreFacadeLocal;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
 /**
  *
  * @author Alex
@@ -14,6 +20,46 @@ import javax.ejb.Stateless;
 @Stateless
 public class GestoreAmministratore implements GestoreAmministratoreLocal {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    @EJB
+    private AmministratoreFacadeLocal amministratoreFacade;
+
+    
+    @Override
+    public void addAmministratore(int idImpianto, String nome, String cognome) {
+        
+        Impianto i= new Impianto();
+        i.setIdimpianto(idImpianto);
+        
+        Amministratore a = new Amministratore();
+        a.setIdimpianto(i);
+        a.setNome(nome);
+        a.setCognome(cognome);
+        
+        amministratoreFacade.create(a);
+        
+    }
+
+    @Override
+    public Amministratore getObjAmministratore(int idAmministratore) {
+        return amministratoreFacade.getObjAmministratore(idAmministratore);
+    }
+
+    @Override
+    public boolean removeAmministratore(int idAmministratore) {
+        
+        Amministratore a= amministratoreFacade.getObjAmministratore(idAmministratore);
+        
+        if( a == null ) {
+            return false;
+        } else {
+            amministratoreFacade.remove(a);
+            return true;
+        }
+        
+    }
+    
+    
+
+   
+    
 }

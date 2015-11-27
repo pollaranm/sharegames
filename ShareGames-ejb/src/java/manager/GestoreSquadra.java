@@ -6,10 +6,7 @@
 package manager;
 
 import ejb.Squadra;
-import ejb.Utente;
 import ejbFacade.SquadraFacadeLocal;
-import ejbFacade.UtenteFacadeLocal;
-import java.util.Collection;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -20,21 +17,18 @@ import javax.ejb.Stateless;
 @Stateless
 public class GestoreSquadra implements GestoreSquadraLocal {
     @EJB
-    private UtenteFacadeLocal utenteFacade;
-
-    @EJB
     private SquadraFacadeLocal squadraFacade;
-    
-    
 
+    
     @Override
     public Squadra getObjSquadra(Integer idSquadra) {
-        return squadraFacade.getObjSquadra(idSquadra);
+        return null;
     }
+    
+   
 
     @Override
     public void addSquadra(String nomeSquadra, String tipologia, String citta) {
-        if( !checkNomeSquadra(nomeSquadra) ) return;
         Squadra s = new Squadra();
         s.setNomesquadra(nomeSquadra);
         s.setTipologia(tipologia);
@@ -44,29 +38,12 @@ public class GestoreSquadra implements GestoreSquadraLocal {
     }
 
     @Override
-    public void removeSquadra(Integer idSquadra) {
-        Squadra temp = squadraFacade.getObjSquadra(idSquadra);
-        for( Utente player : temp.getUtenteCollection() ) {
-            player.setIdsquadra(null);
-            utenteFacade.edit(player);
-        }
-        squadraFacade.remove(temp);
-    }
-
-    @Override
-    public Collection<Squadra> getAllSquadra() {
-        return squadraFacade.findAll();
-    }
-
-    @Override
-    public Boolean checkNomeSquadra(String name) {
-        return squadraFacade.checkNomeSquadra(name);
-    }
-
-    @Override
-    public Collection<Squadra> getSquadraByCitta(String city) {
-        return squadraFacade.getSquadraByCitta(city);
+    public void updateSquadra() {
+        
+        //creazione query personalizzata
+        
     }
     
-        
+    
+    
 }

@@ -5,6 +5,7 @@
  */
 package manager;
 
+import ejb.Amministratore;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +14,11 @@ import javax.ejb.Local;
  */
 @Local
 public interface GestoreAmministratoreLocal {
+    
+    void addAmministratore(int idImpianto, String nome, String cognome);
+
+    Amministratore getObjAmministratore(int idAmministratore);
+
+    boolean removeAmministratore(int idAmministratore);
     
 }

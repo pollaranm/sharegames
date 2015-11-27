@@ -12,6 +12,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -19,6 +20,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -29,11 +31,15 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Alex
  */
 @Entity
-@Table(name = "evento")
+@Table(catalog = "newsharegames", schema = "", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"data", "idcampo", "idimpianto"})})
 @XmlRootElement
 @NamedQueries({
+    @NamedQuery(name = "Evento.updateAll", query = "UPDATE Evento e SET e.eventoPK.idimpianto = :idimpianto, e.eventoPK.idcampo = :idcampo, e.eventoPK.data = :data, e.eventoPK.ora = :ora, e.completo= :completo, e.pagato = :pagato, e.giocatoripagato = :gioatoripagato, e.sport = :sport WHERE e.eventoPK.idevento = :idevento"),
     @NamedQuery(name = "Evento.findAll", query = "SELECT e FROM Evento e"),
     @NamedQuery(name = "Evento.findByIdevento", query = "SELECT e FROM Evento e WHERE e.eventoPK.idevento = :idevento"),
+    @NamedQuery(name = "Evento.findByIdimpianto", query = "SELECT e FROM Evento e WHERE e.eventoPK.idimpianto = :idimpianto"),
+    @NamedQuery(name = "Evento.findByIdcampo", query = "SELECT e FROM Evento e WHERE e.eventoPK.idcampo = :idcampo"),
     @NamedQuery(name = "Evento.findByData", query = "SELECT e FROM Evento e WHERE e.eventoPK.data = :data"),
     @NamedQuery(name = "Evento.findByOra", query = "SELECT e FROM Evento e WHERE e.eventoPK.ora = :ora"),
     @NamedQuery(name = "Evento.findBySport", query = "SELECT e FROM Evento e WHERE e.sport = :sport"),
@@ -47,28 +53,27 @@ public class Evento implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 9)
-    @Column(name = "sport")
+    @Column(nullable = false, length = 9)
     private String sport;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 6)
-    @Column(name = "pagato")
+    @Column(nullable = false, length = 6)
     private String pagato;
     @Size(max = 3)
-    @Column(name = "completo")
+    @Column(length = 3)
     private String completo;
-    @Column(name = "giocatoripagato")
     private Integer giocatoripagato;
     @PrimaryKeyJoinColumn(name = "idcampo", referencedColumnName = "idcampo")
-    @ManyToOne(optional = false)
-    private Campo idcampo;
-    @JoinColumn(name = "idimpianto", referencedColumnName = "idimpianto")
-    @ManyToOne(optional = false)
-    private Impianto idimpianto;
-    @JoinColumn(name = "idutentecreatore", referencedColumnName = "idutente")
-    @ManyToOne(optional = false)
-    private Utente idutentecreatore;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Campo campo;
+    @PrimaryKeyJoinColumn(name = "idimpianto", referencedColumnName = "idimpianto")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Impianto impianto;
+    @JoinColumn(name = "idutente", referencedColumnName = "idutente")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Utente idutente;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento", fetch = FetchType.LAZY)
     private Collection<Listaeventiutente> listaeventiutenteCollection;
 
     public Evento() {
@@ -84,8 +89,8 @@ public class Evento implements Serializable {
         this.pagato = pagato;
     }
 
-    public Evento(int idevento, String data, String ora) {
-        this.eventoPK = new EventoPK(idevento, data, ora);
+    public Evento(int idevento, int idimpianto, int idcampo, String data, String ora) {
+        this.eventoPK = new EventoPK(idevento, idimpianto, idcampo, data, ora);
     }
 
     public EventoPK getEventoPK() {
@@ -128,28 +133,28 @@ public class Evento implements Serializable {
         this.giocatoripagato = giocatoripagato;
     }
 
-    public Campo getIdcampo() {
-        return idcampo;
+    public Campo getCampo() {
+        return campo;
     }
 
-    public void setIdcampo(Campo idcampo) {
-        this.idcampo = idcampo;
+    public void setCampo(Campo campo) {
+        this.campo = campo;
     }
 
-    public Impianto getIdimpianto() {
-        return idimpianto;
+    public Impianto getImpianto() {
+        return impianto;
     }
 
-    public void setIdimpianto(Impianto idimpianto) {
-        this.idimpianto = idimpianto;
+    public void setImpianto(Impianto impianto) {
+        this.impianto = impianto;
     }
 
-    public Utente getIdutentecreatore() {
-        return idutentecreatore;
+    public Utente getIdutente() {
+        return idutente;
     }
 
-    public void setIdutentecreatore(Utente idutentecreatore) {
-        this.idutentecreatore = idutentecreatore;
+    public void setIdutente(Utente idutente) {
+        this.idutente = idutente;
     }
 
     @XmlTransient

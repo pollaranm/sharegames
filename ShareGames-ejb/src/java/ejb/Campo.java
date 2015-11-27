@@ -12,6 +12,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -28,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Alex
  */
 @Entity
-@Table(name = "campo")
+@Table(catalog = "newsharegames", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Campo.findAll", query = "SELECT c FROM Campo c"),
@@ -43,18 +44,16 @@ public class Campo implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 9)
-    @Column(name = "tipologia")
+    @Column(nullable = false, length = 9)
     private String tipologia;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "numerogiocatori")
+    @Column(nullable = false)
     private int numerogiocatori;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcampo")
-    private Collection<Evento> eventoCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcampo")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "campo", fetch = FetchType.LAZY)
     private Collection<Prezziario> prezziarioCollection;
-    @JoinColumn(name = "idimpianto", referencedColumnName = "idimpianto", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "idimpianto", referencedColumnName = "idimpianto", nullable = false, insertable = false, updatable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Impianto impianto;
 
     public Campo() {
@@ -96,15 +95,6 @@ public class Campo implements Serializable {
 
     public void setNumerogiocatori(int numerogiocatori) {
         this.numerogiocatori = numerogiocatori;
-    }
-
-    @XmlTransient
-    public Collection<Evento> getEventoCollection() {
-        return eventoCollection;
-    }
-
-    public void setEventoCollection(Collection<Evento> eventoCollection) {
-        this.eventoCollection = eventoCollection;
     }
 
     @XmlTransient

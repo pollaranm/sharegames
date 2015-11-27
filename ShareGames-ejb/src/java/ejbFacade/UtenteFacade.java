@@ -9,7 +9,6 @@ import ejb.Utente;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *
@@ -17,7 +16,6 @@ import javax.persistence.Query;
  */
 @Stateless
 public class UtenteFacade extends AbstractFacade<Utente> implements UtenteFacadeLocal {
-
     @PersistenceContext(unitName = "ShareGames-ejbPU")
     private EntityManager em;
 
@@ -29,43 +27,5 @@ public class UtenteFacade extends AbstractFacade<Utente> implements UtenteFacade
     public UtenteFacade() {
         super(Utente.class);
     }
-
-
-    @Override
-    public boolean findbyface(String id) {
-
-        Query q = em.createNamedQuery("Utente.findByIdfacebook");
-        q.setParameter("idfacebook", id);
-        if (q.getResultList().isEmpty()) {
-            return false;
-        }
-        return true;
-
-    }
-
-    @Override
-    public boolean findbygoogle(String id) {
-        Query q = em.createNamedQuery("Utente.findByIdgoogle");
-        q.setParameter("idgoogle", id);
-        if (q.getResultList().isEmpty()) {
-            return false;
-        }
-        return true;
-        
-    }
-
-    @Override
-    public Utente getObjUtente(String idsocial, String tipo) {
-        Query q;
-        if (tipo.equals("facebook")) {
-            q = em.createNamedQuery("Utente.findByIdfacebook");
-            q.setParameter("idfacebook", idsocial);
-        } else {
-            q = em.createNamedQuery("Utente.findByIdgoogle");
-            q.setParameter("idgoogle", idsocial);
-        }
-        return (Utente) q.getResultList().get(0);
-
-    }
-
+    
 }

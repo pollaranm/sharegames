@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -26,7 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Alex
  */
 @Entity
-@Table(name = "amministratore")
+@Table(catalog = "newsharegames", schema = "", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"idamministratore", "idimpianto", "nome", "cognome"})})
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Amministratore.findAll", query = "SELECT a FROM Amministratore a"),
@@ -38,20 +41,20 @@ public class Amministratore implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idamministratore")
+    @Column(nullable = false)
     private Integer idamministratore;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "nome")
+    @Column(nullable = false, length = 100)
     private String nome;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "cognome")
+    @Column(nullable = false, length = 100)
     private String cognome;
-    @JoinColumn(name = "idimpianto", referencedColumnName = "idimpianto")
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "idimpianto", referencedColumnName = "idimpianto", nullable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Impianto idimpianto;
 
     public Amministratore() {

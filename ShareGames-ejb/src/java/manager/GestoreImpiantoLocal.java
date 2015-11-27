@@ -16,8 +16,10 @@ import javax.ejb.Local;
 @Local
 public interface GestoreImpiantoLocal {
 
-    void addImpianto(String nomeimpianto, String stato, String regione, String provincia, String citta, String indirizzo, String telefono, String partitaiva, String fasciaoraria, String servizi);
-
+    void addImpianto(String nomeimpianto, String stato, String regione, String provincia, 
+                            String citta, String indirizzo, String telefono, String partitaiva, 
+                            String fasciaoraria, String servizi);
+    
     void removeImpianto(int id);
 
     List<Impianto> getImpiantoByCitta(String citta);
@@ -28,6 +30,7 @@ public interface GestoreImpiantoLocal {
 
     void updateImpianto(String nomeimpianto, String stato, String regione, String provincia, 
                             String citta, String indirizzo, String telefono, String partitaiva, 
-                            String fasciaoraria, String servizi);
+                            String fasciaoraria, String servizi,int idimpianto);
+    
     
 }

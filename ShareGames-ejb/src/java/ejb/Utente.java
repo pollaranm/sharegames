@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Alex
  */
 @Entity
-@Table(name = "utente")
+@Table(catalog = "newsharegames", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Utente.findAll", query = "SELECT u FROM Utente u"),
@@ -45,32 +46,32 @@ public class Utente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idutente")
+    @Column(nullable = false)
     private Integer idutente;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "nome")
+    @Column(nullable = false, length = 100)
     private String nome;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 100)
-    @Column(name = "email")
+    @Column(length = 100)
     private String email;
     @Size(max = 45)
-    @Column(name = "telefono")
+    @Column(length = 45)
     private String telefono;
     @Size(max = 100)
-    @Column(name = "idgoogle")
+    @Column(length = 100)
     private String idgoogle;
     @Size(max = 100)
-    @Column(name = "idfacebook")
+    @Column(length = 100)
     private String idfacebook;
     @JoinColumn(name = "idsquadra", referencedColumnName = "idsquadra")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Squadra idsquadra;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idutentecreatore")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idutente", fetch = FetchType.LAZY)
     private Collection<Evento> eventoCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "utente")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "utente", fetch = FetchType.LAZY)
     private Collection<Listaeventiutente> listaeventiutenteCollection;
 
     public Utente() {

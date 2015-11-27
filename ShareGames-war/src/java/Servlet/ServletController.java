@@ -5,14 +5,11 @@
  */
 package Servlet;
 
-import ejb.Squadra;
 import ejb.Utente;
 import java.io.*;
 import javax.ejb.EJB;
 import javax.servlet.*;
 import javax.servlet.http.*;
-import manager.GestoreSquadraLocal;
-import manager.GestoreUtenteLocal;
 
 /**
  *
@@ -20,10 +17,7 @@ import manager.GestoreUtenteLocal;
  */
 public class ServletController extends HttpServlet {
 
-    @EJB
-    private GestoreSquadraLocal gestoreSquadra;
-    @EJB
-    private GestoreUtenteLocal gestoreUtente;
+
 
     String state = "index";
     HttpSession s;
@@ -141,17 +135,17 @@ public class ServletController extends HttpServlet {
         String id = request.getParameter("id");
         String email = request.getParameter("email");
         String url = request.getParameter("url");
-        if (gestoreUtente.findFacebook(id) == false) {
-            gestoreUtente.AddUser(nome, email, "", id, "");
-            System.out.println("inserito");
-        } else {
-            System.out.println("presente");
-        }
+//        if (gestoreUtente.findFacebook(id) == false) {
+//            gestoreUtente.AddUser(nome, email, "", id, "");
+//            System.out.println("inserito");
+//        } else {
+//            System.out.println("presente");
+//        }
         s.setAttribute("name", nome);
         s.setAttribute("id", id);
         s.setAttribute("tiposocial", "facebook");
         s.setAttribute("url", "<img src=" + url + ">");
-        Utente user = gestoreUtente.getObjUtente(id, "facebook");
+//        Utente user = gestoreUtente.getObjUtente(id, "facebook");
         //metodo per loggare e controllare la persona nel database e linkarlo alla pagina nuova
         state = "homepageaccess";
         request.getRequestDispatcher("/homepageaccess.jsp").forward(request, response);
@@ -164,17 +158,17 @@ public class ServletController extends HttpServlet {
         String id = request.getParameter("id");
         String email = request.getParameter("email");
         String url = request.getParameter("url");
-        if (gestoreUtente.findGoogle(id) == false) {
-            gestoreUtente.AddUser(nome, email, id, "", "");
-            System.out.println("inserito");
-        } else {
-            System.out.println("presente");
-        }
+//        if (gestoreUtente.findGoogle(id) == false) {
+//            gestoreUtente.AddUser(nome, email, id, "", "");
+//            System.out.println("inserito");
+//        } else {
+//            System.out.println("presente");
+//        }
         s.setAttribute("name", nome);
         s.setAttribute("id", id);
         s.setAttribute("tiposocial", "google");
         s.setAttribute("url", "<img src=" + url + ">");
-        Utente user = gestoreUtente.getObjUtente(id, "google");
+//        Utente user = gestoreUtente.getObjUtente(id, "google");
         //metodo per loggare e controllare la persona nel database e linkarlo alla pagina nuova
         state = "homepageaccess";
         request.getRequestDispatcher("/homepageaccess.jsp").forward(request, response);
@@ -183,7 +177,7 @@ public class ServletController extends HttpServlet {
 
     private void doRemoveUtente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        gestoreUtente.removeUtente((String) s.getAttribute("id"), (String) s.getAttribute("tiposocial"));
+//        gestoreUtente.removeUtente((String) s.getAttribute("id"), (String) s.getAttribute("tiposocial"));
         state = "index";
         s.invalidate();
         request.getSession().invalidate();

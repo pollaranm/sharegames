@@ -83,4 +83,6 @@ public interface GestoreUtenteLocal {
      */
     void leaveSquadra(Utente utente);
 
+    void updateUtente();
+
 }

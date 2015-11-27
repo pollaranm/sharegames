@@ -16,6 +16,7 @@ import javax.ejb.Local;
 @Local
 public interface EventoFacadeLocal {
 
+   
     void create(Evento evento);
 
     void edit(Evento evento);
@@ -29,5 +30,15 @@ public interface EventoFacadeLocal {
     List<Evento> findRange(int[] range);
 
     int count();
+    
+    Evento getObjEvento(int idevento);
+
+    //Evento getEventoBy(String data, String ora, String citta , String sport);
+
+    int getGiocatoriPagato(int idevento);
+
+    //Evento getEventoCompletoBy(String citta , String provincia);
+
+    void update(int idimp, int idcam, String data, String ora, int idevento,String pagato,int giocatoripagato, String sport);
     
 }

@@ -9,6 +9,7 @@ import ejb.Prezziario;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,5 +28,16 @@ public class PrezziarioFacade extends AbstractFacade<Prezziario> implements Prez
     public PrezziarioFacade() {
         super(Prezziario.class);
     }
+    
+       public Prezziario getObjectPrezziario(int idPrezziario) {
+        Query q;
+        
+        q=em.createNamedQuery("Prezziario.findByIdprezziario");
+        q.setParameter("idprezziario", idPrezziario);
+        
+        return (Prezziario) q.getResultList().get(0);
+    }
+       
+    
     
 }

@@ -31,9 +31,6 @@ public class CampoFacade extends AbstractFacade<Campo> implements CampoFacadeLoc
         super(Campo.class);
     }
     
-    
-
-    @Override
     public Campo getObjectCampo(int idcampo,int idimpianto) {
         
         Query q  = em.createNamedQuery("Campo.findByIdcampo");

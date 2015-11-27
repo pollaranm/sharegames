@@ -5,6 +5,7 @@
  */
 package manager;
 
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +14,9 @@ import javax.ejb.Local;
  */
 @Local
 public interface GestoreListaEventiLocal {
+    
+        List getEventoByUtente(int idutente);
+
+    List getEventoByPagato(int idutente);
     
 }
