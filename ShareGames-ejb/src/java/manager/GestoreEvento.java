@@ -13,6 +13,7 @@ import ejb.Impianto;
 import ejb.Utente;
 import ejbFacade.CampoFacadeLocal;
 import ejbFacade.EventoFacadeLocal;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -88,11 +89,6 @@ public class GestoreEvento implements GestoreEventoLocal {
          eventoFacade.remove(e);
        
     }
-
-    
-    /*ATTENZIONE!!! IN QUESTO METODO ORA E DATA SONO CHIAVI PRIMARIE 
-    PERTANTO NON SI PUO' FARE UN UPDATE!
-    */
     
     
     @Override
@@ -106,6 +102,9 @@ public class GestoreEvento implements GestoreEventoLocal {
     public Evento getEventoBy(String data, String ora, String citta , String sport) {
         return eventoFacade.getEventoBy(data, ora, citta , sport);
     }*/
+    
+    
+    
 
     @Override
     public int getGiocatoriPagato(int idevento) {
@@ -117,6 +116,12 @@ public class GestoreEvento implements GestoreEventoLocal {
     /*@Override
     public void getEventoCompletoBy(String citta , String provincia) {
     }*/
+
+    @Override
+    public List<Evento> getEventoByData(String data) {
+        return eventoFacade.getEventoByData(data);
+        
+    }
     
     
     
