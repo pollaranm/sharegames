@@ -5,6 +5,7 @@
  */
 package Servlet;
 
+import ejb.Squadra;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
@@ -120,8 +121,15 @@ public class Controller extends HttpServlet {
             //gestoreSquadra.updateSquadra(4, "New s1", 5, "calcio11", "Pisa");
             
             /* TEST UPDATE UTENTE */
-            gestoreUtente.updateUtente("10206904148233460", "facebook", "Nicolò Mattia Pollara","lamia@mail.it" , "+393338");
+            //gestoreUtente.updateUtente("10206904148233460", "facebook", "Nicolò Mattia Pollara","lamia@mail.it" , "+393338");
             
+            /* TEST getSquadraBy */
+            //for( int i = 1 ; i < 6 ; i++) {
+            //    gestoreSquadra.addSquadra("Gianduiotti" + i, "calcio5", "Torino");
+            //}
+            //for(Squadra temp : gestoreSquadra.getSquadraByCittaTipologia("Torino", "calcio5")){
+            //    out.println(temp.getNomesquadra() + "-" + temp.getTipologia() + "-" + temp.getCitta() + "<br>");
+            //}
             out.println("andata");
             out.println("</head>");
             out.println("<body>");

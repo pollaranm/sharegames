@@ -52,5 +52,22 @@ public interface SquadraFacadeLocal {
      * @return L'elenco delle squadre
      */
     Collection<Squadra> getSquadraByCitta(String city);
+
+    /**
+     * Restituisce l'elenco delle squadre che hanno come tipologia di sport quella passata come parametro.
+     * 
+     * @param tipologia Tipologia di sport ricercata
+     * @return L'elenco delle squadre
+     */
+    Collection<Squadra> getSquadraByTipologia(String tipologia);
+
+    /**
+     * Restituisce l'elenco delle squadre filtrate in base alla città ed alla tipologia di sport passate per parametro.
+     * 
+     * @param citta Città nella quale cercare
+     * @param tipologia Sport di riferimento per la ricerca
+     * @return L'elenco delle squadre che rispettano il filtro
+     */
+    Collection<Squadra> getSquadraByCittaTipologia(String citta, String tipologia);
     
 }

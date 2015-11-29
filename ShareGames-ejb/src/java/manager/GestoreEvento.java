@@ -117,11 +117,11 @@ public class GestoreEvento implements GestoreEventoLocal {
     public void getEventoCompletoBy(String citta , String provincia) {
     }*/
 
-    @Override
+    /*@Override
     public List<Evento> getEventoByData(String data) {
         return eventoFacade.getEventoByData(data);
         
-    }
+    }*/
     
     
     
