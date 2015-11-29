@@ -94,7 +94,7 @@ public class GestoreEvento implements GestoreEventoLocal {
     @Override
     public void updateEvento(int idimpianto, int idcampo, int idevento, 
             String data, String ora,String pagato,String sport,int giocatoripagato) {
-                
+
         eventoFacade.update(idimpianto, idcampo, data, ora, idevento,pagato,giocatoripagato,sport );       
     }
 

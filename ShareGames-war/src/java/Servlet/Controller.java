@@ -22,13 +22,19 @@ import manager.GestoreEventoLocal;
 
 import manager.GestoreImpiantoLocal;
 import manager.GestorePrezziarioLocal;
+import manager.GestoreSquadraLocal;
+import manager.GestoreUtenteLocal;
 
 /**
  *
  * @author Alex
  */
 public class Controller extends HttpServlet {
-   @EJB
+    @EJB
+    private GestoreUtenteLocal gestoreUtente;
+    @EJB
+    private GestoreSquadraLocal gestoreSquadra;
+    @EJB
     private GestoreEventoLocal gestoreEvento;
     @EJB
     private GestorePrezziarioLocal gestorePrezziario;
@@ -109,6 +115,12 @@ public class Controller extends HttpServlet {
 //            val= new BigDecimal(prezzo_scontato);
 //            
 //            gestorePrezziario.addPrezziario(1,20, val, sconto);
+            
+            /* TEST UPDATE SQUADRA */
+            //gestoreSquadra.updateSquadra(4, "New s1", 5, "calcio11", "Pisa");
+            
+            /* TEST UPDATE UTENTE */
+            gestoreUtente.updateUtente("10206904148233460", "facebook", "Nicolò Mattia Pollara","lamia@mail.it" , "+393338");
             
             out.println("andata");
             out.println("</head>");

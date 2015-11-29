@@ -83,6 +83,16 @@ public interface GestoreUtenteLocal {
      */
     void leaveSquadra(Utente utente);
 
-    void updateUtente();
+    /**
+     * Aggiorna i dati relativi all'Utente ricercato.
+     * 
+     * @param idsocial Id social con il quale l'utente è registrato
+     * @param tipo Tipologia di social con il quale esegue l'accesso ('facebook' o 'google')
+     * @param nome Nuovo nome da assegnare all'utente
+     * @param email Nuova email da associare all'utente
+     * @param telefono Nuovo numero di telefono da registrare per l'utente
+     */
+    void updateUtente(String idsocial, String tipo, String nome, String email, String telefono);
+
 
 }
