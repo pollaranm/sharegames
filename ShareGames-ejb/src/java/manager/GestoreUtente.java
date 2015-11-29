@@ -58,7 +58,7 @@ public class GestoreUtente implements GestoreUtenteLocal {
     @Override
     public boolean findFacebook(String idfacebook) {
         
-        return true;
+        return utenteFacade.findbyface(idfacebook);
 
     }
 
@@ -71,7 +71,7 @@ public class GestoreUtente implements GestoreUtenteLocal {
     @Override
     public boolean findGoogle(String idgoogle) {
         
-        return true;
+        return utenteFacade.findbygoogle(idgoogle);
         
     }
 
@@ -85,7 +85,13 @@ public class GestoreUtente implements GestoreUtenteLocal {
     @Override
     public boolean removeUtente(String idsocial, String tipo) {
 
-        return true;
+        Utente t = utenteFacade.getObjUtente(idsocial, tipo);
+        if( t == null ) {
+            return false;
+        } else {
+            utenteFacade.remove(t);
+            return true;
+        }
         
     }
 
@@ -98,12 +104,16 @@ public class GestoreUtente implements GestoreUtenteLocal {
      */
     @Override
     public Utente getObjUtente(String idsocial, String tipo) {
-        return null;
+        return utenteFacade.getObjUtente(idsocial, tipo);
     }
 
     @Override
     public void joinSquadra(Utente utente, Integer idSquadra) {
-        
+        Squadra temp = squadraFacade.getObjSquadra(idSquadra);
+        temp.setNumerocomponenti(temp.getNumerocomponenti() + 1);
+        utente.setIdsquadra(squadraFacade.getObjSquadra(idSquadra));
+        utenteFacade.edit(utente);
+        squadraFacade.edit(temp);
     }
 
     @Override
@@ -116,13 +126,19 @@ public class GestoreUtente implements GestoreUtenteLocal {
     }
 
     @Override
-    public void updateUtente() {
-        
-        
-        //creazione query personalizzata
-        
+    public void updateUtente(String idsocial, String tipo, String nome, String email, String telefono) {
+        Utente u = utenteFacade.getObjUtente(idsocial, tipo);
+        u.setNome(nome);
+        u.setEmail(email);
+        u.setTelefono(telefono);
+        utenteFacade.edit(u);
     }
+
     
     
     
+    
+    
+    
+
 }
