@@ -67,6 +67,13 @@ public class GestoreSquadra implements GestoreSquadraLocal {
     public Collection<Squadra> getSquadraByCitta(String city) {
         return squadraFacade.getSquadraByCitta(city);
     }
+    
+    @Override
+    public Collection<Squadra> getSquadraByTipologia(String tipologia) {
+        return squadraFacade.getSquadraByTipologia(tipologia);
+    }
+    
+    
 
     @Override
     public void updateSquadra(int idSquadra, String nomeSquadra, int numeroComponenti, String tipologia, String citta) {
@@ -78,6 +85,13 @@ public class GestoreSquadra implements GestoreSquadraLocal {
         s.setNumerocomponenti(numeroComponenti);
         squadraFacade.edit(s);
     }
+
+    @Override
+    public Collection<Squadra> getSquadraByCittaTipologia(String citta, String tipologia) {
+        return squadraFacade.getSquadraByCittaTipologia(citta, tipologia);
+    }
+
+    
     
     
     
