@@ -138,7 +138,7 @@ public class Controller extends HttpServlet {
             //out.println(gestoreListaEventi.getEventoByPagato(14)+"\n");
             //out.println(gestoreListaEventi.getListaEventiUtenti()+"\n");
             
-            gestoreEvento.addEvento(19, 4, "22", "21", "calcio", "no", "no", 2, 14);
+            //gestoreEvento.addEvento(20, 1, "30/11/2016", "18", "calcio", "no", "no", 2, 14);
             out.println("andata");
             
             out.println("</head>");

@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(catalog = "newsharegames", schema = "", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"data", "idcampo", "idimpianto"})})
+    @UniqueConstraint(columnNames = {"data", "idcampo", "idimpianto","ora"})})
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Evento.updateAll", query = "UPDATE Evento e SET e.eventoPK.idimpianto = :idimpianto, e.eventoPK.idcampo = :idcampo, e.eventoPK.data = :data, e.eventoPK.ora = :ora, e.completo= :completo, e.pagato = :pagato, e.giocatoripagato = :gioatoripagato, e.sport = :sport WHERE e.eventoPK.idevento = :idevento"),
