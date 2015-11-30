@@ -10,9 +10,12 @@ import ejb.CampoPK;
 import ejb.Evento;
 import ejb.EventoPK;
 import ejb.Impianto;
+import ejb.Listaeventiutente;
+import ejb.ListaeventiutentePK;
 import ejb.Utente;
 import ejbFacade.CampoFacadeLocal;
 import ejbFacade.EventoFacadeLocal;
+import ejbFacade.ListaeventiutenteFacadeLocal;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -24,6 +27,8 @@ import javax.ejb.Stateless;
 @Stateless
 public class GestoreEvento implements GestoreEventoLocal {
     @EJB
+    private ListaeventiutenteFacadeLocal listaeventiutenteFacade;
+    @EJB
     private CampoFacadeLocal campoFacade;
 
     // Add business logic below. (Right-click in editor and choose
@@ -31,6 +36,8 @@ public class GestoreEvento implements GestoreEventoLocal {
     
      @EJB
     private EventoFacadeLocal eventoFacade;
+     
+     
     
     @Override
     public Evento getEvento(int idevento) {
@@ -76,10 +83,29 @@ public class GestoreEvento implements GestoreEventoLocal {
         e.setImpianto(i);
         e.setPagato(pagato);
         e.setSport(sport);
-        
-           
+                            //ADESSO AGGIUNGO UN OGGETTO IN LISTAEVENTIUTENTE
+       
         eventoFacade.create(e);
         
+        Evento tmp=eventoFacade.getObjEventoByPK(idimpianto, idcampo, ora, data); 
+                
+            
+        Listaeventiutente l=new Listaeventiutente();
+        ListaeventiutentePK l_pk=new ListaeventiutentePK();
+        
+        
+        l_pk.setIdevento(tmp.getEventoPK().getIdevento());
+        l_pk.setIdutente(idutente);
+      
+        
+        l.setListaeventiutentePK(l_pk);
+        l.setEvento(tmp);
+        l.setUtente(u);
+        l.setPostopagato("no");
+        l.setProprietario("si");
+        
+        listaeventiutenteFacade.create(l);
+     
     }
 
     @Override
@@ -122,8 +148,29 @@ public class GestoreEvento implements GestoreEventoLocal {
         return eventoFacade.getEventoByData(data);
         
     }
-    
-    
-    
-    
+
+    @Override
+    public List<Evento> getEventoByOra(String ora) {
+        return eventoFacade.getEventoByOra(ora);
+    }
+
+    @Override
+    public List<Evento> getEventoByCitta(String citta) {
+        return eventoFacade.getEventoByCitta(citta);
+    }
+
+    @Override
+    public List<Evento> getEventoBySport(String sport) {
+        return eventoFacade.getEventoBySport(sport);
+    }
+
+    @Override
+    public List<Evento> getEventoCompletoByCitta(String citta) {
+        return eventoFacade.getEventoCompletoByCitta(citta);
+    }
+
+    @Override
+    public List<Evento> getEventoCompletoByProvincia(String provincia) {
+        return eventoFacade.getEventoCompletoByProvincia(provincia);
+    }
 }

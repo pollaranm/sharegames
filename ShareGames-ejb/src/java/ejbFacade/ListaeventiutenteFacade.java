@@ -7,6 +7,7 @@ package ejbFacade;
 
 import ejb.Evento;
 import ejb.Listaeventiutente;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -32,31 +33,51 @@ public class ListaeventiutenteFacade extends AbstractFacade<Listaeventiutente> i
     }
     
     @Override
-    public List getEventoByUtente(int idutente) {
+    public List<Evento> getEventoByUtente(int idutente) {
          Query q  = em.createNamedQuery("Listaeventiutente.findByIdutente");
         q.setParameter("idutente", idutente);
         return q.getResultList();
     }
 
     @Override
-    public List getEventoByPagato(int idutente) {
+    public List<Evento> getEventoByPagato(int idutente) {
         
-        Query q  = em.createNamedQuery("Listaeventiutente.findByIdutente");
-        q.setParameter("idutente", idutente);
-                
-        List<Evento> l ;
-        List<Evento> res=null;
-        
-        l=(List<Evento>)q.getResultList();
+       Query q;
 
-        for(int i = 0;i<l.size();i++){
-            if(l.get(i).getPagato()=="si")
-                res.add(l.get(i));
+        q = em.createNamedQuery("Listaeventiutente.findByIdutente");
+        q.setParameter("idutente", idutente);
+        
+        List<Listaeventiutente> l = q.getResultList(); 
+        List  idevento=new ArrayList();    
+        List <Evento> eventi=new ArrayList();  
+        
+        int k=0;
+        
+
+        for(int i=0; i<l.size(); i++){
+            idevento.add(i,l.get(i).getListaeventiutentePK().getIdevento());
         }
         
-        return res;
-       
+        for(int i=0; i<idevento.size(); i++){
+            q = em.createNamedQuery("Evento.findByIdevento");
+            q.setParameter("idevento", idevento.get(i));
+            Evento e=(Evento)q.getResultList().get(0);
+            
+            if(e.getPagato().equals("si"))
+                eventi.add(k++,e);
+        }
+        
+        return eventi;
+   
     }
+
+    @Override
+    public List<Evento> getListaEventiUtenti() {
+        Query q  = em.createNamedQuery("Listaeventiutente.findAll");
+        return q.getResultList();
+    }
+    
+    
     
     
 }

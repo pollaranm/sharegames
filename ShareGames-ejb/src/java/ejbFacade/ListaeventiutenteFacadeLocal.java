@@ -5,6 +5,7 @@
  */
 package ejbFacade;
 
+import ejb.Evento;
 import ejb.Listaeventiutente;
 import java.util.List;
 import javax.ejb.Local;
@@ -30,7 +31,9 @@ public interface ListaeventiutenteFacadeLocal {
 
     int count();
 
-    List getEventoByUtente(int idutente);
+    List<Evento> getEventoByUtente(int idutente);
 
-    List getEventoByPagato(int idutente);
+    List<Evento> getEventoByPagato(int idutente);
+
+    List<Evento> getListaEventiUtenti();
 }
