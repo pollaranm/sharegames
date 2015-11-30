@@ -6,6 +6,7 @@
 package manager;
 
 import ejb.Evento;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -31,5 +32,17 @@ public interface GestoreEventoLocal {
     int getGiocatoriPagato(int idevento);
 
     //void getEventoCompletoBy(String citta , String provincia);
+
+    List<Evento> getEventoByData(String data);
+
+    List<Evento> getEventoByOra(String ora);
+
+    List<Evento> getEventoByCitta(String citta);
+
+    List<Evento> getEventoBySport(String sport);
+
+    List<Evento> getEventoCompletoByCitta(String citta);
+
+    List<Evento> getEventoCompletoByProvincia(String provincia);
     
 }

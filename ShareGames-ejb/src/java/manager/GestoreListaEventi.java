@@ -5,6 +5,7 @@
  */
 package manager;
 
+import ejb.Evento;
 import ejbFacade.ListaeventiutenteFacadeLocal;
 import java.util.List;
 import javax.ejb.EJB;
@@ -27,7 +28,7 @@ public class GestoreListaEventi implements GestoreListaEventiLocal {
     
 
     @Override
-    public List getEventoByUtente(int idutente) {
+    public List<Evento> getEventoByUtente(int idutente) {
        return listaeventiutenteFacade.getEventoByUtente(idutente);
     }
     
@@ -39,9 +40,15 @@ public class GestoreListaEventi implements GestoreListaEventiLocal {
     // "Insert Code > Add Business Method")
 
     @Override
-    public List getEventoByPagato(int idutente) {
+    public List<Evento> getEventoByPagato(int idutente) {
         return listaeventiutenteFacade.getEventoByPagato(idutente);
     }
+
+    @Override
+    public List<Evento> getListaEventiUtenti() {
+        return listaeventiutenteFacade.getListaEventiUtenti();
+    }
+    
     
     
 }

@@ -40,5 +40,19 @@ public interface EventoFacadeLocal {
     //Evento getEventoCompletoBy(String citta , String provincia);
 
     void update(int idimp, int idcam, String data, String ora, int idevento,String pagato,int giocatoripagato, String sport);
+
+    List <Evento> getEventoByData(String data);
+
+    List<Evento> getEventoByOra(String ora);
+
+    List<Evento> getEventoByCitta(String citta);
+
+    List<Evento> getEventoBySport(String sport);
+
+    List<Evento> getEventoCompletoByCitta(String citta);
+
+    List<Evento> getEventoCompletoByProvincia(String provincia);
+
+    Evento getObjEventoByPK(int idimpianto, int idcampo, String ora, String data);
     
 }

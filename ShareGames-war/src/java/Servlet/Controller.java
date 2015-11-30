@@ -21,6 +21,7 @@ import manager.GestoreCampoLocal;
 import manager.GestoreEventoLocal;
 
 import manager.GestoreImpiantoLocal;
+import manager.GestoreListaEventiLocal;
 import manager.GestorePrezziarioLocal;
 
 /**
@@ -28,6 +29,8 @@ import manager.GestorePrezziarioLocal;
  * @author Alex
  */
 public class Controller extends HttpServlet {
+    @EJB
+    private GestoreListaEventiLocal gestoreListaEventi;
    @EJB
     private GestoreEventoLocal gestoreEvento;
     @EJB
@@ -110,7 +113,16 @@ public class Controller extends HttpServlet {
 //            
 //            gestorePrezziario.addPrezziario(1,20, val, sconto);
             
+              //gestoreEvento.removeEvento(1);
+            
+                
+            //out.println(gestoreEvento.getEventoCompletoByProvincia("Vercelli")+"\n");
+            //out.println(gestoreListaEventi.getEventoByPagato(14)+"\n");
+            //out.println(gestoreListaEventi.getListaEventiUtenti()+"\n");
+            
+            gestoreEvento.addEvento(19, 4, "22", "21", "calcio", "no", "no", 2, 14);
             out.println("andata");
+            
             out.println("</head>");
             out.println("<body>");
             out.println("</body>");

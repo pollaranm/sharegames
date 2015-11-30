@@ -36,6 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Evento.updateAll", query = "UPDATE Evento e SET e.eventoPK.idimpianto = :idimpianto, e.eventoPK.idcampo = :idcampo, e.eventoPK.data = :data, e.eventoPK.ora = :ora, e.completo= :completo, e.pagato = :pagato, e.giocatoripagato = :gioatoripagato, e.sport = :sport WHERE e.eventoPK.idevento = :idevento"),
+    @NamedQuery(name = "Evento.findByPK", query = "SELECT e FROM Evento e WHERE e.eventoPK.data = :data AND e.eventoPK.idimpianto = :idimpianto AND e.eventoPK.idcampo = :idcampo AND e.eventoPK.ora = :ora"),
     @NamedQuery(name = "Evento.findAll", query = "SELECT e FROM Evento e"),
     @NamedQuery(name = "Evento.findByIdevento", query = "SELECT e FROM Evento e WHERE e.eventoPK.idevento = :idevento"),
     @NamedQuery(name = "Evento.findByIdimpianto", query = "SELECT e FROM Evento e WHERE e.eventoPK.idimpianto = :idimpianto"),
