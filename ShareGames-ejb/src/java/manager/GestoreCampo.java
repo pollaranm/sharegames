@@ -9,6 +9,7 @@ import ejb.Campo;
 import ejb.CampoPK;
 import ejb.Impianto;
 import ejbFacade.CampoFacadeLocal;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -63,15 +64,15 @@ public class GestoreCampo implements GestoreCampoLocal {
     }
 
     @Override
-    public Campo getCampoByTipologia(String tipologia) {
+    public List<Campo> getCampoByTipologia(String tipologia) {
         
-        return null;
+        return campoFacade.getCampoByTipologia(tipologia);
     }
 
     @Override
-    public Campo getCampoByImpianto(int idimpianto) {
+    public List<Campo> getCampoByImpianto(int idimpianto) {
         
-        return null;
+        return campoFacade.getCampoByImpianto(idimpianto);
         
     }
 
