@@ -139,9 +139,19 @@ public class Controller extends HttpServlet {
             //out.println(gestoreListaEventi.getListaEventiUtenti()+"\n");
             
             //gestoreEvento.addEvento(20, 1, "30/11/2016", "18", "calcio", "no", "no", 2, 14);
-            out.println("andata");
             
-            out.println("</head>");
+            /*int idimpianto=(Integer.parseInt(request.getParameter("idimpianto")));
+            int idcampo=(Integer.parseInt(request.getParameter("idcampo")));
+            String data=request.getParameter("data");
+            String ora=request.getParameter("ora");
+            String sport=request.getParameter("sport");*/
+//            int idutente=(Integer.parseInt(request.getParameter("idutente")));
+            
+            //gestoreEvento.addEvento(idimpianto, idcampo, data, ora, sport, "no", "no", 0, 14);
+
+            
+            //out.println("Hai inserito un evento mbare.");
+            
             out.println("<body>");
             out.println("</body>");
             out.println("</html>");

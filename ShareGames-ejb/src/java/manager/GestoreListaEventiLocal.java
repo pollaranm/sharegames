@@ -16,10 +16,30 @@ import javax.ejb.Local;
 @Local
 public interface GestoreListaEventiLocal {
     
-        List<Evento> getEventoByUtente(int idutente);
-
+    
+    /**
+     * 
+     * @param idutente
+     * @return 
+     * Restituisce una lista di eventi relativi all'iutente indicato come parametro
+     */
+    List<Evento> getEventoByUtente(int idutente);
+    
+    
+    /**
+     * 
+     * @param idutente
+     * @return 
+     * Restituisce una lista di eventi pagati relativi all'utente con ID passato come parametro
+     */
     List<Evento> getEventoByPagato(int idutente);
 
+    
+    /**
+     * 
+     * @return 
+     * Restituisce l'intera tabella del database
+     */
     List<Evento> getListaEventiUtenti();
     
 }

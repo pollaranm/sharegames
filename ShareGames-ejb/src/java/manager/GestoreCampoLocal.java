@@ -6,6 +6,7 @@
 package manager;
 
 import ejb.Campo;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -23,8 +24,8 @@ public interface GestoreCampoLocal {
 
     void updateCampo(int idcampo, int idimpianto, String tipologia, int numerogiocatori);
 
-    Campo getCampoByTipologia(String tipologia);
+    List<Campo> getCampoByTipologia(String tipologia);
 
-    Campo getCampoByImpianto(int idimpianto);
+    List<Campo> getCampoByImpianto(int idimpianto);
     
 }

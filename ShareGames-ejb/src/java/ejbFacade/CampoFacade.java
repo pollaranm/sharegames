@@ -64,19 +64,10 @@ public class CampoFacade extends AbstractFacade<Campo> implements CampoFacadeLoc
     @Override
     public List<Campo> getCampoByImpianto(int idimpianto) {
         
-        Query q  = em.createNamedQuery("Campo.findAll");
+        Query q  = em.createNamedQuery("Campo.findByIdimpianto");
+                q.setParameter("idimpianto", idimpianto);
                 
-            List<Campo> l = new ArrayList();
-            List<Campo> temp = new ArrayList();
-            l=(List<Campo>)q.getResultList();
-
-            for(int i = 0;i<l.size();i++){
-                if(l.get(i).getImpianto().getIdimpianto() == idimpianto){
-                    temp.add(l.get(i));
-                }
-            }
-                
-        return temp;
+        return q.getResultList();
     }
     
     
