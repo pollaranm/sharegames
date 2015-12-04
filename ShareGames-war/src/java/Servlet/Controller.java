@@ -5,6 +5,8 @@
  */
 package Servlet;
 
+import ejb.Amministratore;
+import ejb.Prezziario;
 import ejb.Squadra;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -101,22 +103,31 @@ public class Controller extends HttpServlet {
             
               /* TEST AMMINISTRATORE */
             
-           //gestoreAmministratore.addAmministratore(22, "Gianni", "Verdi");
-           //Amministratore a=gestoreAmministratore.getObjAmministratore(6);
-           //out.println("Nome: " + a.getNome()+ "Cognome: " + a.getCognome() + "  Id Amministratore: " + a.getIdamministratore() + "  ID_IMPIANTO" + a.getIdimpianto().getIdimpianto());
-           
-             /*TEST PREZZIARIO*/
+            //gestoreAmministratore.addAmministratore(24, "Mario", "Rossi");
+            //Amministratore a=gestoreAmministratore.getObjAmministratore(7);
+            // out.println("Nome: " + a.getNome()+ "Cognome: " + a.getCognome() + "  Id Amministratore: " + a.getIdamministratore() + "  ID_IMPIANTO" + a.getIdimpianto().getIdimpianto());
+            //gestoreAmministratore.removeAmministratore(7);
+             
+            /*TEST EVENTO*/
             
             //gestoreEvento.updateEvento(20,1,1,"2012","02");
             //gestoreEvento.updateEvento(20, 1, 1, "2015/2025", "20154");
-//            
-//            BigDecimal val;
-//            float prezzo=(float)7.90;
-//            int sconto=0;
-//            float prezzo_scontato=(float)((prezzo)/((float)1+((float)(sconto)/(float)100)));
-//            val= new BigDecimal(prezzo_scontato);
-//            
-//            gestorePrezziario.addPrezziario(1,20, val, sconto);
+            
+            /*TEST PREZZIARIO*/
+            
+            //BigDecimal val;
+            //float prezzo=(float)8.85;
+            //int sconto=21;
+            //float prezzo_scontato=(float)((prezzo)/((float)1+((float)(sconto)/(float)100)));
+            //val= new BigDecimal(prezzo_scontato);
+            
+            //gestorePrezziario.addPrezziario(5,25, val, sconto);
+            //gestorePrezziario.removePrezziario(5,25);
+            //Prezziario p;
+            //p=gestorePrezziario.getObjPrezziario(5, 25);
+            //out.println("ID impianto: " + p.getImpianto().getNome() + "  Prezzo: " + p.getPrezzo()+ "  Sconto: " + p.getSconto() );
+            //gestorePrezziario.removePrezziario(5,25);
+            //gestorePrezziario.updatePrezziario(5, 25, val, sconto);
             
             /* TEST UPDATE SQUADRA */
             //gestoreSquadra.updateSquadra(4, "New s1", 5, "calcio11", "Pisa");

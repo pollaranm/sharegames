@@ -30,6 +30,14 @@ public interface AmministratoreFacadeLocal {
 
     int count();
     
-    public Amministratore getObjAmministratore(int idAmministratore);
+    
+    
+    /**
+     * Restituisce l'oggetto Amministratore associato all'ID passato come parametro.
+     *
+     * @param idAmministratore
+     * @return oggetto Amministratore
+     */
+    Amministratore getObjAmministratore(int idAmministratore);
     
 }

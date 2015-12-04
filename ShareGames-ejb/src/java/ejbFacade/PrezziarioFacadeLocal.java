@@ -6,12 +6,13 @@
 package ejbFacade;
 
 import ejb.Prezziario;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Local;
 
 /**
  *
- * @author Alex
+ * @author Ivan
  */
 @Local
 public interface PrezziarioFacadeLocal {
@@ -30,6 +31,27 @@ public interface PrezziarioFacadeLocal {
 
     int count();
     
-    public Prezziario getObjectPrezziario(int idPrezziario);
+    
+    
+    /**
+     * Restituisce l'oggetto Prezziario associato all'ID passato come parametro.
+     * @param idCampo
+     * @param idImpianto
+     * @return L'oggetto Prezziario associato all'idCampo e all'idImpianto
+     */
+    Prezziario getObjectPrezziario(int idCampo, int idImpianto);
+    
+    
+    
+    /**
+     * Metodo che invoca la query personalizzata per l'aggiornamento dei campi
+     * "prezzo" e "sconto"
+     * 
+     * @param idCampo
+     * @param idImpianto
+     * @param prezzo
+     * @param sconto
+     */
+    void updateAll(int idCampo, int idImpianto, BigDecimal prezzo, int sconto);
     
 }

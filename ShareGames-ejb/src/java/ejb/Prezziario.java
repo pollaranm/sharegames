@@ -30,6 +30,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Prezziario.findAll", query = "SELECT p FROM Prezziario p"),
+    @NamedQuery(name = "Prezziario.updateAll", query = "UPDATE Prezziario p SET p.prezzo = :prezzo, p.sconto = :sconto WHERE p.prezziarioPK.idcampo = :idcampo AND p.prezziarioPK.idimpianto = :idimpianto"),
+    @NamedQuery(name = "Prezziario.findByIdcampoIdimpianto", query = "SELECT p FROM Prezziario p WHERE p.prezziarioPK.idcampo = :idcampo AND p.prezziarioPK.idimpianto = :idimpianto"),
     @NamedQuery(name = "Prezziario.findByIdcampo", query = "SELECT p FROM Prezziario p WHERE p.prezziarioPK.idcampo = :idcampo"),
     @NamedQuery(name = "Prezziario.findByIdimpianto", query = "SELECT p FROM Prezziario p WHERE p.prezziarioPK.idimpianto = :idimpianto"),
     @NamedQuery(name = "Prezziario.findByPrezzo", query = "SELECT p FROM Prezziario p WHERE p.prezzo = :prezzo"),

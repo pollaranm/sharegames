@@ -18,9 +18,9 @@ public interface GestorePrezziarioLocal {
     
     void addPrezziario(int idCampo, int idImpianto, BigDecimal prezzo, int sconto);
     
-    Prezziario getObjPrezziario(int idPrezziario);
+    Prezziario getObjPrezziario(int idCampo, int idImpianto);
 
-    boolean removePrezziario(int idPrezziario);
+    boolean removePrezziario(int idCampo, int idImpianto);
 
-    void updatePrezziario(int idPrezziario, int idCampo, int idImpianto, BigDecimal prezzo, int sconto);
+    void updatePrezziario(int idCampo, int idImpianto, BigDecimal prezzo, int sconto);
 }

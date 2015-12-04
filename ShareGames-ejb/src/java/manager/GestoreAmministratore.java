@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package manager;
 
 import javax.ejb.Stateless;
@@ -14,9 +9,13 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
- *
- * @author Alex
+ *Beans dedicato all'interazione con gli oggetti persistenti di tipo Amministratore.
+ * Contiene le info degli Amministratori: "idImpianto", "nome" e "cognome".
+ * 
+ * @author Ivan
  */
+
+
 @Stateless
 public class GestoreAmministratore implements GestoreAmministratoreLocal {
 
@@ -24,6 +23,14 @@ public class GestoreAmministratore implements GestoreAmministratoreLocal {
     private AmministratoreFacadeLocal amministratoreFacade;
 
     
+    
+    /**
+     * Metodo costruttore di un oggetto persistente di tipo Amministratore.
+     * 
+     * @param idImpianto Nome dell'impianto a cui appartiene l'amministratore
+     * @param nome Nome dell'amministratore     
+     * @param cognome Cognome dell'amministratore
+     */
     @Override
     public void addAmministratore(int idImpianto, String nome, String cognome) {
         
@@ -35,15 +42,31 @@ public class GestoreAmministratore implements GestoreAmministratoreLocal {
         a.setNome(nome);
         a.setCognome(cognome);
         
-        amministratoreFacade.create(a);
-        
+        amministratoreFacade.create(a);  
     }
 
+    
+    
+    /**
+     * Recupera l'oggetto persistente amministratore 
+     * associato all'Id passato come parametro
+     *
+     * @param idAmministratore id identificativo dell'amministratore
+     * @return L'amministratore cercato se presente, <i>false</i> altrimenti 
+     */
     @Override
     public Amministratore getObjAmministratore(int idAmministratore) {
         return amministratoreFacade.getObjAmministratore(idAmministratore);
     }
 
+    
+    
+    /**
+     *  Rimuove l'amministratore a cui è associato l'id passato di tipo intero
+     *
+     * @param idAmministratore Id amministratore da ricercare e rimuovere
+     * @return <i>true</i> se l'eliminazione avviene con successo, <i>false</i> altrimenti
+     */
     @Override
     public boolean removeAmministratore(int idAmministratore) {
         
@@ -57,9 +80,5 @@ public class GestoreAmministratore implements GestoreAmministratoreLocal {
         }
         
     }
-    
-    
-
-   
     
 }
