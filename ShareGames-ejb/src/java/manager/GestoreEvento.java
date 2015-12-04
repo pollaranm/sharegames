@@ -124,13 +124,6 @@ public class GestoreEvento implements GestoreEventoLocal {
         eventoFacade.update(idimpianto, idcampo, data, ora, idevento,pagato,giocatoripagato,sport );       
     }
 
-    /*@Override
-    public Evento getEventoBy(String data, String ora, String citta , String sport) {
-        return eventoFacade.getEventoBy(data, ora, citta , sport);
-    }*/
-    
-    
-    
 
     @Override
     public int getGiocatoriPagato(int idevento) {
@@ -139,9 +132,6 @@ public class GestoreEvento implements GestoreEventoLocal {
         
     }
 
-    /*@Override
-    public void getEventoCompletoBy(String citta , String provincia) {
-    }*/
 
     @Override
     public List<Evento> getEventoByData(String data) {

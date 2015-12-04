@@ -12,6 +12,7 @@ import ejbFacade.CampoFacadeLocal;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 /**
  *
@@ -44,7 +45,7 @@ public class GestoreCampo implements GestoreCampoLocal {
     @Override
     public Campo getObjectCampoById(int idcampo, int idimpianto) {
         
-        return null;
+        return campoFacade.getObjectCampo(idcampo, idimpianto);
 
     }
 
@@ -72,7 +73,7 @@ public class GestoreCampo implements GestoreCampoLocal {
     @Override
     public List<Campo> getCampoByImpianto(int idimpianto) {
         
-        return campoFacade.getCampoByImpianto(idimpianto);
+        return (List<Campo>)campoFacade.getCampoByImpianto(idimpianto);
         
     }
 

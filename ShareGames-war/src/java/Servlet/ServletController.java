@@ -5,11 +5,15 @@
  */
 package Servlet;
 
+import ejb.Impianto;
 import ejb.Utente;
 import java.io.*;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import manager.GestoreCampoLocal;
+import manager.GestoreImpiantoLocal;
 import manager.GestoreUtenteLocal;
 
 /**
@@ -18,7 +22,13 @@ import manager.GestoreUtenteLocal;
  */
 public class ServletController extends HttpServlet {
     @EJB
+    private GestoreCampoLocal gestoreCampo;
+    @EJB
+    private GestoreImpiantoLocal gestoreImpianto;
+    @EJB
     private GestoreUtenteLocal gestoreUtente;
+    
+    
 
     String state = "index";
     HttpSession s;
@@ -122,11 +132,25 @@ public class ServletController extends HttpServlet {
      */
     private void doPersonal(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         state = "personal";
+
         request.getRequestDispatcher("/personal.jsp").forward(request, response);
     }
 
     private void doAccesso(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         state = "home";
+        
+        
+        
+        List<Impianto> l=gestoreImpianto.getImpiantoByCitta("Torino");
+        String tmp="<select id=selectimpianto>";
+        for(int i=0; i<l.size(); i++){
+            tmp+="<option value="+l.get(i).getIdimpianto()+">"+l.get(i).getNome()+"</option>";
+        }
+        tmp+="</select>";
+        s.setAttribute("selectimpianto", tmp);
+        
+        
+        
         request.getRequestDispatcher("/homepage.jsp").forward(request, response);
     }
 
