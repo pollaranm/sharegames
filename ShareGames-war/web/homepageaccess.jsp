@@ -48,7 +48,7 @@
             <section style="height: auto">
                 <form action="<%=request.getContextPath()%>/ServletController" method="post" name="action" >
                     <label>
-                        <button style="font-size: medium; text-transform: capitalize;" type="submit" class="md-trigger md-setperspective button style1"  name="action" value="personal">Il mio profilo</button>
+                        <button style="text-transform: capitalize;" type="submit" class="md-trigger md-setperspective button style1"  name="action" value="personal">Il mio profilo</button>
                     </label>
                 </form>
             </section>

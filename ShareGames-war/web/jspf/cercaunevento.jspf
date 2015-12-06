@@ -1,0 +1,64 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<section id="cercaunevento" class="one dark cover">
+    <div class="container">
+
+        <header>
+            <h2 class="alt">Cerca il tuo evento</h2>
+
+            <div id="wrapper">
+                <form onsubmit="return false">
+                    <div class="col-2">
+                        <label> Stato
+                            <input placeholder="Seleziona lo Stato" id="name" name="name" tabindex="1">
+                        </label>
+                    </div>
+                    <div class="col-2">
+                        <label> Regione
+                            <input placeholder="Seleziona la Regione" id="company" name="company" tabindex="2">
+                        </label>
+                    </div> 
+                    <div class="col-3">
+                        <label> Provincia 
+                            <input placeholder="Seleziona la Provincia" id="phone" name="phone" tabindex="3">
+                        </label>
+                    </div>
+                    <div class="col-3">
+                        <label> Città
+                            <input placeholder="Seleziona la Città" id="email" name="email" tabindex="4">
+                        </label>
+                    </div>
+                    <!--                                                                    <div class="col-3">
+                                                                                          <label> Availability
+                                                                                            <select tabindex="5">
+                                                                                              <option>5-15 hrs per week</option>
+                                                                                              <option>15-30 hrs per week</option>
+                                                                                              <option>30-40 hrs per week</option>
+                                                                                            </select>
+                                                                                          </label>
+                                                                                        </div>-->
+                    <div class="col-3">
+                        <label> Sport
+                            <input placeholder="Seleziona lo Sport" id="skills" name="skills" tabindex="6">
+                        </label>
+                    </div>
+
+                    <div class="col-submit">
+                        <button class="submitbtn">Cerca</button>
+                    </div>
+
+                </form>
+            </div>
+
+            <script type="text/javascript">
+                var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+
+                elems.forEach(function (html) {
+                    var switchery = new Switchery(html);
+                });
+            </script>
+
+        </header>
+
+    </div>
+</section>

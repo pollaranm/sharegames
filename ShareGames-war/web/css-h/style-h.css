@@ -765,10 +765,9 @@ input[type="reset"].style3:hover,
     color: #fff;
     text-shadow: 0 0 0.5px rgba(255,255,255,0.25);
     text-align: center;
-    margin: -10em 0 0 0; /* usato per ribilanciare il padding-top */
-    padding: 14em 0 14em 0;
+    margin: -5em 0 0 0;/* usato per ribilanciare il padding-top */
+    padding: 7.5em 0 14em 0;
     cursor: default;
-
 }
 
 #header header

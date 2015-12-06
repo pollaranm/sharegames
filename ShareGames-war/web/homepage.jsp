@@ -6,7 +6,7 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
-        
+
         <script src="js-h/facebook.js"></script>                
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
@@ -27,8 +27,8 @@
             });
         </script>
         <noscript>
-            <link rel="stylesheet" href="css-h/skel-h.css" />
-            <link rel="stylesheet" href="css-h/style-h.css" />
+        <link rel="stylesheet" href="css-h/skel-h.css" />
+        <link rel="stylesheet" href="css-h/style-h.css" />
         </noscript>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="css-h/loading.css"/>   
@@ -46,24 +46,24 @@
         <div class="md-modal md-effect-19" id="modal-19">
             <div class="md-content">
                 <div class="page-container">
-                    <h1 id="h1login">Login</h1>
-                    <form action="<%=request.getContextPath()%>/ServletController" method="post" name="action" id="formlogin">
-                        <input id="inputlogin" type="text" name="username" placeholder="Username" style="margin-bottom: 1%;border-radius: 15px">
-                        <input id="inputlogin" type="password" name="password" placeholder="Password" style="border-radius: 15px">
-                        </br><button class="button style2" type="submit" name="submit" style="border-radius: 15px">Sign me in</button>
-                        <div class="error"><span></span></div>
-                        <label for="rememberMe"></label><span>I have read and agree to the <a href="#">Terms of Use </a>and <a href="#">Privacy Policy</a></span>
-                    </form>    
-                    <div class="social" style="margin-top: 4%"> <span>Oppure usa il tuo social</span></div>
+                    <!--                    <h1 id="h1login">Login</h1>
+                                        <form action="<%=request.getContextPath()%>/ServletController" method="post" name="action" id="formlogin">
+                                            <input id="inputlogin" type="text" name="username" placeholder="Username" style="margin-bottom: 1%;border-radius: 15px">
+                                            <input id="inputlogin" type="password" name="password" placeholder="Password" style="border-radius: 15px">
+                                            </br><button class="button style2" type="submit" name="submit" style="border-radius: 15px">Sign me in</button>
+                                            <div class="error"><span></span></div>
+                                            <label for="rememberMe"></label><span>I have read and agree to the <a href="#">Terms of Use </a>and <a href="#">Privacy Policy</a></span>
+                                        </form>    -->
+                    <div class="social" style="margin-top: 4%"> <span>Scegli il social network</br>che vuoi utilizzare</span></div>
                     <div class="buttons">
                         <a onclick="fb_login();" id="bottone"><button id="bottone" style="font-size: medium; text-transform: capitalize;" class="facebook" ><i class="fa fa-facebook"></i>Facebook</button></a>
                         <a onclick="twitter_login();"><button style="font-size: medium; text-transform: capitalize;" class="twitter" ><i class="fa fa-twitter"></i>Twitter</button></a>
                         <div id="buttonGoogle">
                             <button style="font-size: medium; text-transform: capitalize;" class="google"><i class="fa fa-google-plus"></i>Google</button>
                         </div>
-                        <div id="name"></div>
+                        <!--                        <div id="name"></div>-->
                     </div>
-                    <div class="already">Haven't an account? <a href="#">Sign In</a></div>
+                    <!--                    <div class="already">Haven't an account? <a href="#">Sign In</a></div>-->
                 </div>
             </div>
         </div>
@@ -75,20 +75,13 @@
             <p>@By WebLegends </p>
             <div id="status"></div>
             <section id="formloginaccesso" style="width: auto; border: 0 auto;">
-                <button  style="margin-top: 1%" class="md-trigger md-setperspective button style2"  data-modal="modal-19">Login</button>
-                <button  style="margin-top: 1%" class="md-trigger md-setperspective button style2" data-modal="modal-19">Sign in</button>
+                <button  style="margin-top: 1%" class="md-trigger md-setperspective button style2"  data-modal="modal-19">Accedi</button>
+
+                <!--                <button  style="margin-top: 1%" class="md-trigger md-setperspective button style2" data-modal="modal-19">Sign in</button>-->
             </section>
-            <!--
-            <div id="formaccessoindex">
-                <form action="<%=request.getContextPath()%>/ServletController" method="get" name="action" id="idform">
-                    <label>
-                        <button id="idform" style="font-size: medium; text-transform: capitalize;" type="submit" class="md-trigger md-setperspective button style1"  name="action" value="login">accesso</button>
-                    </label>
-                </form>
-            </div>
-            -->
 
             <footer>
+                <!--                          <a href="#banner" class="button style1 scrolly scrolly-centered">Esplora il sito</a>-->
                 <a href="#banner" class="button style1 scrolly scrolly-centered">Esplora il sito</a>
             </footer>
         </section>
