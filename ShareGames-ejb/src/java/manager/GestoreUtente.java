@@ -37,7 +37,7 @@ public class GestoreUtente implements GestoreUtenteLocal {
      * @param telefono Numero di telefono
      */
     @Override
-    public void AddUser(String name, String email, String idgoogle, String idfacebook, String telefono) {
+    public void addUser(String name, String email, String idgoogle, String idfacebook, String telefono) {
 
         Utente u = new Utente();
         u.setEmail(email);

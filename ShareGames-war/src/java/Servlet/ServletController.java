@@ -21,18 +21,17 @@ import manager.GestoreUtenteLocal;
  * @author Alex
  */
 public class ServletController extends HttpServlet {
+
     @EJB
     private GestoreCampoLocal gestoreCampo;
     @EJB
     private GestoreImpiantoLocal gestoreImpianto;
     @EJB
     private GestoreUtenteLocal gestoreUtente;
-    
-    
 
     String state = "index";
     HttpSession s;
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ServletContext ctx = getServletContext();
@@ -74,6 +73,8 @@ public class ServletController extends HttpServlet {
             doLoginFacebook(request, response);
         } else if (action.equals("loginGoogle")) {
             doLoginGoogle(request, response);
+        } else if (action.equals("registration")) {
+            doRegistration(request, response);
         } else if (action.equals("removeUtente")) {
             doRemoveUtente(request, response);
         } else if (action.equals("logout")) {
@@ -138,42 +139,44 @@ public class ServletController extends HttpServlet {
 
     private void doAccesso(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         state = "home";
-        
-        
-        
-        List<Impianto> l=gestoreImpianto.getImpiantoByCitta("Torino");
-        String tmp="<select id=selectimpianto>";
-        for(int i=0; i<l.size(); i++){
-            tmp+="<option value="+l.get(i).getIdimpianto()+">"+l.get(i).getNome()+"</option>";
+
+        List<Impianto> l = gestoreImpianto.getImpiantoByCitta("Torino");
+        String tmp = "<select id=selectimpianto>";
+        for (int i = 0; i < l.size(); i++) {
+            tmp += "<option value=" + l.get(i).getIdimpianto() + ">" + l.get(i).getNome() + "</option>";
         }
-        tmp+="</select>";
+        tmp += "</select>";
         s.setAttribute("selectimpianto", tmp);
-        
-        
-        
+
         request.getRequestDispatcher("/homepage.jsp").forward(request, response);
     }
 
     private void doLoginFacebook(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String nome = request.getParameter("name");
+        String name = request.getParameter("name");
         String id = request.getParameter("id");
         String email = request.getParameter("email");
         String url = request.getParameter("url");
-        if (gestoreUtente.findFacebook(id) == false) {
-            gestoreUtente.AddUser(nome, email, "", id, "");
-            System.out.println("inserito");
-        } else {
-            System.out.println("presente");
-        }
-        s.setAttribute("name", nome);
+        String phone = request.getParameter("phone");
+
         s.setAttribute("id", id);
-        s.setAttribute("tiposocial", "facebook");
+        s.setAttribute("social", "facebook");
         s.setAttribute("url", "<img src=" + url + ">");
-//        Utente user = gestoreUtente.getObjUtente(id, "facebook");
-        //metodo per loggare e controllare la persona nel database e linkarlo alla pagina nuova
-        state = "homepageaccess";
-        request.getRequestDispatcher("/homepageaccess.jsp").forward(request, response);
+
+        if (gestoreUtente.findFacebook(id)) {
+            Utente temp = gestoreUtente.getObjUtente(id, "facebook");
+            s.setAttribute("name", temp.getNome());
+            s.setAttribute("email", temp.getEmail());
+            s.setAttribute("phone", temp.getTelefono());
+            state = "homepageaccess";
+            request.getRequestDispatcher("/homepageaccess.jsp").forward(request, response);
+        } else {
+            state = "registration";
+            s.setAttribute("name", name);
+            s.setAttribute("email", email);
+            s.setAttribute("phone", phone);
+            request.getRequestDispatcher("/registration.jsp").forward(request, response);
+        }
 
     }
 
@@ -184,20 +187,37 @@ public class ServletController extends HttpServlet {
         String email = request.getParameter("email");
         String url = request.getParameter("url");
         if (gestoreUtente.findGoogle(id) == false) {
-            gestoreUtente.AddUser(nome, email, id, "", "");
+            gestoreUtente.addUser(nome, email, id, "", "");
             System.out.println("inserito");
         } else {
             System.out.println("presente");
         }
         s.setAttribute("name", nome);
         s.setAttribute("id", id);
-        s.setAttribute("tiposocial", "google");
+        s.setAttribute("social", "google");
         s.setAttribute("url", "<img src=" + url + ">");
 //        Utente user = gestoreUtente.getObjUtente(id, "google");
         //metodo per loggare e controllare la persona nel database e linkarlo alla pagina nuova
         state = "homepageaccess";
         request.getRequestDispatcher("/homepageaccess.jsp").forward(request, response);
 
+    }
+
+    private void doRegistration(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String id = (String) s.getAttribute("id");
+        if (s.getAttribute("social") == "facebook") {
+            gestoreUtente.addUser(name, email, "", id, phone);
+        } else if (s.getAttribute("social") == "google") {
+            gestoreUtente.addUser(name, email, id, "", "");
+        }
+        s.setAttribute("name", name);
+        s.setAttribute("email", email);
+        s.setAttribute("phone", phone);
+        state = "personal";
+        request.getRequestDispatcher("/personal.jsp").forward(request, response);
     }
 
     private void doRemoveUtente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

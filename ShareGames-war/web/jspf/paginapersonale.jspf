@@ -9,7 +9,47 @@
 
         <div id="wrapper">
 
-            <p><%= request.getSession().getAttribute("name")%></p>
+            <!--<p><%= request.getSession().getAttribute("name")%></p>-->
+            <form onsubmit="return false">
+                <div class="col-3">
+                    <label> Nome
+                        <input placeholder="<%= request.getSession().getAttribute("name")%>" id="name" name="name" tabindex="1">
+                    </label>
+                </div>
+                <div class="col-3">
+                    <label> Email
+                        <input placeholder="<%= request.getSession().getAttribute("email")%>" id="email" name="emal" tabindex="2">
+                    </label>
+                </div> 
+                <div class="col-3">
+                    <label> Telefono 
+                        <input placeholder="<%= request.getSession().getAttribute("phone")%>" id="phone" name="phone" tabindex="3">
+                    </label>
+                </div>
+                <div class="col-2">
+                    <label> Social Network
+                        <input placeholder="<%= request.getSession().getAttribute("social")%>" id="social" name="social" tabindex="4">
+                        <%= request.getSession().getAttribute("url")%>
+                    </label>
+                </div>
+                <div class="col-2">
+                    <label> Squadra 
+                        <input placeholder="Sei ancora senza squadra? Cercane una o creala!" id="team" name="team" tabindex="5">
+                    </label>
+                </div>
+                <!--                <div class="col-3">
+                                    <label> Sport
+                                        <input placeholder="Seleziona lo Sport" id="skills" name="skills" tabindex="6">
+                                    </label>
+                                </div>-->
+
+                <div class="col-submit">
+                    <button class="submitbtn">Cerca</button>
+                </div>
+
+            </form>
+
+
 
 
         </div>

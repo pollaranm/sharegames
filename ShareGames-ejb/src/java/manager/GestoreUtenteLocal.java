@@ -24,7 +24,7 @@ public interface GestoreUtenteLocal {
      * @param idfacebook Id Facebook associato all'utente
      * @param telefono Numero di telefono
      */
-    void AddUser(String name, String email, String idgoogle, String idfacebook, String telefono);
+    void addUser(String name, String email, String idgoogle, String idfacebook, String telefono);
 
     /**
      * Controlla la presenza di un Utente associato all'id Facebook passato come
