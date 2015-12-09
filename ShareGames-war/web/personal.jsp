@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title> </title>
+        <title>Sharegames</title>
 
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="" />
@@ -16,6 +16,7 @@
         <script src="js-p/init-p.js"></script>
         <script src="js-p/facebook.js"></script>
         <script src="js-p/google.js"></script>
+        <script src="js-nico/utente.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
         <script src="https://apis.google.com/js/api:client.js"></script>
         <noscript>
@@ -43,22 +44,27 @@
                 <!-- Logo -->
                 <div id="logo">
                     <span class="image avatar48" ><%= request.getSession().getAttribute("url")%></span>
+                    <p style="">Benvenuto<br><%= request.getSession().getAttribute("name")%></p>
+
                 </div>
+                <button class="submitbtn" id="logoutButton" onclick="logoutUtente()">LOGOUT</button>
+
+
 
 
                 <!-- Nav -->
                 <nav id="nav">
                     <ul>
 
-<!--                        <a onclick="fb_logout();" id="bottone"><button id="bottone" style="font-size: medium; text-transform: capitalize;" class="facebook" ></i>LogoutFacebook</button></a>
-                        <a onclick="signOut();" id="bottone"><button id="bottone" style="font-size: medium; text-transform: capitalize;" class="facebook" ></i>LogoutGoogle</button></a>
-
-
-                        <form action="<%=request.getContextPath()%>/ServletController" method="post" name="action" >
-                            <label>
-                                <button style="font-size: medium; text-transform: capitalize;" type="submit" class="md-trigger md-setperspective button style1"  name="action" value="removeUtente">remove</button>
-                            </label>
-                        </form>-->
+                        <!--                        <a onclick="fb_logout();" id="bottone"><button id="bottone" style="font-size: medium; text-transform: capitalize;" class="facebook" ></i>LogoutFacebook</button></a>
+                                                <a onclick="signOut();" id="bottone"><button id="bottone" style="font-size: medium; text-transform: capitalize;" class="facebook" ></i>LogoutGoogle</button></a>
+                        
+                        
+                                                <form action="<%=request.getContextPath()%>/ServletController" method="post" name="action" >
+                                                    <label>
+                                                        <button style="font-size: medium; text-transform: capitalize;" type="submit" class="md-trigger md-setperspective button style1"  name="action" value="removeUtente">remove</button>
+                                                    </label>
+                                                </form>-->
 
 
 
@@ -100,7 +106,7 @@
 
             <!-- I tuoi eventi -->
             <%@include file='jspf/ituoieventi.jspf' %>
-            
+
             <!-- eventi prenotati -->
             <%@include file='jspf/eventiprenotati.jspf' %>
 
@@ -109,11 +115,11 @@
 
             <!-- latuasquadra -->
             <%@include file='jspf/latuasquadra.jspf' %>
-            
+
 
             <!-- paginapersonale -->
             <%@include file='jspf/paginapersonale.jspf' %>
-            
+
         </div>
 
         <!-- Footer -->
