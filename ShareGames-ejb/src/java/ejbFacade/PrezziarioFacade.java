@@ -37,7 +37,14 @@ public class PrezziarioFacade extends AbstractFacade<Prezziario> implements Prez
         q.setParameter("idcampo", idCampo);
         q.setParameter("idimpianto", idImpianto);
         
+        if (q.getResultList().isEmpty()){
+            return null;
+        }
+        
+        else{
+        
         return (Prezziario) q.getResultList().get(0);
+        }
     }
        
     

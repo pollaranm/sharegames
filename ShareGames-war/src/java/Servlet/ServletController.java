@@ -20,9 +20,7 @@ import manager.GestoreUtenteLocal;
  *
  * @author Alex
  */
-public class ServletController extends HttpServlet {
-    @EJB
-    private GestoreCampoLocal gestoreCampo;
+public class ServletController extends HttpServlet {   
     @EJB
     private GestoreImpiantoLocal gestoreImpianto;
     @EJB
@@ -153,7 +151,7 @@ public class ServletController extends HttpServlet {
         
         request.getRequestDispatcher("/homepage.jsp").forward(request, response);
     }
-
+    
     private void doLoginFacebook(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String nome = request.getParameter("name");

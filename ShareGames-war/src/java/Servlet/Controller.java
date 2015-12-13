@@ -116,12 +116,12 @@ public class Controller extends HttpServlet {
             /*TEST PREZZIARIO*/
             
             //BigDecimal val;
-            //float prezzo=(float)8.85;
-            //int sconto=21;
+            //float prezzo=(float)5.05;
+            //int sconto=8;
             //float prezzo_scontato=(float)((prezzo)/((float)1+((float)(sconto)/(float)100)));
             //val= new BigDecimal(prezzo_scontato);
             
-            //gestorePrezziario.addPrezziario(5,25, val, sconto);
+            //gestorePrezziario.addPrezziario(3,20, val, sconto);
             //gestorePrezziario.removePrezziario(5,25);
             //Prezziario p;
             //p=gestorePrezziario.getObjPrezziario(5, 25);
