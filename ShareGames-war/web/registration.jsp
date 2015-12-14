@@ -48,7 +48,7 @@
                 <!-- Logo -->
                 <div id="logo">
                     <span class="image avatar48" ><%= request.getSession().getAttribute("url")%></span>
-                    <span>Sei tu?</span>
+                    <p style="" id="menu_profileName" name="menu_profileName">Sei tu?</p>
                 </div>
 
 
@@ -66,18 +66,7 @@
 
             </div>
 
-            <div class="bottom">
 
-                <!-- Social Icons -->
-                <ul class="icons">
-                    <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-                    <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-                    <li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
-                    <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-                    <li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
-                </ul>
-
-            </div>
 
         </div>
 
@@ -93,7 +82,7 @@
                         <div id="wrapper">
                             <form action="ServletController" method="POST">
                                 <input type="hidden" name="action" value="registration">
-                                
+
                                 <div class="col-3">
                                     <label> Nome
                                         <input value="<%= request.getSession().getAttribute("name")%>" placeholder="<%= request.getSession().getAttribute("name")%>"id="name" name="name" tabindex="1">
@@ -106,10 +95,17 @@
                                 </div> 
                                 <div class="col-3">
                                     <label> Telefono 
-                                        <input value="<%= request.getSession().getAttribute("phone")%>" id="phone" name="phone" tabindex="3">
+                                        <%
+                                            String ph;
+                                            if (request.getSession().getAttribute("phone") != null) {
+                                                ph = (String) request.getSession().getAttribute("phone");
+                                            } else {
+                                                ph = "";
+                                            }
+                                        %>
+                                        <input placeholder="<%=ph%> " id="phone" name="phone" tabindex="3">
                                     </label>
                                 </div>
-
                                 <div class="col-submit">
                                     <button class="submitbtn">Conferma registrazione</button>
                                 </div>
@@ -132,6 +128,18 @@
                 <ul class="menu">
                     <li>&copy; WebLegends</li>
                 </ul>
+            </div>
+            <div class="bottom">
+
+                <!-- Social Icons -->
+                <ul class="icons">
+                    <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                    <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                    <li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+                    <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+                    <li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
+                </ul>
+
             </div>
 
         </div>

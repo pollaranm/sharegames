@@ -9,42 +9,29 @@
 
         <div id="wrapper">
 
-            <!--<p><%= request.getSession().getAttribute("name")%></p>-->
             <form onsubmit="return false">
-                <div class="col-3">
+                <div class="col-2">
                     <label> Nome
-                        <input placeholder="<%= request.getSession().getAttribute("name")%>" id="name" name="name" tabindex="1">
-                    </label>
-                </div>
-                <div class="col-3">
-                    <label> Email
-                        <input placeholder="<%= request.getSession().getAttribute("email")%>" id="email" name="emal" tabindex="2">
-                    </label>
-                </div> 
-                <div class="col-3">
-                    <label> Telefono 
-                        <input placeholder="<%= request.getSession().getAttribute("phone")%>" id="phone" name="phone" tabindex="3">
+                        <input value="<%= request.getSession().getAttribute("name")%>" id="namePersonal" name="namePersonal" tabindex="1" readonly="true">
                     </label>
                 </div>
                 <div class="col-2">
-                    <label> Social Network
-                        <input placeholder="<%= request.getSession().getAttribute("social")%>" id="social" name="social" tabindex="4">
-                        <%= request.getSession().getAttribute("url")%>
+                    <label> Email
+                        <input value="<%= request.getSession().getAttribute("email")%>" id="emailPersonal" name="emailPersonal" tabindex="2" readonly="true">
+                    </label>
+                </div> 
+                <div class="col-2">
+                    <label> Telefono 
+                        <input value="<%= request.getSession().getAttribute("phone")%>" id="phonePersonal" name="phonePersonal" tabindex="3" readonly="true">
                     </label>
                 </div>
                 <div class="col-2">
                     <label> Squadra 
-                        <input placeholder="Sei ancora senza squadra? Cercane una o creala!" id="team" name="team" tabindex="5">
+                        <input placeholder="Sei ancora senza squadra? Cercane una o creala!" id="teamPersonal" name="teamPersonal" tabindex="5" readonly="true">
                     </label>
                 </div>
-                <!--                <div class="col-3">
-                                    <label> Sport
-                                        <input placeholder="Seleziona lo Sport" id="skills" name="skills" tabindex="6">
-                                    </label>
-                                </div>-->
-
                 <div class="col-submit">
-                    <button class="submitbtn">Cerca</button>
+                    <button class="submitbtn" id="buttonPersonal" onclick="editableForm()">Aggiorna i tuoi dati</button>
                 </div>
 
             </form>

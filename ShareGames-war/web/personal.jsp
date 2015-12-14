@@ -44,7 +44,7 @@
                 <!-- Logo -->
                 <div id="logo">
                     <span class="image avatar48" ><%= request.getSession().getAttribute("url")%></span>
-                    <p style="">Benvenuto<br><%= request.getSession().getAttribute("name")%></p>
+                    <p style="" id="menu_profileName" name="menu_profileName">Benvenuto<br><%= request.getSession().getAttribute("name")%></p>
 
                 </div>
                 <button class="submitbtn" id="logoutButton" onclick="logoutUtente()">LOGOUT</button>
@@ -83,18 +83,7 @@
 
             </div>
 
-            <div class="bottom">
-
-                <!-- Social Icons -->
-                <ul class="icons">
-                    <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-                    <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-                    <li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
-                    <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-                    <li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
-                </ul>
-
-            </div>
+            
 
         </div>
 
@@ -130,6 +119,18 @@
                 <ul class="menu">
                     <li>&copy; WebLegends</li>
                 </ul>
+            </div>
+            <div class="bottom">
+
+                <!-- Social Icons -->
+                <ul class="icons">
+                    <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                    <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                    <li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+                    <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+                    <li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
+                </ul>
+
             </div>
 
         </div>
