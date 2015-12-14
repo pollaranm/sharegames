@@ -2,16 +2,21 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Share Games</title>
+        <title>Sharegames</title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
 
         <script src="js-h/facebook.js"></script>                
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+        <script src="js/jquery.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
         <script src="https://apis.google.com/js/api:client.js"></script>
-        <script src="js-h/google.js"></script>        
+        <script src="js-h/google.js"></script>
+
+        <!--
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <meta name="google-signin-client_id" content="511603926371-sr21hvrj9jute7pvpgh9son8br3qskkh.apps.googleusercontent.com">
+        -->
         <script src="js-h/jquery.min-h.js"></script>
         <script src="js-h/jquery.scrolly.min-h.js"></script>
         <script src="js-h/jquery.poptrox.min-h.js"></script>

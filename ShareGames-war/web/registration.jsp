@@ -7,7 +7,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title> </title>
+        <title>Sharegames - Registrazione</title>
 
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="" />
@@ -46,8 +46,16 @@
             <div class="top">
 
                 <!-- Logo -->
+                <%
+                    String pic;
+                    if (((String)request.getSession().getAttribute("url")).equals("<img src=>")) {
+                        pic = "<img src='images/avatar_1.jpg'></img>";
+                    } else {
+                        pic = (String) request.getSession().getAttribute("url");
+                    }
+                %>
                 <div id="logo">
-                    <span class="image avatar48" ><%= request.getSession().getAttribute("url")%></span>
+                    <span class="image avatar48" ><%=pic%></span>
                     <p style="" id="menu_profileName" name="menu_profileName">Sei tu?</p>
                 </div>
 
@@ -90,7 +98,7 @@
                                 </div>
                                 <div class="col-3">
                                     <label> Email
-                                        <input placeholder="<%= request.getSession().getAttribute("email")%>" id="email" name="email" tabindex="2">
+                                        <input value="<%= request.getSession().getAttribute("email")%>" id="email" name="email" tabindex="2">
                                     </label>
                                 </div> 
                                 <div class="col-3">
@@ -103,7 +111,7 @@
                                                 ph = "";
                                             }
                                         %>
-                                        <input placeholder="<%=ph%> " id="phone" name="phone" tabindex="3">
+                                        <input value="<%=ph%> " id="phone" name="phone" tabindex="3">
                                     </label>
                                 </div>
                                 <div class="col-submit">

@@ -181,25 +181,31 @@ public class ServletController extends HttpServlet {
     }
 
     private void doLoginGoogle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        String nome = request.getParameter("name");
+        
+        String name = request.getParameter("name");
         String id = request.getParameter("id");
         String email = request.getParameter("email");
         String url = request.getParameter("url");
-        if (gestoreUtente.findGoogle(id) == false) {
-            gestoreUtente.addUser(nome, email, id, "", "");
-            System.out.println("inserito");
-        } else {
-            System.out.println("presente");
-        }
-        s.setAttribute("name", nome);
+        String phone = request.getParameter("phone");
+       
         s.setAttribute("id", id);
         s.setAttribute("social", "google");
         s.setAttribute("url", "<img src=" + url + ">");
-//        Utente user = gestoreUtente.getObjUtente(id, "google");
-        //metodo per loggare e controllare la persona nel database e linkarlo alla pagina nuova
-        state = "homepageaccess";
-        request.getRequestDispatcher("/homepageaccess.jsp").forward(request, response);
+        
+        if (gestoreUtente.findGoogle(id)) {
+            Utente temp = gestoreUtente.getObjUtente(id, "google");
+            s.setAttribute("name", temp.getNome());
+            s.setAttribute("email", temp.getEmail());
+            s.setAttribute("phone", temp.getTelefono());
+            state = "homepageaccess";
+            request.getRequestDispatcher("/homepageaccess.jsp").forward(request, response);
+        } else {
+            state = "registration";
+            s.setAttribute("name", name);
+            s.setAttribute("email", email);
+            s.setAttribute("phone", phone);
+            request.getRequestDispatcher("/registration.jsp").forward(request, response);
+        }
 
     }
 

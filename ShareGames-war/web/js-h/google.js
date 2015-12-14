@@ -3,7 +3,7 @@ var startApp = function () {
     gapi.load('auth2', function () {
         // Retrieve the singleton for the GoogleAuth library and set up the client.
         auth2 = gapi.auth2.init({
-            client_id: '927846435147-pm1es5ii4p0h0ie6826t8chksniapmls.apps.googleusercontent.com',
+            client_id: '511603926371-sr21hvrj9jute7pvpgh9son8br3qskkh.apps.googleusercontent.com',
             cookiepolicy: 'single_host_origin',
             // Request scopes in addition to 'profile' and 'email'
             //scope: 'additional_scope'
@@ -20,8 +20,8 @@ function attachSignin(element) {
 
     auth2.attachClickHandler(element, {},
             function (googleUser) {
-                document.getElementById('name').innerText = "Signed in: " +
-                        googleUser.getBasicProfile().getName();
+                //document.getElementById('name').innerText = "Signed in: " +
+                //        googleUser.getBasicProfile().getName();
 
                 profile = googleUser.getBasicProfile();
 

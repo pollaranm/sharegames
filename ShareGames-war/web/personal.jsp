@@ -42,10 +42,17 @@
             <div class="top">
 
                 <!-- Logo -->
+                <%
+                    String pic;
+                    if (((String)request.getSession().getAttribute("url")).equals("<img src=>")) {
+                        pic = "<img src='images/avatar_1.jpg'></img>";
+                    } else {
+                        pic = (String) request.getSession().getAttribute("url");
+                    }
+                %>
                 <div id="logo">
-                    <span class="image avatar48" ><%= request.getSession().getAttribute("url")%></span>
+                    <span class="image avatar48" ><%=pic%></span>
                     <p style="" id="menu_profileName" name="menu_profileName">Benvenuto<br><%= request.getSession().getAttribute("name")%></p>
-
                 </div>
                 <button class="submitbtn" id="logoutButton" onclick="logoutUtente()">LOGOUT</button>
 
