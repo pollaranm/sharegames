@@ -6,6 +6,7 @@
 package manager;
 
 import ejb.Evento;
+import ejb.Listaeventiutente;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -23,7 +24,7 @@ public interface GestoreListaEventiLocal {
      * @return 
      * Restituisce una lista di eventi relativi all'iutente indicato come parametro
      */
-    List<Evento> getEventoByUtente(int idutente);
+    List<Listaeventiutente> getEventoByUtente(int idutente);
     
     
     /**
@@ -40,6 +41,6 @@ public interface GestoreListaEventiLocal {
      * @return 
      * Restituisce l'intera tabella del database
      */
-    List<Evento> getListaEventiUtenti();
+    List<Listaeventiutente> getListaEventiUtenti();
     
 }

@@ -6,6 +6,7 @@
 package manager;
 
 import ejb.Evento;
+import ejb.Listaeventiutente;
 import ejbFacade.ListaeventiutenteFacadeLocal;
 import java.util.List;
 import javax.ejb.EJB;
@@ -28,7 +29,7 @@ public class GestoreListaEventi implements GestoreListaEventiLocal {
     
 
     @Override
-    public List<Evento> getEventoByUtente(int idutente) {
+    public List<Listaeventiutente> getEventoByUtente(int idutente) {
        return listaeventiutenteFacade.getEventoByUtente(idutente);
     }
     
@@ -45,7 +46,7 @@ public class GestoreListaEventi implements GestoreListaEventiLocal {
     }
 
     @Override
-    public List<Evento> getListaEventiUtenti() {
+    public List<Listaeventiutente> getListaEventiUtenti() {
         return listaeventiutenteFacade.getListaEventiUtenti();
     }
     

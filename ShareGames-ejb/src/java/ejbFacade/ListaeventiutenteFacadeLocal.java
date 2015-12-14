@@ -38,7 +38,7 @@ public interface ListaeventiutenteFacadeLocal {
      * Restituisce una lista con tutti gli eventi relativi all'utente 
      * idetificato dall'ID passato come parametro
      */
-    List<Evento> getEventoByUtente(int idutente);
+    List<Listaeventiutente> getEventoByUtente(int idutente);
     
     /**
      * 
@@ -56,5 +56,5 @@ public interface ListaeventiutenteFacadeLocal {
      * @return 
      * Restituisce l'intera tabella di tutti gli eventi
      */
-    List<Evento> getListaEventiUtenti();
+    List<Listaeventiutente> getListaEventiUtenti();
 }

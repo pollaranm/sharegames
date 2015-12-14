@@ -33,7 +33,7 @@ public class ListaeventiutenteFacade extends AbstractFacade<Listaeventiutente> i
     }
     
     @Override
-    public List<Evento> getEventoByUtente(int idutente) {
+    public List<Listaeventiutente> getEventoByUtente(int idutente) {
          Query q  = em.createNamedQuery("Listaeventiutente.findByIdutente");
         q.setParameter("idutente", idutente);
         return q.getResultList();
@@ -72,7 +72,7 @@ public class ListaeventiutenteFacade extends AbstractFacade<Listaeventiutente> i
     }
 
     @Override
-    public List<Evento> getListaEventiUtenti() {
+    public List<Listaeventiutente> getListaEventiUtenti() {
         Query q  = em.createNamedQuery("Listaeventiutente.findAll");
         return q.getResultList();
     }
