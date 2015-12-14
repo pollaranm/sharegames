@@ -51,7 +51,7 @@
                             <li><span >Impianto : xxxxxxxxxx</span></a></li>
                             <li> <img style="width:94%;height:auto" src="http://maps.google.com/maps/api/staticmap?markers=size:mid|color:blue|Corso+regina+margherita+221+10144+torino&size=500x300&sensor=false&size=600x300&key=AIzaSyAbz8o3xVmsMTpHh3DRWO1kIW38K3zBVJ4"></img>
                             </li>
-
+                            <button type=></button>
                     </header>
                 </article>
                 <article class="item">

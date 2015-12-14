@@ -12,6 +12,10 @@
         <servlet-name>EventiController</servlet-name>
         <servlet-class>Servlet.EventiController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UtenteController</servlet-name>
+        <servlet-class>Servlet.UtenteController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletController</servlet-name>
         <url-pattern>/ServletController</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>EventiController</servlet-name>
         <url-pattern>/EventiController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UtenteController</servlet-name>
+        <url-pattern>/UtenteController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
