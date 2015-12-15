@@ -6,11 +6,15 @@
 package Servlet;
 
 import ejb.Amministratore;
+import ejb.Evento;
+import ejb.Impianto;
+import ejb.Listaeventiutente;
 import ejb.Prezziario;
 import ejb.Squadra;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -35,6 +39,8 @@ import manager.GestoreUtenteLocal;
  */
 public class Controller extends HttpServlet {
     @EJB
+    private GestoreListaEventiLocal gestoreListaEventi;
+    @EJB
     private GestoreUtenteLocal gestoreUtente;
     @EJB
     private GestoreSquadraLocal gestoreSquadra;
@@ -54,12 +60,15 @@ public class Controller extends HttpServlet {
     
 
     
-    
+        HttpSession s;
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+            response.setContentType("text/html;charset=UTF-8");
+            s = request.getSession();
+        
+        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -149,7 +158,7 @@ public class Controller extends HttpServlet {
             //out.println(gestoreListaEventi.getEventoByPagato(14)+"\n");
             //out.println(gestoreListaEventi.getListaEventiUtenti()+"\n");
             
-            //gestoreEvento.addEvento(20, 1, "30/11/2016", "18", "calcio", "no", "no", 2, 14);
+           //gestoreEvento.addEvento(20, 1, "22/11/2014", "19", "calcio", "no", "no", 2, 24);
             
             /*int idimpianto=(Integer.parseInt(request.getParameter("idimpianto")));
             int idcampo=(Integer.parseInt(request.getParameter("idcampo")));
@@ -163,9 +172,29 @@ public class Controller extends HttpServlet {
             
             //out.println("Hai inserito un evento mbare.");
             
-            out.println("<body>");
-            out.println("</body>");
-            out.println("</html>");
+            List<Listaeventiutente> l=gestoreListaEventi.getEventoByUtente(14);
+            out.println(l.get(0));
+
+           
+                   
+        
+        
+//        List<Impianto> l=gestoreImpianto.getImpiantoByCitta("Torino");
+//        String tmp="<select id=selectimpianto>";
+//        for(int i=0; i<l.size(); i++){
+//            tmp+="<option value="+l.get(i).getIdimpianto()+">"+l.get(i).getNome()+"</option>";
+//        }
+//        tmp+="</select>";
+//        s.setAttribute("selectimpianto", tmp);
+//        
+//        String idutente="14";
+//        s.setAttribute("idutente", idutente);
+//
+//            out.println("<body>");
+//            out.println("Va su Controller");
+//            out.println(s.getAttribute("idutente"));
+//            out.println("</body>");
+//            out.println("</html>");
         }
 
     }
