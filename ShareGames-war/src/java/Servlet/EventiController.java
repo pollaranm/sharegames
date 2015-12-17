@@ -212,7 +212,7 @@ public class EventiController extends HttpServlet {
         
         
         else if(action.equals("aggiorna")){
-            
+            /*
             int idevento=Integer.parseInt(request.getParameter("idevento"));
             int idimpianto=gestoreEvento.getEvento(idevento).getImpianto().getIdimpianto();
             int idcampo=gestoreEvento.getEvento(idevento).getCampo().getCampoPK().getIdcampo();
@@ -222,7 +222,7 @@ public class EventiController extends HttpServlet {
             int idutente=Integer.parseInt((String)s.getAttribute("idutente"));
             String pagato=gestoreEvento.getEvento(idevento).getPagato();
             String completo=gestoreEvento.getEvento(idevento).getCompleto();
-            int giocatoripagato=gestoreEvento.getGiocatoriPagato(idevento);*/
+            int giocatoripagato=gestoreEvento.getGiocatoriPagato(idevento);
             
             
             List<Campo> l=gestoreCampo.getCampoByImpianto(idimpianto);
@@ -299,7 +299,7 @@ public class EventiController extends HttpServlet {
               
               PrintWriter out=response.getWriter();
               out.write("Errore caricaento dinamico");
-          }
+          }*/
         }
         
         else if(action.equals("rimuovi")){
