@@ -15,7 +15,10 @@ import ejbFacade.EventoFacadeLocal;
 import ejbFacade.ImpiantoFacadeLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -44,7 +47,7 @@ public class EventiController extends HttpServlet {
     
 
     
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException, SQLException {
                 
         ServletContext ctx = getServletContext();
         response.setContentType("text/html;charset=UTF-8");
@@ -57,6 +60,86 @@ public class EventiController extends HttpServlet {
             action="fine";
         }
         
+        if(action.equals("getregioni")){
+            
+            
+            Eventi e=new Eventi();
+            List<Integer> id=e.getidRegioni(); //stessa dimensione delle liste
+            List<String> l=e.getRegioni();
+            
+            PrintWriter out=response.getWriter();
+            String regioni="";
+            
+             for(int i=0; i<l.size(); i++){
+                regioni+="<option value="+id.get(i)+">"+l.get(i)+"</option>";
+            }
+             
+              out.write(regioni);
+              out.close();
+            
+        }
+        
+        
+        if(action.equals("getcitta")){
+            
+            int idregione=Integer.parseInt(request.getParameter("idregione"));
+            Eventi e=new Eventi();
+            List<String> l=e.getCitta(idregione);
+            List<String> l2=e.getSiglaProvince(idregione);
+            
+            
+            PrintWriter out=response.getWriter();
+            String citta="";
+            
+
+             for(int i=0; i<l.size(); i++){
+                citta+="<option value="+l2.get(i)+">"+l.get(i)+"</option>";
+            }
+             
+              out.write(citta);
+              out.close();
+            
+        }
+        
+        
+        if(action.equals("getprovincia")){
+            
+            String citta=request.getParameter("citta");
+            Eventi e=new Eventi();
+            List<String> l=e.getProvince(citta);
+            
+            
+            PrintWriter out=response.getWriter();
+            String province="";
+
+             for(int i=0; i<l.size(); i++){
+                province+="<option value="+l.get(i)+">"+l.get(i)+"</option>";
+            }
+             
+              out.write(province);
+              out.close();
+            
+        }
+        
+        if(action.equals("getsport")){
+   
+            String sport="";
+
+
+                sport+="<option value=calcio5>calcio5</option>"
+                +"<option value=calcio7>calcio7</option>"
+                +"<option value=calcio11>calcio11</option>"
+                +"<option value=pallavolo>pallavolo</option>"
+                +"<option value=pallacanestro>pallacanestro</option>"
+                +"<option value=tennis>tennis</option>";
+    
+             
+              PrintWriter out=response.getWriter();
+              out.write(sport);
+              out.close();
+            
+        }
+
         if(action.equals("getimpianto")){
             int impianto=Integer.parseInt(request.getParameter("impianto"));
             
@@ -338,7 +421,13 @@ public class EventiController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EventiController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EventiController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -352,7 +441,13 @@ public class EventiController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EventiController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EventiController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

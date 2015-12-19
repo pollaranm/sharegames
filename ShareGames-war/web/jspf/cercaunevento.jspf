@@ -10,22 +10,33 @@
                 <form onsubmit="return false">
                     <div class="col-2">
                         <label> Stato
-                            <input placeholder="Seleziona lo Stato" id="name" name="name" tabindex="1">
+                            <input readonly value="Itaia" placeholder="Seleziona lo Stato" id="stato" name="stato" tabindex="1">
                         </label>
                     </div>
                     <div class="col-2">
-                        <label> Regione
-                            <input placeholder="Seleziona la Regione" id="company" name="company" tabindex="2">
+                        <label> Seleziona la Regione: 
+                            <!--<input placeholder="Seleziona la Regione" id="company" name="company" tabindex="2">-->
+                            <select id="selectregione" name="regione tabindex='2'"> 
+   
+                            </select>
                         </label>
                     </div> 
                     <div class="col-3">
-                        <label> Provincia 
-                            <input placeholder="Seleziona la Provincia" id="phone" name="phone" tabindex="3">
+                        <label> Seleziona la Citta':  
+<!--                            <input placeholder="Seleziona la Provincia" id="phone" name="phone" tabindex="3">-->
+                                 
+                                 <select id="selectcitta" name="citta tabindex='3'"> 
+   
+                                </select>
                         </label>
                     </div>
                     <div class="col-3">
-                        <label> Città
-                            <input placeholder="Seleziona la Città" id="email" name="email" tabindex="4">
+                        <label> Seleziona la Provincia:
+                            <!--<input placeholder="Seleziona la Città" id="email" name="email" tabindex="4">-->
+                             
+                                 <select id="selectprovincia" name="provincia tabindex='3'"> 
+   
+                                </select>
                         </label>
                     </div>
                     <!--                                                                    <div class="col-3">
@@ -38,8 +49,11 @@
                                                                                           </label>
                                                                                         </div>-->
                     <div class="col-3">
-                        <label> Sport
-                            <input placeholder="Seleziona lo Sport" id="skills" name="skills" tabindex="6">
+                        <label> Seleziona lo Sport:
+                            <!--<input placeholder="Seleziona lo Sport" id="skills" name="skills" tabindex="6">-->
+                            <select id="selectsport" name="sport tabindex='3'"> 
+   
+                            </select>
                         </label>
                     </div>
 
@@ -57,6 +71,7 @@
                     var switchery = new Switchery(html);
                 });
             </script>
+            <script src="./js-dario/cercaevento.js"></script>
 
         </header>
 
