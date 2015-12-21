@@ -168,6 +168,9 @@ public class ServletController extends HttpServlet {
             s.setAttribute("name", temp.getNome());
             s.setAttribute("email", temp.getEmail());
             s.setAttribute("phone", temp.getTelefono());
+            if(temp.getIdsquadra()!=null){
+                s.setAttribute("team", temp.getIdsquadra().getNomesquadra());
+            }
             state = "homepageaccess";
             request.getRequestDispatcher("/homepageaccess.jsp").forward(request, response);
         } else {
@@ -197,6 +200,9 @@ public class ServletController extends HttpServlet {
             s.setAttribute("name", temp.getNome());
             s.setAttribute("email", temp.getEmail());
             s.setAttribute("phone", temp.getTelefono());
+            if(temp.getIdsquadra()!=null){
+                s.setAttribute("team", temp.getIdsquadra().getNomesquadra());
+            }
             state = "homepageaccess";
             request.getRequestDispatcher("/homepageaccess.jsp").forward(request, response);
         } else {
