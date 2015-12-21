@@ -27,7 +27,13 @@
                 </div>
                 <div class="col-2">
                     <label> Squadra 
-                        <input placeholder="Sei ancora senza squadra? Cercane una o creala!" id="teamPersonal" name="teamPersonal" tabindex="5" readonly="true">
+                        <%
+                        String teamPersonal = "Sei ancora senza squadra? Cercane una o creala!";
+                        if(request.getSession().getAttribute("team")!=null){
+                            teamPersonal=(String)request.getSession().getAttribute("team");
+                        }
+                        %>
+                        <input placeholder="<%=teamPersonal%>" id="teamPersonal" name="teamPersonal" tabindex="5" readonly="true">
                     </label>
                 </div>
                 <div class="col-submit">
