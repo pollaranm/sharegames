@@ -80,7 +80,7 @@ public class EventiController extends HttpServlet {
         }
         
         
-        if(action.equals("getcitta")){
+        if(action.equals("getprovincia")){ // cambiato il nome, primaera getcitta, ma cercava le province xD
             
             int idregione=Integer.parseInt(request.getParameter("idregione"));
             Eventi e=new Eventi();
@@ -93,7 +93,7 @@ public class EventiController extends HttpServlet {
             
 
              for(int i=0; i<l.size(); i++){
-                citta+="<option value="+l2.get(i)+">"+l.get(i)+"</option>";
+                citta+="<option value="+l.get(i)+">"+l.get(i)+"</option>"; //metto come value il nome della città e non la sigla
             }
              
               out.write(citta);
@@ -102,7 +102,7 @@ public class EventiController extends HttpServlet {
         }
         
         
-        if(action.equals("getprovincia")){
+        if(action.equals("getcitta")){ // stesso discorso di prima, cercava le citta ma si chiamava getprovincia
             
             String citta=request.getParameter("citta");
             Eventi e=new Eventi();

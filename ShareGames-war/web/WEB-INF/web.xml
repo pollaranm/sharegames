@@ -16,6 +16,10 @@
         <servlet-name>UtenteController</servlet-name>
         <servlet-class>Servlet.UtenteController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SquadraController</servlet-name>
+        <servlet-class>Servlet.SquadraController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletController</servlet-name>
         <url-pattern>/ServletController</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>UtenteController</servlet-name>
         <url-pattern>/UtenteController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SquadraController</servlet-name>
+        <url-pattern>/SquadraController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
