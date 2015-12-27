@@ -10,13 +10,13 @@
                 <form onsubmit="return false">
                     <div class="col-2">
                         <label> Stato
-                            <input readonly value="Itaia" placeholder="Seleziona lo Stato" id="stato" name="stato" tabindex="1">
+                            <input readonly value="Italia" placeholder="Seleziona lo Stato" id="stato" name="stato" tabindex="1">
                         </label>
                     </div>
                     <div class="col-2">
                         <label> Seleziona la Regione: 
                             <!--<input placeholder="Seleziona la Regione" id="company" name="company" tabindex="2">-->
-                            <select id="selectregione" name="regione tabindex='2'"> 
+                            <select id="selectregione" name="regione" tabindex='2'> 
    
                             </select>
                         </label>
@@ -25,7 +25,7 @@
                         <label> Seleziona la Citta':  
 <!--                            <input placeholder="Seleziona la Provincia" id="phone" name="phone" tabindex="3">-->
                                  
-                                 <select id="selectcitta" name="citta tabindex='3'"> 
+                                 <select id="selectcitta" name="citta" tabindex='3'> 
    
                                 </select>
                         </label>
@@ -34,7 +34,7 @@
                         <label> Seleziona la Provincia:
                             <!--<input placeholder="Seleziona la Città" id="email" name="email" tabindex="4">-->
                              
-                                 <select id="selectprovincia" name="provincia tabindex='3'"> 
+                                 <select id="selectprovincia" name="provincia" tabindex='3'> 
    
                                 </select>
                         </label>
@@ -51,14 +51,14 @@
                     <div class="col-3">
                         <label> Seleziona lo Sport:
                             <!--<input placeholder="Seleziona lo Sport" id="skills" name="skills" tabindex="6">-->
-                            <select id="selectsport" name="sport tabindex='3'"> 
+                            <select id="selectsport" name="sport" tabindex='3'> 
    
                             </select>
                         </label>
                     </div>
 
                     <div class="col-submit">
-                        <button class="submitbtn">Cerca</button>
+                        <button id="searchevento" class="submitbtn">Cerca</button>
                     </div>
 
                 </form>
@@ -72,6 +72,7 @@
                 });
             </script>
             <script src="./js-dario/cercaevento.js"></script>
+            <div id="seeevento"></div>
 
         </header>
 

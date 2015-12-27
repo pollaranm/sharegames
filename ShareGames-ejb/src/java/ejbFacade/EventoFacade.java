@@ -75,7 +75,7 @@ public class EventoFacade extends AbstractFacade<Evento> implements EventoFacade
         q.setParameter("data", data);
         q.setParameter("ora", ora);
         q.setParameter("idevento", idevento);
-        q.setParameter("completo", data);
+        q.setParameter("completo", "no");
         q.setParameter("giocatoripagato",giocatoripagato);
         q.setParameter("sport", sport);
         q.setParameter("pagato", pagato);

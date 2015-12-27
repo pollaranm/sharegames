@@ -17,7 +17,6 @@
         <script src="js-p/facebook.js"></script>
         <script src="js-p/google.js"></script>
         <script src="js-nico/utente.js"></script>
-       <script src="js-dario/evento.js"></script>-->
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
         <script src="https://apis.google.com/js/api:client.js"></script>
         <noscript>
@@ -143,6 +142,8 @@
 
         </div>
         <script>startApp();</script>
+        <script src="js-dario/evento.js"></script>
+        <script src="js-dario/data.js"></script>
 
     </body>
 </html>
