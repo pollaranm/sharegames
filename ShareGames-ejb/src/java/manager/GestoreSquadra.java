@@ -19,13 +19,12 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestoreSquadra implements GestoreSquadraLocal {
+
     @EJB
     private UtenteFacadeLocal utenteFacade;
 
     @EJB
     private SquadraFacadeLocal squadraFacade;
-    
-    
 
     @Override
     public Squadra getObjSquadra(Integer idSquadra) {
@@ -33,8 +32,15 @@ public class GestoreSquadra implements GestoreSquadraLocal {
     }
 
     @Override
+    public Squadra getObjSquadraByName(String nomeSquadra) {
+        return squadraFacade.getObjSquadraByName(nomeSquadra);
+    }
+
+    @Override
     public void addSquadra(String nomeSquadra, String tipologia, String citta) {
-        if( !checkNomeSquadra(nomeSquadra) ) return;
+        if (!checkNomeSquadra(nomeSquadra)) {
+            return;
+        }
         Squadra s = new Squadra();
         s.setNomesquadra(nomeSquadra);
         s.setTipologia(tipologia);
@@ -46,7 +52,7 @@ public class GestoreSquadra implements GestoreSquadraLocal {
     @Override
     public void removeSquadra(Integer idSquadra) {
         Squadra temp = squadraFacade.getObjSquadra(idSquadra);
-        for( Utente player : temp.getUtenteCollection() ) {
+        for (Utente player : temp.getUtenteCollection()) {
             player.setIdsquadra(null);
             utenteFacade.edit(player);
         }
@@ -67,17 +73,17 @@ public class GestoreSquadra implements GestoreSquadraLocal {
     public Collection<Squadra> getSquadraByCitta(String city) {
         return squadraFacade.getSquadraByCitta(city);
     }
-    
+
     @Override
     public Collection<Squadra> getSquadraByTipologia(String tipologia) {
         return squadraFacade.getSquadraByTipologia(tipologia);
     }
-    
-    
 
     @Override
     public void updateSquadra(int idSquadra, String nomeSquadra, int numeroComponenti, String tipologia, String citta) {
-        if (!checkNomeSquadra(nomeSquadra)) return;
+        if (!checkNomeSquadra(nomeSquadra)) {
+            return;
+        }
         Squadra s = squadraFacade.getObjSquadra(idSquadra);
         s.setNomesquadra(nomeSquadra);
         s.setTipologia(tipologia);
@@ -91,10 +97,4 @@ public class GestoreSquadra implements GestoreSquadraLocal {
         return squadraFacade.getSquadraByCittaTipologia(citta, tipologia);
     }
 
-    
-    
-    
-    
-    
-        
 }

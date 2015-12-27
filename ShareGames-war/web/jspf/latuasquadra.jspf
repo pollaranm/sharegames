@@ -1,25 +1,25 @@
-<%-- any content can be specified here e.g.: --%>
-<%@ page pageEncoding="UTF-8" %>
-<script>
-
-
-</script>
 <section id="latuasquadra" class="one dark cover">
     <div class="container">
 
         <header>
             <h2>La tua squadra</h2>
         </header>
-        <% //se l'utente ha giÃ  una squadra
+        <% //se l'utente ha già una squadra
             if (request.getSession().getAttribute("team") != null) {
         %>
-
+        <div id='wrapper'>
+            <form id='myTeamForm' action='SquadraController'>
+            </form>
+        </div>
 
         <% //se l'utente non ha una squadra
         } else { %>
         <div id="wrapper">
             <div style="float:left;width: 50%">
                 <form onsubmit="return false">
+                    <div class="col-1">
+                        <label style='text-align: center'>Cerca una squadra a cui unirti</label>
+                    </div>
                     <div class="col-2">
                         <label>Seleziona la regione: 
                             <select id="geo1" name="geo1" tabindex="1">
@@ -40,16 +40,43 @@
                         </label>
                     </div>
                     <div class="col-submit">
-                        <button class="submitbtn" id="searchTeam" onclick="retrieveTeams();">Cerca una squadra</button>
+                        <button class="submitbtn" id="searchTeam" onclick="retrieveTeams()">Cerca una squadra</button>
                     </div>
-                    //$.ajax({url: 'SquadraController',type: 'POST',dataType: 'html',data: {action: 'searchTeam',prov: $('#geo2').val(),sport: $('#team_sport').val()},success: function (data) {$('#team_div_res').html(data);},error: function (xhr, status, error) {alert(error);}});
                 </form>
             </div> <!-- fine form di sx -->
+
             <div style="float:left;width: 50%;height: 100%" id="team_div_res">
-                <form>
+                <form onsubmit="return false">
                     <div class="col-1">
-                        <label>Usa il form a sinistra per cercare la tua nuova squadra</label>
+                        <label style='text-align: center'>Oppure creane una nuova tu!</label>
+                    </div>
+                    <div class="col-2">
+                        <label>Scegli la regione: 
+                            <select id="geo3" name="geo3" tabindex="4">
+                                <option>Scegli una regione</option>
+                            </select>
+                        </label>
                     </div> 
+                    <div class="col-2">
+                        <label> Scegli la provincia:  
+                            <select id="geo4" name="geo4" tabindex="5">
+                                <option>...</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="col-2">
+                        <label> Scegli lo sport:
+                            <select id="team_sport2" name="team_sport2" tabindex="6"></select>
+                        </label>
+                    </div>
+                    <div class="col-2">
+                        <label> Scegli il nome:
+                            <input placeholder="Libera la fantasia!" id="newteamname" name="newteamname" tabindex="7">
+                        </label>
+                    </div>
+                    <div class="col-submit">
+                        <button class="submitbtn" id="createTeamBtn">Crea una squadra</button>
+                    </div>
                 </form>
             </div> <!-- fine form di dx -->
         </div> 

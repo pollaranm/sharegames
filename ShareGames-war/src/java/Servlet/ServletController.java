@@ -18,12 +18,12 @@ import manager.GestoreImpiantoLocal;
 import manager.GestoreListaEventiLocal;
 import manager.GestoreUtenteLocal;
 
-
 /**
  *
  * @author Alex
  */
 public class ServletController extends HttpServlet {
+
     @EJB
     private GestoreListaEventiLocal gestoreListaEventi;
     @EJB
@@ -35,7 +35,7 @@ public class ServletController extends HttpServlet {
 
     String state = "index";
     HttpSession s;
-    Eventi e=new Eventi();
+    Eventi e = new Eventi();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -138,16 +138,14 @@ public class ServletController extends HttpServlet {
      */
     private void doPersonal(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         state = "personal";
-       
+
         //PRENDERE DA SESSIONE IDUTENTE!!!!
-        
         s.setAttribute("lista", e.getListaEventiUtente(14));
         request.getRequestDispatcher("/personal.jsp").forward(request, response);
     }
 
     private void doAccesso(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         state = "home";
-
 
         List<Impianto> l = gestoreImpianto.getImpiantoByCitta("Torino");
         String tmp = "<select id=selectimpianto>";
@@ -177,8 +175,10 @@ public class ServletController extends HttpServlet {
             s.setAttribute("name", temp.getNome());
             s.setAttribute("email", temp.getEmail());
             s.setAttribute("phone", temp.getTelefono());
-            if(temp.getIdsquadra()!=null){
+            if (temp.getIdsquadra() != null) {
                 s.setAttribute("team", temp.getIdsquadra().getNomesquadra());
+            } else {
+                s.setAttribute("team", null);
             }
             state = "homepageaccess";
             request.getRequestDispatcher("/homepageaccess.jsp").forward(request, response);
@@ -193,24 +193,26 @@ public class ServletController extends HttpServlet {
     }
 
     private void doLoginGoogle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+
         String name = request.getParameter("name");
         String id = request.getParameter("id");
         String email = request.getParameter("email");
         String url = request.getParameter("url");
         String phone = request.getParameter("phone");
-       
+
         s.setAttribute("id", id);
         s.setAttribute("social", "google");
         s.setAttribute("url", "<img src=" + url + ">");
-        
+
         if (gestoreUtente.findGoogle(id)) {
             Utente temp = gestoreUtente.getObjUtente(id, "google");
             s.setAttribute("name", temp.getNome());
             s.setAttribute("email", temp.getEmail());
             s.setAttribute("phone", temp.getTelefono());
-            if(temp.getIdsquadra()!=null){
+            if (temp.getIdsquadra() != null) {
                 s.setAttribute("team", temp.getIdsquadra().getNomesquadra());
+            } else {
+                s.setAttribute("team", null);
             }
             state = "homepageaccess";
             request.getRequestDispatcher("/homepageaccess.jsp").forward(request, response);

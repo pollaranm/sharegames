@@ -36,6 +36,13 @@ public class SquadraFacade extends AbstractFacade<Squadra> implements SquadraFac
         q.setParameter("idsquadra", idSquadra);
         return (Squadra) q.getResultList().get(0);
     }
+    
+    @Override
+    public Squadra getObjSquadraByName(String nomeSquadra) {
+        Query q = em.createNamedQuery("Squadra.findByNomesquadra");
+        q.setParameter("nomesquadra", nomeSquadra);
+        return (Squadra) q.getResultList().get(0);
+    }
 
     @Override
     public Boolean checkNomeSquadra(String name) {
@@ -65,6 +72,8 @@ public class SquadraFacade extends AbstractFacade<Squadra> implements SquadraFac
         q.setParameter("tipologia", tipologia);
         return q.getResultList();
     }
+
+    
     
     
     

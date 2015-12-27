@@ -69,5 +69,7 @@ public interface SquadraFacadeLocal {
      * @return L'elenco delle squadre che rispettano il filtro
      */
     Collection<Squadra> getSquadraByCittaTipologia(String citta, String tipologia);
+
+    Squadra getObjSquadraByName(String nomeSquadra);
     
 }

@@ -52,7 +52,8 @@ public class SquadraController extends HttpServlet {
         s = request.getSession();
         String action = request.getParameter("action");
         PrintWriter out = response.getWriter();
-
+        RequestDispatcher rdErr;
+        //parametri per il recupero dell'utente estratti dalla sessione
         String id = (String) s.getAttribute("id");
         String social = (String) s.getAttribute("social");
 
@@ -91,8 +92,60 @@ public class SquadraController extends HttpServlet {
             String idsquadra = request.getParameter("idsquadra");
             String namesquadra = request.getParameter("namesquadra");
             gestoreUtente.joinSquadra(gestoreUtente.getObjUtente(id, social), new Integer(idsquadra));
-            request.getSession().setAttribute("team",namesquadra);
-            RequestDispatcher rdErr = ctx.getRequestDispatcher("/personal.jsp");
+            request.getSession().setAttribute("team", namesquadra);
+            rdErr = ctx.getRequestDispatcher("/personal.jsp");
+            rdErr.forward(request, response);
+        }
+        if (action.equals("createTeam")) {
+            String newsport = request.getParameter("sport");
+            String newname = request.getParameter("newname");
+            String location = request.getParameter("prov");
+            if (gestoreSquadra.checkNomeSquadra(newname)) {
+                gestoreSquadra.addSquadra(newname, newsport, location);
+                Integer newid = gestoreSquadra.getObjSquadraByName(newname).getIdsquadra();
+                gestoreUtente.joinSquadra(gestoreUtente.getObjUtente(id, social), newid);
+                request.getSession().setAttribute("team", newname);
+                out.write("Squadra creata con successo!");
+            } else {
+                out.write("Il nome per la squadra è già stato scelto!");
+                out.close();
+            }
+        }
+        if (action.equals("getMyTeam")) {
+            if (request.getSession().getAttribute("team") != null) {
+                Squadra myTeam = gestoreSquadra.getObjSquadraByName((String) request.getSession().getAttribute("team"));
+                String tmp = "<div class='col-4'>"
+                        + "    <label> Nome"
+                        + "        <input value='" + myTeam.getNomesquadra() + "' id='myTeamName' name='myTeamName' tabindex='1' readonly='true'>"
+                        + "    </label>"
+                        + "</div>"
+                        + "<div class='col-4'>"
+                        + "    <label> Membri"
+                        + "        <input value='" + myTeam.getNumerocomponenti() + "' id='myTeamMember' name='myTeamMember' tabindex='2' readonly='true'>"
+                        + "    </label>"
+                        + "</div> "
+                        + "<div class='col-4'>"
+                        + "    <label> Sport"
+                        + "        <input value='" + myTeam.getTipologia() + "' id='myTeamSport' name='myTeamSport' tabindex='3' readonly='true'>"
+                        + "    </label>"
+                        + "</div>"
+                        + "<div class='col-4'>"
+                        + "    <label> Provincia"
+                        + "        <input value='" + myTeam.getCitta() + "' id='myTeamLocation' name='myTeamLocation' tabindex='3' readonly='true'>"
+                        + "    </label>"
+                        + "</div>"
+                        + "<div class='col-submit'>"
+                        + "    <button type='submit' class='button' style='background-color: red' id='leaveTeamBtn'>Lascia la squadra</button>"
+                        + "</div>"
+                        + "<input type='hidden' name='action' value='leaveTeam'>";
+                out.write(tmp);
+                out.close();
+            }
+        }
+        if (action.equals("leaveTeam")) {
+            gestoreUtente.leaveSquadra(gestoreUtente.getObjUtente(id, social));
+            request.getSession().setAttribute("team", null);
+            rdErr = ctx.getRequestDispatcher("/personal.jsp");
             rdErr.forward(request, response);
         }
     }

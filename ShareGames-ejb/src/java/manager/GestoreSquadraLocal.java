@@ -92,5 +92,7 @@ public interface GestoreSquadraLocal {
      */
     Collection<Squadra> getSquadraByCittaTipologia(String citta, String tipologia);
 
+    Squadra getObjSquadraByName(String nomeSquadra);
+
     
 }
