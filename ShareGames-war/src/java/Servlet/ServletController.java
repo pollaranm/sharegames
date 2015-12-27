@@ -140,6 +140,7 @@ public class ServletController extends HttpServlet {
         state = "personal";
 
         //PRENDERE DA SESSIONE IDUTENTE!!!!
+        //s.setAttribute("idutente", 14);
         s.setAttribute("lista", e.getListaEventiUtente(14));
         request.getRequestDispatcher("/personal.jsp").forward(request, response);
     }

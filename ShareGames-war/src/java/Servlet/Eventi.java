@@ -47,17 +47,19 @@ public class Eventi  {
                     
                     +"<h3>Evento "+(i+1)+"</h3><header>"
                     +"<li>"
-                        + "<span >Evento numero: "+listaeventi.get(i).getListaeventiutentePK().getIdevento()+"</span>"
+                        + "<span >Evento numero: "+listaeventi.get(i).getListaeventiutentePK().getIdevento()+"</span><br>"
                     + "</li>"
-                    
                     +"<form id=formListaEventi>"
-                    + "<input readonly type='text' id=data type=text name=data value="+listaeventi.get(i).getEvento().getEventoPK().getData()+"></input>"
-                    + "<input readonly type='text'  id=ora  type=text name=ora value="+listaeventi.get(i).getEvento().getEventoPK().getOra()+"></input>"
-                    + "<input readonly type='text' id=idcampo  type=text name=idcampo value="+listaeventi.get(i).getEvento().getEventoPK().getIdcampo()+"></input>"
-                    + "<input readonly type='text' id=idimpianto  type=hidden name=idimpianto value="+listaeventi.get(i).getEvento().getEventoPK().getIdimpianto()+"></input>"
-                    + "<input readonly type='text' id=idevento  type=hidden name=idevento value="+listaeventi.get(i).getListaeventiutentePK().getIdevento()+"></input>"
-                    + "<input readonly type=hidden name=idproprietario value="+listaeventi.get(i).getProprietario()+"></input>"
+                    +"Data: <input readonly type=text id=data name=data value="+listaeventi.get(i).getEvento().getEventoPK().getData()+"></input></br>"
+                    + "Ora: <input readonly type=text  id=ora  name=ora value="+listaeventi.get(i).getEvento().getEventoPK().getOra()+"></input><br>"
+                    + "IDCampo: <input readonly  id=idcampo  type=text name=idcampo value="+listaeventi.get(i).getEvento().getEventoPK().getIdcampo()+"></input><br>"
+                    + "IDImpianto: <input readonly id=idimpianto  type=text name=idimpianto value="+listaeventi.get(i).getEvento().getEventoPK().getIdimpianto()+"></input><br>"
+                    + "IDEvento: <input readonly id=idevento type=text  name=idevento value="+listaeventi.get(i).getListaeventiutentePK().getIdevento()+"></input><br>"
+                    + "IDProprietario: <input readonly type=text name=idproprietario value="+listaeventi.get(i).getProprietario()+"></input><br>"
+                    //+"<div class=col-submit>"
                     + "</form>"
+                   // +"</div>"
+                    +"<button class=submitbtn id=edit onclick=editaform()>Aggiorna il tuo evento</button>" 
                     + "<li>Pagato: <span class=icon fa-remove></span></li>"
                     + "<span>Nome Impianto: "+listaeventi.get(i).getEvento().getImpianto().getNome()+"</span></br>"
                     //+ "<li> <img style=width:94%;height:auto src=http://maps.google.com/maps/api/staticmap?markers=size:mid|color:blue|Corso+regina+margherita+221+10144+torino&size=500x300&sensor=false&size=600x300&key=AIzaSyAbz8o3xVmsMTpHh3DRWO1kIW38K3zBVJ4></img></li></br>"
@@ -76,13 +78,16 @@ public class Eventi  {
                         + "<span >Evento numero: "+listaeventi.get(j).getListaeventiutentePK().getIdevento()+"</span>"
                     + "</li>"
                     +"<form id=formListaEventi style=text-align:left>"
-                    + "<input readonly type='text' id=data  type=text name=data value="+listaeventi.get(j).getEvento().getEventoPK().getData()+"></input>"
-                    + "<input readonly type='text' id=ora  type=text name=ora value="+listaeventi.get(j).getEvento().getEventoPK().getOra()+"></input>"
-                    + "<input readonly type='text' id=idcampo  type=text name=idcampo value="+listaeventi.get(j).getEvento().getEventoPK().getIdcampo()+"></input>"
-                    + "<input readonly type='text' id=idimpianto  type=hidden name=idimpianto value="+listaeventi.get(j).getEvento().getEventoPK().getIdimpianto()+"></input>"
-                    +"<input readonly type='text' id=idimpianto  type=hidden name=idevento value="+listaeventi.get(j).getListaeventiutentePK().getIdevento()+"></input>"
-                    +"<input readonly type=hidden name=idproprietario value="+listaeventi.get(j).getProprietario()+"></input>"
+                    + "Data: <input readonly type=text id=data value="+listaeventi.get(j).getEvento().getEventoPK().getData()+"></input><br>"
+                    + "Ora: <input readonly type=text id=ora name=ora value="+listaeventi.get(j).getEvento().getEventoPK().getOra()+"></input>"
+                    + "IDCampo: <input readonly type=text id=idcampo name=idcampo value="+listaeventi.get(j).getEvento().getEventoPK().getIdcampo()+"></input>"
+                    + "IDImpianto: <input readonly type=text id=idimpianto name=idimpianto value="+listaeventi.get(j).getEvento().getEventoPK().getIdimpianto()+"></input>"
+                    + "IDEvento: <input readonly id=idevento type=text name=idevento value="+listaeventi.get(j).getListaeventiutentePK().getIdevento()+"></input>"
+                    + "IDProprietario: <input readonly type=text name=idproprietario value="+listaeventi.get(j).getProprietario()+"></input>"
+                    +"<div class=col-submit>"
                     + "</form>"
+                    +"</div>"
+                    +"<button class=submitbtn id=edit onclick=editaform()>Aggiorna il tuo evento</button>" 
                     + "Pagato: <span class=icon fa-check></span></br>"
                     + "<span>Nome Impianto: "+listaeventi.get(j).getEvento().getImpianto().getNome()+"</span></br>"
                     //+" <li> <img style=width:94%;height:auto src=http://maps.google.com/maps/api/staticmap?markers=size:mid|color:blue|Corso+regina+margherita+221+10144+torino&size=500x300&sensor=false&size=600x300&key=AIzaSyAbz8o3xVmsMTpHh3DRWO1kIW38K3zBVJ4></img></li></br>"
@@ -203,7 +208,7 @@ public class Eventi  {
     
     
     
-        public List<String> getCitta(int idregione) throws ClassNotFoundException, SQLException{
+        public List<String> getCitta(/*int idregione*/) throws ClassNotFoundException, SQLException{
         
         List<String> citta=new ArrayList<String>();
         
@@ -227,10 +232,10 @@ public class Eventi  {
       
       while (rs.next())
       {
-          if(rs.getInt("idRegione")==idregione){
+          //if(rs.getInt("idRegione")==idregione){
                 String nome = rs.getString("nomeProvincia");
                 citta.add(i++, nome);
-          }
+          //}
       }
       
       //regioni.set(0, "VUOTA");
@@ -350,6 +355,57 @@ public class Eventi  {
          
          return province;
     }
+        
+        
+        
+        
+        public String getCittabySigla(String sigla) throws ClassNotFoundException, SQLException{
+        
+        
+        String citta="";
+         try
+        {
+        // create our mysql database connection
+        String myDriver = "com.mysql.jdbc.Driver";
+        String myUrl = "jdbc:mysql://localhost:3306/newsharegames?zeroDateTimeBehavior=convertToNull";
+        Class.forName(myDriver);
+        Connection conn = DriverManager.getConnection(myUrl, "root", "root");
+       
+        // our SQL SELECT query. 
+        // if you only need a few columns, specify them by name instead of using "*"
+        String query = "SELECT * FROM province";
+
+      // create the java statement
+      java.sql.Statement st = conn.createStatement();
+       
+      ResultSet rs = st.executeQuery(query);
+      int i=0;
+      
+      while (rs.next())
+      {
+          if(rs.getString("siglaProvincia").equals(sigla))
+              citta+=rs.getString("nomeProvincia");
+      }
+      
+      //regioni.set(0, "VUOTA");
+       
+        return citta; 
+
+    }
+
+         catch(Exception e){
+             e.printStackTrace();
+         }
+         
+         return citta;
+    }
+        
+        
+        
+        
+        
+        
+        
     
     
     
