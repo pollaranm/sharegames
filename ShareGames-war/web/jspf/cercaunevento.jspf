@@ -1,5 +1,3 @@
-<%-- any content can be specified here e.g.: --%>
-<%@ page pageEncoding="UTF-8" %>
 <section id="cercaunevento" class="one dark cover">
     <div class="container">
 
@@ -32,22 +30,13 @@
                     </div>
                     <div class="col-3">
                         <label> Seleziona la Provincia:
-                            <!--<input placeholder="Seleziona la CittÃ " id="email" name="email" tabindex="4">-->
+                            <!--<input placeholder="Seleziona la Città" id="email" name="email" tabindex="4">-->
                              
                                  <select id="selectprovincia" name="provincia" tabindex='3'> 
    
                                 </select>
                         </label>
                     </div>
-                    <!--                                                                    <div class="col-3">
-                                                                                          <label> Availability
-                                                                                            <select tabindex="5">
-                                                                                              <option>5-15 hrs per week</option>
-                                                                                              <option>15-30 hrs per week</option>
-                                                                                              <option>30-40 hrs per week</option>
-                                                                                            </select>
-                                                                                          </label>
-                                                                                        </div>-->
                     <div class="col-3">
                         <label> Seleziona lo Sport:
                             <!--<input placeholder="Seleziona lo Sport" id="skills" name="skills" tabindex="6">-->

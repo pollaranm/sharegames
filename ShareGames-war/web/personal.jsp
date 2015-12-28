@@ -16,11 +16,14 @@
         <script src="js-p/init-p.js"></script>
         <script src="js-p/facebook.js"></script>
         <script src="js-p/google.js"></script>
+
         <script src="js-nico/utente.js"></script>
         <script src="js-nico/squadra.js"></script>
-       <script src="js-dario/evento.js"></script>-->
+        <script src="js-dario/evento.js"></script>
+        <script src="js-dario/data.js"></script>
+
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
-        <script src="https://apis.google.com/js/api:client.js"></script>
+
         <noscript>
         <link rel="stylesheet" href="css-p/skel-p.css" />
         <link rel="stylesheet" href="css-p/style-p.css" />
@@ -28,8 +31,6 @@
         </noscript>
         <!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
-
-
         <link rel="shortcut icon" href="http://static.tmimgcdn.com/img/favicon.ico">
         <link rel="icon" href="http://static.tmimgcdn.com/img/favicon.ico">
         <link rel="stylesheet" type="text/css" media="all" href="css-p/styles-p.css">
@@ -40,13 +41,11 @@
 
         <!-- Header -->
         <div id="header" class="skel-layers-fixed">
-
             <div class="top">
-
                 <!-- Logo -->
                 <%
                     String pic;
-                    if (((String)request.getSession().getAttribute("url")).equals("<img src=>")) {
+                    if (((String) request.getSession().getAttribute("url")).equals("<img src=>")) {
                         pic = "<img src='images/avatar_1.jpg'></img>";
                     } else {
                         pic = (String) request.getSession().getAttribute("url");
@@ -56,31 +55,12 @@
                     <span class="image avatar48" ><%=pic%></span>
                     <p style="" id="menu_profileName" name="menu_profileName">Benvenuto<br><%= request.getSession().getAttribute("name")%></p>
                 </div>
+
                 <button class="submitbtn" id="logoutButton" onclick="logoutUtente()">LOGOUT</button>
-
-
-
 
                 <!-- Nav -->
                 <nav id="nav">
                     <ul>
-
-                        <!--                        <a onclick="fb_logout();" id="bottone"><button id="bottone" style="font-size: medium; text-transform: capitalize;" class="facebook" ></i>LogoutFacebook</button></a>
-                                                <a onclick="signOut();" id="bottone"><button id="bottone" style="font-size: medium; text-transform: capitalize;" class="facebook" ></i>LogoutGoogle</button></a>
-                        
-                        
-                                                <form action="<%=request.getContextPath()%>/ServletController" method="post" name="action" >
-                                                    <label>
-                                                        <button style="font-size: medium; text-transform: capitalize;" type="submit" class="md-trigger md-setperspective button style1"  name="action" value="removeUtente">remove</button>
-                                                    </label>
-                                                </form>-->
-
-
-
-                        <!--                                                                
-
-
-<li>Benvenuto,<%= request.getSession().getAttribute("name")%></p></li>-->
                         <li><a href="#cercaunevento" id="cercaunevento-link" class="skel-layers-ignoreHref"><span class="icon fa-search">Cerca un evento</span></a></li>
                         <li><a href="#ituoieventi" id="ituoieventi-link" class="skel-layers-ignoreHref"><span class="icon fa-crosshairs">I tuoi eventi</span></a></li>
                         <li><a href="#eventiprenotati" id="eventiprenotati-link" class="skel-layers-ignoreHref"><span class="icon fa-ticket">Storico eventi</span></a></li>
@@ -89,16 +69,13 @@
                         <li><a href="#paginapersonale" id="paginapersonale-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Pagina personale</span></a></li>
                     </ul>
                 </nav>
-
-            </div>
-
-            
+            </div> <!--end div TOP -->
 
         </div>
-
+        <!-- /Header -->
+        
         <!-- Main -->
         <div id="main">
-
             <!-- Cerca un evento -->
             <%@include file='jspf/cercaunevento.jspf' %>
 
@@ -114,11 +91,11 @@
             <!-- latuasquadra -->
             <%@include file='jspf/latuasquadra.jspf' %>
 
-
             <!-- paginapersonale -->
             <%@include file='jspf/paginapersonale.jspf' %>
 
         </div>
+        <!-- /Main -->
 
         <!-- Footer -->
         <div id="footer">
@@ -143,9 +120,6 @@
             </div>
 
         </div>
-        <script>startApp();</script>
-        <script src="js-dario/evento.js"></script>
-        <script src="js-dario/data.js"></script>
-
+        <!-- /Footer -->
     </body>
 </html>

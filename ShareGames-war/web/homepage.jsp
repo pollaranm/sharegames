@@ -51,14 +51,6 @@
         <div class="md-modal md-effect-19" id="modal-19">
             <div class="md-content">
                 <div class="page-container">
-                    <!--                    <h1 id="h1login">Login</h1>
-                                        <form action="<%=request.getContextPath()%>/ServletController" method="post" name="action" id="formlogin">
-                                            <input id="inputlogin" type="text" name="username" placeholder="Username" style="margin-bottom: 1%;border-radius: 15px">
-                                            <input id="inputlogin" type="password" name="password" placeholder="Password" style="border-radius: 15px">
-                                            </br><button class="button style2" type="submit" name="submit" style="border-radius: 15px">Sign me in</button>
-                                            <div class="error"><span></span></div>
-                                            <label for="rememberMe"></label><span>I have read and agree to the <a href="#">Terms of Use </a>and <a href="#">Privacy Policy</a></span>
-                                        </form>    -->
                     <div class="social" style="margin-top: 4%"> <span>Scegli il social network</br>che vuoi utilizzare</span></div>
                     <div class="buttons">
                         <a onclick="fb_login();" id="bottone"><button id="bottone" style="font-size: medium; text-transform: capitalize;" class="facebook" ><i class="fa fa-facebook"></i>Facebook</button></a>
@@ -66,9 +58,7 @@
                         <div id="buttonGoogle">
                             <button style="font-size: medium; text-transform: capitalize;" class="google"><i class="fa fa-google-plus"></i>Google</button>
                         </div>
-                        <!--                        <div id="name"></div>-->
                     </div>
-                    <!--                    <div class="already">Haven't an account? <a href="#">Sign In</a></div>-->
                 </div>
             </div>
         </div>
@@ -81,12 +71,9 @@
             <div id="status"></div>
             <section id="formloginaccesso" style="width: auto; border: 0 auto;">
                 <button  style="margin-top: 1%" class="md-trigger md-setperspective button style2"  data-modal="modal-19">Accedi</button>
-
-                <!--                <button  style="margin-top: 1%" class="md-trigger md-setperspective button style2" data-modal="modal-19">Sign in</button>-->
             </section>
 
             <footer>
-                <!--                          <a href="#banner" class="button style1 scrolly scrolly-centered">Esplora il sito</a>-->
                 <a href="#banner" class="button style1 scrolly scrolly-centered">Esplora il sito</a>
             </footer>
         </section>
@@ -106,7 +93,7 @@
 
         <!-- Feature 1 -->
         <article id="first" class="container box style1 right">
-            <a href="#" class="image fit"><img src="images/pic001.jpg" alt="" /></a>
+            <img class="image fit" src="images/pic01.jpg" alt="" />
             <div class="inner">
                 <header>
                     <h2>Le preoccupazioni<br />
@@ -120,7 +107,7 @@
 
         <!-- Feature 2 -->
         <article class="container box style1 left">
-            <a href="#" class="image fit"><img src="images/pic002.jpg" alt="" /></a>
+            <img class="image fit" src="images/pic02.jpg" alt="" />
             <div class="inner">
                 <header>
                     <h2>Gioca, cresci, vinci</h2>
@@ -140,18 +127,6 @@
                 <p>Calcio<br />Pallavolo<br />Basket<br />Tennis<br />.....</p>
             </header>
             <div class="inner gallery">
-                <!--					<div class="row 0%">
-                                                                <div class="3u"><a href="images/fulls/01.jpg" class="image fit"><img src="images/thumbs/01.jpg" alt="" title="Ut porttitor" /></a></div>
-                                                                <div class="3u"><a href="images/fulls/02.jpg" class="image fit"><img src="images/thumbs/02.jpg" alt="" title="Natoque ac Cubilia" /></a></div>
-                                                                <div class="3u"><a href="images/fulls/03.jpg" class="image fit"><img src="images/thumbs/03.jpg" alt="" title="Nulla" /></a></div>
-                                                                <div class="3u"><a href="images/fulls/04.jpg" class="image fit"><img src="images/thumbs/04.jpg" alt="" title="Erat nisl ata cep ac Condimentum, varius" /></a></div>
-                                                        </div>
-                                                        <div class="row 0%">
-                                                                <div class="3u"><a href="images/fulls/05.jpg" class="image fit"><img src="images/thumbs/05.jpg" alt="" title="Aliquet" /></a></div>
-                                                                <div class="3u"><a href="images/fulls/06.jpg" class="image fit"><img src="images/thumbs/06.jpg" alt="" title="Adipiscing." /></a></div>
-                                                                <div class="3u"><a href="images/fulls/07.jpg" class="image fit"><img src="images/thumbs/07.jpg" alt="" title="Feugiat dis arcu eget" /></a></div>
-                                                                <div class="3u"><a href="images/fulls/08.jpg" class="image fit"><img src="images/thumbs/08.jpg" alt="" title="Turpis odio ata mi est nunc nisl" /></a></div>
-                                                        </div>-->
             </div>
         </article>
 
@@ -163,18 +138,18 @@
             </header>
             <form method="post" action="#">
                 <div class="row 50%">
-                    <div class="6u"><input type="text" class="text" name="name" placeholder="Name" /></div>
+                    <div class="6u"><input type="text" class="text" name="name" placeholder="Nome" /></div>
                     <div class="6u"><input type="text" class="text" name="email" placeholder="Email" /></div>
                 </div>
                 <div class="row 50%">
                     <div class="12u">
-                        <textarea name="message" placeholder="Message"></textarea>
+                        <textarea name="message" placeholder="Messaggio"></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="12u">
                         <ul class="actions">
-                            <li><input type="submit" value="Send Message" /></li>
+                            <li><input type="submit" value="Invia Messaggio" /></li>
                         </ul>
                     </div>
                 </div>
