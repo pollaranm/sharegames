@@ -63,9 +63,12 @@ public class SquadraController extends HttpServlet {
             Collection<Squadra> result = gestoreSquadra.getSquadraByCittaTipologia(prov, sport);
             String tmp = "";
             if (result.isEmpty()) {
-                tmp += "<form>"
+                tmp += "<form onsubmit='return false'>"
                         + "<div class='col-1'>"
-                        + "<label>Non ci sono risultati per questa ricerca!</label>"
+                        + "    <label>Non ci sono risultati per questa ricerca!</label>"
+                        + "</div>"
+                        + "<div class='col-submit'>"
+                        + "    <button type='submit' class='submitbtn' id='returnCreateBtn'>Creala tu!</button>"
                         + "</div>"
                         + "</form>";
                 out.write(tmp);
@@ -81,13 +84,49 @@ public class SquadraController extends HttpServlet {
                             + "<button class='submitbtn' onclick='joinTeam()'>Unisciti a questa squadra</button>"
                             + "</form>";
                 }
-
                 out.write(tmp);
                 out.close();
-
             }
-
         }
+        
+        if(action.equals("returnCreateTeam")){
+            String html = "";
+            html+="<form onsubmit='return false'>"
+                +"    <div class='col-1'>"
+                +"        <label style='text-align: center'>Oppure creane una nuova tu!</label>"
+                +"    </div>"
+                +"    <div class='col-2'>"
+                +"        <label>Scegli la regione: "
+                +"            <select id='geo3' name='geo3' tabindex='4'>"
+                +"                <option>Scegli una regione</option>"
+                +"            </select>"
+                +"        </label>"
+                +"    </div> "
+                +"    <div class='col-2'>"
+                +"        <label> Scegli la provincia:  "
+                +"            <select id='geo4' name='geo4' tabindex='5'>"
+                +"                <option>...</option>"
+                +"            </select>"
+                +"        </label>"
+                +"    </div>"
+                +"    <div class='col-2'>"
+                +"        <label> Scegli lo sport:"
+                +"            <select id='team_sport2' name='team_sport2' tabindex='6'></select>"
+                +"        </label>"
+                +"    </div>"
+                +"    <div class='col-2'>"
+                +"        <label> Scegli il nome:"
+                +"            <input placeholder='Libera la fantasia!' id='newteamname' name='newteamname' tabindex='7'>"
+                +"        </label>"
+                +"    </div>"
+                +"    <div class='col-submit'>"
+                +"        <button class='submitbtn' id='createTeamBtn'>Crea una squadra</button>"
+                +"    </div>"
+                +"</form>";
+            out.write(html);
+            out.close();
+        }
+        
         if (action.equals("joinTeam")) {
             String idsquadra = request.getParameter("idsquadra");
             String namesquadra = request.getParameter("namesquadra");
@@ -96,6 +135,7 @@ public class SquadraController extends HttpServlet {
             rdErr = ctx.getRequestDispatcher("/personal.jsp");
             rdErr.forward(request, response);
         }
+        
         if (action.equals("createTeam")) {
             String newsport = request.getParameter("sport");
             String newname = request.getParameter("newname");
@@ -111,6 +151,7 @@ public class SquadraController extends HttpServlet {
                 out.close();
             }
         }
+        
         if (action.equals("getMyTeam")) {
             if (request.getSession().getAttribute("team") != null) {
                 Squadra myTeam = gestoreSquadra.getObjSquadraByName((String) request.getSession().getAttribute("team"));
@@ -142,6 +183,7 @@ public class SquadraController extends HttpServlet {
                 out.close();
             }
         }
+        
         if (action.equals("leaveTeam")) {
             gestoreUtente.leaveSquadra(gestoreUtente.getObjUtente(id, social));
             request.getSession().setAttribute("team", null);

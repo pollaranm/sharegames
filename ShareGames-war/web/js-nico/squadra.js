@@ -106,6 +106,8 @@ $(document).ready(function () {
         });
     });  
     
+    
+    
 });
 
 function retrieveTeams() {
@@ -129,4 +131,21 @@ function retrieveTeams() {
 
     });
 }
+
+ $(document).on("click","#returnCreateBtn",function() {
+     $.ajax({
+            url: 'SquadraController',
+            type: 'POST',
+            dataType: 'html',
+            data: {action: 'returnCreateTeam'},
+            success: function (data) {
+                $('#team_div_res').html(data);
+            },
+            error: function (xhr, status, error) {
+                alert(error);
+            }
+        });
+ });
+    
+
 
