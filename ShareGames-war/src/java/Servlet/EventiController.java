@@ -16,7 +16,11 @@ import ejbFacade.EventoFacadeLocal;
 import ejbFacade.ImpiantoFacadeLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -100,20 +104,54 @@ public class EventiController extends HttpServlet {
 //            out.write(province);
 //            out.close();
 //        }
-
         if (action.equals("getsport")) {
             String sport = "";
-            sport += "<option value=calcio5>calcio5</option>"
-                    + "<option value=calcio7>calcio7</option>"
-                    + "<option value=calcio11>calcio11</option>"
-                    + "<option value=pallavolo>pallavolo</option>"
-                    + "<option value=pallacanestro>pallacanestro</option>"
-                    + "<option value=tennis>tennis</option>";
+            sport += "<option value='calcio5'>calcio5</option>"
+                    + "<option value='calcio7'>calcio7</option>"
+                    + "<option value='calcio11'>calcio11</option>"
+                    + "<option value='pallavolo'>pallavolo</option>"
+                    + "<option value='pallacanestro'>pallacanestro</option>"
+                    + "<option value='tennis'>tennis</option>";
             try (PrintWriter out = response.getWriter()) {
                 out.write(sport);
+                out.close();
             }
         }
 
+        if (action.equals("searchEvento")) {
+            String prov = (String) request.getParameter("prov");
+            String sport = (String) request.getParameter("sport");
+            System.out.print(prov + " - " +sport);
+            List<Evento> eventoList = new ArrayList<Evento>();
+            try {
+                // create our mysql database connection
+                String myDriver = "com.mysql.jdbc.Driver";
+                String myUrl = "jdbc:mysql://localhost:3306/newsharegames?zeroDateTimeBehavior=convertToNull";
+                Class.forName(myDriver);
+                Connection conn = DriverManager.getConnection(myUrl, "root", "root");
+                String query = "SELECT * FROM evento, impianto WHERE "
+                        + "evento.idimpianto=impianto.idimpianto "
+                        + "AND evento.data >= curdate() "
+                        + "AND impianto.provincia = '" + prov + "' "
+                        + "AND evento.sport = '" + sport + "'";
+                // create the java statement
+                java.sql.Statement st = conn.createStatement();
+                ResultSet rs = st.executeQuery(query);
+                String html = "inizio<br>";
+                while (rs.next()) {
+                    html += rs.getString("idevento") + " - " + rs.getString("evento.idimpianto");
+                }
+                try (PrintWriter out = response.getWriter()) {
+                    out.write(html);
+                    out.close();
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        //--------------------------------------------------------------------
         if (action.equals("getimpianto")) {
             int impianto = Integer.parseInt(request.getParameter("impianto"));
             PrintWriter out = response.getWriter();
@@ -126,7 +164,7 @@ public class EventiController extends HttpServlet {
             out.write(tmp);
             out.close();
         }
-        
+
         if (action.equals("geteventibyuser")) {
             String eventi = "IDEVENTO IDIMPIANTO IDCAMPO DATA ORA SPORT PAGATO COMPLETO"
                     + " GIOCATORIPAGATO IDUTENTE";
@@ -164,7 +202,7 @@ public class EventiController extends HttpServlet {
                 }
             }
             try {
-                out.write("\n"+eventi);
+                out.write("\n" + eventi);
                 out.close();
             } catch (Exception e) {
                 out.write("Errore in scrittura");

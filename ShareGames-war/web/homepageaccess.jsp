@@ -76,7 +76,7 @@
 
         <!-- Feature 1 -->
         <article id="first" class="container box style1 right">
-            <a href="#" class="image fit"><img src="images/pic001.jpg" alt="" /></a>
+            <img class="image fit" src="images/pic01.jpg" alt="" />
             <div class="inner">
                 <header>
                     <h2>Le preoccupazioni<br />
@@ -90,7 +90,7 @@
 
         <!-- Feature 2 -->
         <article class="container box style1 left">
-            <a href="#" class="image fit"><img src="images/pic002.jpg" alt="" /></a>
+            <img class="image fit" src="images/pic02.jpg" alt="" />
             <div class="inner">
                 <header>
                     <h2>Gioca, cresci, vinci</h2>
@@ -133,18 +133,18 @@
             </header>
             <form method="post" action="#">
                 <div class="row 50%">
-                    <div class="6u"><input type="text" class="text" name="name" placeholder="Name" /></div>
+                    <div class="6u"><input type="text" class="text" name="name" placeholder="Nome" /></div>
                     <div class="6u"><input type="text" class="text" name="email" placeholder="Email" /></div>
                 </div>
                 <div class="row 50%">
                     <div class="12u">
-                        <textarea name="message" placeholder="Message"></textarea>
+                        <textarea name="message" placeholder="Messaggio"></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="12u">
                         <ul class="actions">
-                            <li><input type="submit" value="Send Message" /></li>
+                            <li><input type="submit" value="Invia Messaggio" /></li>
                         </ul>
                     </div>
                 </div>

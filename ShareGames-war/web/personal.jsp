@@ -21,6 +21,7 @@
         <script src="js-nico/squadra.js"></script>
         <script src="js-dario/evento.js"></script>
         <script src="js-dario/data.js"></script>
+        <script src="js-dario/cercaevento.js"></script>
 
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 
@@ -80,10 +81,10 @@
             <%@include file='jspf/cercaunevento.jspf' %>
 
             <!-- I tuoi eventi -->
-            <%@include file='jspf/ituoieventi.jspf' %>
+            <%//@include file='jspf/ituoieventi.jspf' %>
 
             <!-- eventi prenotati -->
-            <%@include file='jspf/eventiprenotati.jspf' %>
+            <%//@include file='jspf/eventiprenotati.jspf' %>
 
             <!-- pagamenti -->
             <%@include file='jspf/pagamenti.jspf' %>

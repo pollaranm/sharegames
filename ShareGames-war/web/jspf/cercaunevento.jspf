@@ -2,68 +2,35 @@
     <div class="container">
 
         <header>
-            <h2 class="alt">Cerca il tuo evento</h2>
-
-            <div id="wrapper">
-                <form onsubmit="return false">
-                    <div class="col-2">
-                        <label> Stato
-                            <input readonly value="Italia" placeholder="Seleziona lo Stato" id="stato" name="stato" tabindex="1">
-                        </label>
-                    </div>
-                    <div class="col-2">
-                        <label> Seleziona la Regione: 
-                            <!--<input placeholder="Seleziona la Regione" id="company" name="company" tabindex="2">-->
-                            <select id="selectregione" name="regione" tabindex='2'> 
-   
-                            </select>
-                        </label>
-                    </div> 
-                    <div class="col-3">
-                        <label> Seleziona la Citta':  
-<!--                            <input placeholder="Seleziona la Provincia" id="phone" name="phone" tabindex="3">-->
-                                 
-                                 <select id="selectcitta" name="citta" tabindex='3'> 
-   
-                                </select>
-                        </label>
-                    </div>
-                    <div class="col-3">
-                        <label> Seleziona la Provincia:
-                            <!--<input placeholder="Seleziona la Città" id="email" name="email" tabindex="4">-->
-                             
-                                 <select id="selectprovincia" name="provincia" tabindex='3'> 
-   
-                                </select>
-                        </label>
-                    </div>
-                    <div class="col-3">
-                        <label> Seleziona lo Sport:
-                            <!--<input placeholder="Seleziona lo Sport" id="skills" name="skills" tabindex="6">-->
-                            <select id="selectsport" name="sport" tabindex='3'> 
-   
-                            </select>
-                        </label>
-                    </div>
-
-                    <div class="col-submit">
-                        <button id="searchevento" class="submitbtn">Cerca</button>
-                    </div>
-
-                </form>
-            </div>
-
-            <script type="text/javascript">
-                var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
-
-                elems.forEach(function (html) {
-                    var switchery = new Switchery(html);
-                });
-            </script>
-            <script src="./js-dario/cercaevento.js"></script>
-            <div id="seeevento"></div>
-
+            <h2 class="alt">Cerca un evento</h2>
         </header>
+        <div id="wrapper">
+            <form onsubmit='return false'>
+                <div class="col-3">
+                    <label>Seleziona la regione: 
+                        <select id="searchRegione" name="searchRegione" tabindex="1">
+                            <option>Scegli una regione</option>
+                        </select>
+                    </label>
+                </div> 
+                <div class="col-3">
+                    <label> Seleziona la provincia:  
+                        <select id="searchProvincia" name="searchProvincia" tabindex="2">
+                            <option>...</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col-3">
+                    <label> Seleziona lo sport:
+                        <select id="searchSport" name="searchSport" tabindex="3"></select>
+                    </label>
+                </div>
+                <div class="col-submit">
+                    <button class="submitbtn" id="searchEvento">Cerca un evento</button>
+                </div>
+            </form>
+        </div>
+        <div id="seeevento"></div>
 
     </div>
 </section>

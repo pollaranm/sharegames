@@ -5,6 +5,7 @@
  */
 package Servlet;
 
+import ejb.Evento;
 import ejb.Listaeventiutente;
 import java.beans.Statement;
 import java.sql.Connection;
