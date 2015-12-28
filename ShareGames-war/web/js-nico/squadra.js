@@ -35,7 +35,7 @@ $(document).ready(function () {
     $.ajax({
         type: "POST",
         url: "EventiController",
-        data: {action: "getprovincia", idregione: idregione},
+        data: {action: "getprovince", idregione: idregione},
         success: function (data) {
             $("#geo2").html(data);
             $("#geo4").html(data);
@@ -61,7 +61,7 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: "EventiController",
-            data: {action: "getprovincia", idregione: idregione},
+            data: {action: "getprovince", idregione: idregione},
             success: function (data) {
                 $("#geo2").html(data);
             },
@@ -75,7 +75,7 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: "EventiController",
-            data: {action: "getprovincia", idregione: idregione},
+            data: {action: "getprovince", idregione: idregione},
             success: function (data) {
                 $("#geo4").html(data);
             },
