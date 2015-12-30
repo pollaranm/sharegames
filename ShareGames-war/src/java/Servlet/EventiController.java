@@ -11,6 +11,7 @@ import ejb.Evento;
 import ejb.EventoPK;
 import ejb.Impianto;
 import ejb.Listaeventiutente;
+import ejb.Utente;
 import ejbFacade.CampoFacadeLocal;
 import ejbFacade.EventoFacadeLocal;
 import ejbFacade.ImpiantoFacadeLocal;
@@ -36,12 +37,15 @@ import javax.servlet.http.HttpSession;
 import manager.GestoreCampoLocal;
 import manager.GestoreEventoLocal;
 import manager.GestoreListaEventiLocal;
+import manager.GestoreUtenteLocal;
 
 /**
  *
  * @author PC-STUDIO
  */
 public class EventiController extends HttpServlet {
+    @EJB
+    private GestoreUtenteLocal gestoreUtente;
 
     @EJB
     private GestoreListaEventiLocal gestoreListaEventi;
@@ -49,6 +53,7 @@ public class EventiController extends HttpServlet {
     private GestoreEventoLocal gestoreEvento;
     @EJB
     private GestoreCampoLocal gestoreCampo;
+    
     HttpSession s;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException, SQLException {
@@ -121,7 +126,7 @@ public class EventiController extends HttpServlet {
         if (action.equals("searchEvento")) {
             String prov = (String) request.getParameter("prov");
             String sport = (String) request.getParameter("sport");
-            System.out.print(prov + " - " +sport);
+            System.out.print(prov + " - " + sport);
             List<Evento> eventoList = new ArrayList<Evento>();
             try {
                 // create our mysql database connection
@@ -133,14 +138,58 @@ public class EventiController extends HttpServlet {
                         + "evento.idimpianto=impianto.idimpianto "
                         + "AND evento.data >= curdate() "
                         + "AND impianto.provincia = '" + prov + "' "
-                        + "AND evento.sport = '" + sport + "'";
+                        + "AND evento.sport = '" + sport + "' "
+                        + "ORDER BY evento.data";
                 // create the java statement
                 java.sql.Statement st = conn.createStatement();
                 ResultSet rs = st.executeQuery(query);
-                String html = "inizio<br>";
-                while (rs.next()) {
-                    html += rs.getString("idevento") + " - " + rs.getString("evento.idimpianto");
+                String html = "";
+                int count = 1;
+                String col1 = "<div class='4u' id='col1'>";
+                String col2 = "<div class='4u' id='col2'>";
+                String col3 = "<div class='4u' id='col3'>";
+                String temp = "";
+                if (rs.first()) {
+                    while (rs.next()) {
+                        String address = rs.getString("impianto.indirizzo") + " " + rs.getString("impianto.citta");
+                        address = address.replace(" ", "+");
+                        System.out.println(address);
+                        temp = " <article class='item'>"
+                                + "     <h3>Evento n°" + rs.getString("idevento") + "</h3>"
+                                + "     <header>"
+                                + "        <ul style='text - align: left;margin - left: 5%'>"
+                                + "            <li><span>Data: " + rs.getString("data") + " - " + rs.getString("ora") + "</span></li>"
+                                + "            <li><span>Giocatori: " + rs.getString("giocatoripagato") + "</span></li>"
+                                + "            <li><span>Impianto:" + rs.getString("nome") + "</span></li>"
+                                + "            <li><span>" + rs.getString("indirizzo") + ", " + rs.getString("citta") + "</span></li>"
+                                + "            <li> <img style='width:94%;height:auto' "
+                                + "            src='http://maps.google.com/maps/api/staticmap?markers=size:mid|color:blue|" + address + "&size=500x300&sensor=false&size=600x300&key=AIzaSyAbz8o3xVmsMTpHh3DRWO1kIW38K3zBVJ4'>"
+                                + "            </img>"
+                                + "            </li>"
+                                + "         </ul>"
+                                + "    <form action='EventiController' style='border-style:none'>"
+                                + "       <input type='hidden' name='action' value='joinEvento'>"
+                                + "       <input type='hidden' name='idEvento' value='" + rs.getString("idevento") + "'>"
+                                + "       <button class='button'>Partecipa</button>"
+                                + "    </form>"
+                                + "    </header>"
+                                + "</article>";
+                        if (count == 1) {
+                            col1 += temp;
+                        } else if (count == 2) {
+                            col2 += temp;
+                        } else {
+                            col3 += temp;
+                        }
+                        if (count < 3) {
+                            count++;
+                        } else {
+                            count = 1;
+                        }
+                    }
+                    html = "<div class='row'>" + col1 + "</div>" + col2 + "</div>" + col3 + "</div></div>";
                 }
+
                 try (PrintWriter out = response.getWriter()) {
                     out.write(html);
                     out.close();
@@ -149,6 +198,17 @@ public class EventiController extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+
+        if (action.equals("joinEvento")) {
+            //boh tutta la roba che devi fare per registrare una partecipazione ad un evento
+            String id = (String) s.getAttribute("id");
+            String social = (String) s.getAttribute("social");
+            String idevento = (String) request.getParameter("idEvento");
+            Evento evento = gestoreEvento.getEvento(new Integer(idevento));
+            Utente utente = gestoreUtente.getObjUtente(id, social);
+            
+            
         }
 
         //--------------------------------------------------------------------

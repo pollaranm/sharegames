@@ -1,36 +1,106 @@
-<section id="cercaunevento" class="one dark cover">
+<section id="cercaunevento" class="two">
     <div class="container">
 
         <header>
             <h2 class="alt">Cerca un evento</h2>
         </header>
         <div id="wrapper">
-            <form onsubmit='return false'>
-                <div class="col-3">
-                    <label>Seleziona la regione: 
-                        <select id="searchRegione" name="searchRegione" tabindex="1">
-                            <option>Scegli una regione</option>
-                        </select>
-                    </label>
-                </div> 
-                <div class="col-3">
-                    <label> Seleziona la provincia:  
-                        <select id="searchProvincia" name="searchProvincia" tabindex="2">
-                            <option>...</option>
-                        </select>
-                    </label>
-                </div>
-                <div class="col-3">
-                    <label> Seleziona lo sport:
-                        <select id="searchSport" name="searchSport" tabindex="3"></select>
-                    </label>
-                </div>
-                <div class="col-submit">
-                    <button class="submitbtn" id="searchEvento">Cerca un evento</button>
-                </div>
-            </form>
-        </div>
-        <div id="seeevento"></div>
+            <div id='researchForm'>
+                <form onsubmit='return false'>
+                    <div class="col-3">
+                        <label>Seleziona la regione: 
+                            <select id="searchRegione" name="searchRegione" tabindex="1">
+                                <option>Scegli una regione</option>
+                            </select>
+                        </label>
+                    </div> 
+                    <div class="col-3">
+                        <label> Seleziona la provincia:  
+                            <select id="searchProvincia" name="searchProvincia" tabindex="2">
+                                <option>...</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="col-3">
+                        <label> Seleziona lo sport:
+                            <select id="searchSport" name="searchSport" tabindex="3"></select>
+                        </label>
+                    </div>
+                    <div class="col-submit">
+                        <button class="submitbtn" id="searchEvento">Cerca un evento</button>
+                    </div>
+                </form>
+            </div>
+            <div id="seeevento">
+                <div class="row">
+                    <div class="4u">
+                        <article class="item">
 
-    </div>
+                            <h3>Evento 1</h3>
+                            <header>
+                                <h1>
+                                    Dettagli evento:
+                                </h1>
+                                <ul style="text-align: left; margin-left: 5%">
+                                    <li><span >Evento numero: xxx-xxx-xxx-xxx</span></li>
+                                    <li><span >Data : 00/00/0000</span></li>
+                                    <li><span >Ora : 00:00h</span></li>
+                                    <li>Pagato :<span class="icon fa-remove " ></span></li>
+                                    <li><span >Impianto : xxxxxxxxxx</span></li>
+                                    <li> <img style="width:94%;height:auto" src="http://maps.google.com/maps/api/staticmap?markers=size:mid|color:blue|Corso+regina+margherita+221+10144+torino&size=500x300&sensor=false&size=600x300&key=AIzaSyAbz8o3xVmsMTpHh3DRWO1kIW38K3zBVJ4"></img>
+                                    </li>
+                                </ul>
+
+                            </header>
+                        </article>
+                        <article class="item">
+                            <a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
+                            <header>
+                                <h3>Evento 3</h3>
+                            </header>
+                        </article>
+                    </div>
+                    <div class="4u">
+                        <article class="item">
+                            
+                            <h3>Evento 2</h3>
+                            <header>
+                                <h1>
+                                    Dettagli evento:
+                                </h1>
+                                <ul style="text-align: left; margin-left: 5%">
+                                    <li><span >Evento numero: xxx-xxx-xxx-xxx</span></a></li>
+                                    <li><span >Data : 00/00/0000</span></a></li>
+                                    <li><span >Ora : 00:00h</span></a></li>
+                                    <li>Pagato :<span class="icon fa-check " ></span></a></li>
+                                    <li><span >Impianto : xxxxxxxxxx</span></a></li>
+                                    <li> <img style="width:94%;height:auto" src="http://maps.google.com/maps/api/staticmap?markers=size:mid|color:blue|Corso+regina+margherita+221+10144+torino&size=500x300&sensor=false&size=600x300&key=AIzaSyAbz8o3xVmsMTpHh3DRWO1kIW38K3zBVJ4"></img>
+                                    </li>
+
+                            </header>
+                        </article>
+                        <article class="item">
+                            <a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a>
+                            <header>
+                                <h3>Evento 4</h3>
+                            </header>
+                        </article>
+                    </div>
+                    <div class="4u">
+                        <article class="item">
+                            <a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
+                            <header>
+                                <h3>Evento 5</h3>
+                            </header>
+                        </article>
+                        <article class="item">
+                            <a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
+                            <header>
+                                <h3>Evento 6</h3>
+                            </header>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
 </section>

@@ -131,7 +131,8 @@ function retrieveTeams() {
 
     });
 }
-
+//l'on si mette in ascolto di eventi ANCHE su oggetti generati dinamicamente
+//dopo la creazione del DOM
  $(document).on("click","#returnCreateBtn",function() {
      $.ajax({
             url: 'SquadraController',
