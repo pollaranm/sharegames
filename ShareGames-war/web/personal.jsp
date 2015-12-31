@@ -21,7 +21,11 @@
         <script src="js-nico/squadra.js"></script>
         <script src="js-dario/evento.js"></script>
         <script src="js-dario/data.js"></script>
-        <script src="js-dario/cercaevento.js"></script>
+        <script src="js-dario/cercaevento.js"></script>         
+        <script src="js-dario/storicoeventi.js"></script>
+        <script src="js-dario/formselect.js"></script>
+        
+
 
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 
@@ -64,6 +68,7 @@
                     <ul>
                         <li><a href="#cercaunevento" id="cercaunevento-link" class="skel-layers-ignoreHref"><span class="icon fa-search">Cerca un evento</span></a></li>
                         <li><a href="#ituoieventi" id="ituoieventi-link" class="skel-layers-ignoreHref"><span class="icon fa-crosshairs">I tuoi eventi</span></a></li>
+                        <li><a href="#ituoieventi" id="ituoieventi-link" class="skel-layers-ignoreHref"><span class="icon fa-crosshairs">Aggiungi evento</span></a></li>
                         <li><a href="#eventiprenotati" id="eventiprenotati-link" class="skel-layers-ignoreHref"><span class="icon fa-ticket">Storico eventi</span></a></li>
                         <li><a href="#pagamenti" id="pagamenti-link" class="skel-layers-ignoreHref"><span class="icon fa-dollar">Pagamenti</span></a></li>
                         <li><a href="#latuasquadra" id="latuasquadra-link" class="skel-layers-ignoreHref"><span class="icon fa-users">La tua squadra</span></a></li>
@@ -84,7 +89,7 @@
             <%//@include file='jspf/ituoieventi.jspf' %>
 
             <!-- eventi prenotati -->
-            <%//@include file='jspf/eventiprenotati.jspf' %>
+            <%@include file='jspf/eventiprenotati.jspf' %>
 
             <!-- pagamenti -->
             <%@include file='jspf/pagamenti.jspf' %>
@@ -94,6 +99,10 @@
 
             <!-- paginapersonale -->
             <%@include file='jspf/paginapersonale.jspf' %>
+            
+              <!-- aggiungievento -->
+              <%@include file='jspf/aggiungievento.jsp' %>
+
 
         </div>
         <!-- /Main -->

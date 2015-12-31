@@ -50,6 +50,9 @@ public class GestoreListaEventi implements GestoreListaEventiLocal {
         return listaeventiutenteFacade.getListaEventiUtenti();
     }
     
-    
-    
+    public void addEventoUtente(int idevento, int idutente){
+        Listaeventiutente l=listaeventiutenteFacade.addEventoUtente(idevento, idutente);
+        listaeventiutenteFacade.create(l);
+    }
+
 }

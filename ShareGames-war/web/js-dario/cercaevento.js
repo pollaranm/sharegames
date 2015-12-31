@@ -65,8 +65,8 @@ $(document).ready(function () {
             url: "EventiController",
             data: {action: "searchEvento", prov: provincia, sport: sport},
             success: function (data) {
-                alert("!!!");
-                alert(data);
+                /*alert("!!!");
+                alert(data);*/
                 $("#seeevento").html(data);
             },
             error: function (xhr, status, error) {
@@ -74,6 +74,17 @@ $(document).ready(function () {
             }
         });
     });
+    
+    
+    $(document).on("click", ".partecipa", function(){
+
+        alert("Benvenuto! Grazie per partecipare all'evento!");
+
+    });
+    
+    
+    
+    
 
 });
 

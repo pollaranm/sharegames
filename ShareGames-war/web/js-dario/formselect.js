@@ -85,7 +85,7 @@ $(document).ready(function(){
         campo=document.getElementById("selectcampo").value;
         impianto=document.getElementById("selectimpianto").value;
 
-            data=document.getElementById("data").value;
+            data=document.getElementById("selectdata").value;
             ora=document.getElementById("selectora").value;
             sport=document.getElementById("selectsport").value;
 
@@ -137,6 +137,56 @@ $(document).ready(function(){
          
      });
     });
+    
+    
+        //Aggiungere la l'ora dopo la selezione della data
+    $("#selectdata").click(function(){
+        
+    $.ajax({
+         url : "EventiController",
+         type: 'POST',
+         dataType: "html",
+         data: {action:"selectora"},
+         
+         
+         success: function(data){
+                  $("#selectora").html(data);
+         },
+         
+            error: function (xhr, status, error) {
+            alert(error);
+        }
+         
+     });
+    });
+    
+    
+        //Aggiungere i minuti dopo avere seleziona l'ora
+    $("#selectora").click(function(){
+        
+    $.ajax({
+         url : "EventiController",
+         type: 'POST',
+         dataType: "html",
+         data: {action:"selectminuti"},
+         
+         
+         success: function(data){
+                  $("#selectminuti").html(data);
+         },
+         
+            error: function (xhr, status, error) {
+            alert(error);
+        }
+         
+     });
+    });
+    
+    
+    
+    
+    
+    
     
 });
     

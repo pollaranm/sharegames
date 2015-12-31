@@ -45,7 +45,7 @@ public class GestoreEvento implements GestoreEventoLocal {
         return eventoFacade.getObjEvento(idevento);
     }
 
-    @Override
+    @Override //ERRATO QUESTO LAVORO VA FATTO NEL FACADE!
     public void addEvento(int idimpianto,
             int idcampo, 
             String data, String ora, String sport, String pagato,
@@ -163,4 +163,7 @@ public class GestoreEvento implements GestoreEventoLocal {
     public List<Evento> getEventoCompletoByProvincia(String provincia) {
         return eventoFacade.getEventoCompletoByProvincia(provincia);
     }
+    
+
+    
 }

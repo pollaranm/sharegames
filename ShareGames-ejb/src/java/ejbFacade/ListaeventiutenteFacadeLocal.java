@@ -57,4 +57,17 @@ public interface ListaeventiutenteFacadeLocal {
      * Restituisce l'intera tabella di tutti gli eventi
      */
     List<Listaeventiutente> getListaEventiUtenti();
+    
+    
+    /**
+     * 
+     * @param idevento
+     * @param idutente 
+     * Quando un utente vuole partecipare ad un evento registra su listaeventiutente un nuovo record
+     */
+    Listaeventiutente addEventoUtente(int idevento, int idutente);
+    
+    
 }
+
+

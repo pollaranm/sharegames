@@ -32,7 +32,7 @@
                 </form>
             </div>
             <div id="seeevento">
-                <div class="row">
+<!--                <div class="row">
                     <div class="4u">
                         <article class="item">
 
@@ -101,6 +101,6 @@
                         </article>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
 </section>

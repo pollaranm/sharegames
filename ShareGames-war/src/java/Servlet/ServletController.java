@@ -141,6 +141,10 @@ public class ServletController extends HttpServlet {
 
         //PRENDERE DA SESSIONE IDUTENTE!!!!
         //s.setAttribute("idutente", 14);
+        
+        //Se è loggato con facebook recupero tramite id autoincrement la lista eventi, lo stesso 
+        //se è loggato con google
+        
         s.setAttribute("lista", e.getListaEventiUtente(14));
         request.getRequestDispatcher("/personal.jsp").forward(request, response);
     }

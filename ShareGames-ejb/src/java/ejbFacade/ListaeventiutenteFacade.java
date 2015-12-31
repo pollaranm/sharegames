@@ -7,21 +7,33 @@ package ejbFacade;
 
 import ejb.Evento;
 import ejb.Listaeventiutente;
+import ejb.ListaeventiutentePK;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import manager.GestoreEventoLocal;
 
 /**
  *
  * @author Alex
  */
+
+
+
 @Stateless
 public class ListaeventiutenteFacade extends AbstractFacade<Listaeventiutente> implements ListaeventiutenteFacadeLocal {
+    @EJB
+    private GestoreEventoLocal gestoreEvento;
     @PersistenceContext(unitName = "ShareGames-ejbPU")
     private EntityManager em;
+    
+    
+    
+    
 
     @Override
     protected EntityManager getEntityManager() {
@@ -78,6 +90,25 @@ public class ListaeventiutenteFacade extends AbstractFacade<Listaeventiutente> i
     }
     
     
+     @Override
+     public Listaeventiutente addEventoUtente(int idevento, int idutente){
+         ListaeventiutentePK lista_pk=new ListaeventiutentePK();
+         
+         lista_pk.setIdevento(idevento);
+         lista_pk.setIdutente(idutente);
+         
+         Listaeventiutente lista=new Listaeventiutente();
+         lista.setListaeventiutentePK(lista_pk);
+         
+         Evento e=gestoreEvento.getEvento(idevento);
+         
+         lista.setEvento(e);
+         lista.setPostopagato("no");
+         lista.setProprietario("no");
+         
+         return lista;
+
+     }
     
     
 }
