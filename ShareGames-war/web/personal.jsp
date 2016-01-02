@@ -20,10 +20,11 @@
         <script src="js-nico/utente.js"></script>
         <script src="js-nico/squadra.js"></script>
         <script src="js-dario/evento.js"></script>
-        <script src="js-dario/data.js"></script>
         <script src="js-dario/cercaevento.js"></script>         
         <script src="js-dario/storicoeventi.js"></script>
         <script src="js-dario/formselect.js"></script>
+        <!--<script src="js-dario/data.js"></script>-->
+
         
 
 
@@ -102,6 +103,8 @@
             
               <!-- aggiungievento -->
               <%@include file='jspf/aggiungievento.jsp' %>
+              
+        
 
 
         </div>

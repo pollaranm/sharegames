@@ -5,6 +5,12 @@
 --%>
 
 <%@ page pageEncoding="UTF-8" %>
+
+<%
+    HttpSession s = request.getSession(); // metodo dell’oggetto request
+    String impianti=(String)s.getAttribute("selectimpianto");
+%>
+
 <section id="nuovoevento" class="three">
     <div class="container">
 
@@ -38,9 +44,7 @@
                            <option value="" disabled selected hidden>Scegli campo</option>     
                            </select></br>
                            
-                           <!--<div id="data">-->
-                           <input id="selectdata" type="date" min="'creaData();'"></input></br></br>
-                           <!--</div>-->
+                           <div id="data"></div>
 
 
                            <select id="selectora">
@@ -54,19 +58,16 @@
                            <select id="selectsport">
                            <option value="" disabled selected hidden>Sport</option>
                            </select></br>    
-
+                
+  
+                    
                 </form>
-                <div class="col-submit">
-                                     <button class="submitbtn" id="insertevento">Aggiungi evento</button>
-                </div>
-                <div id="eventoaggiunto"></div> 
 
              </div>
-                  
+                                    
             </ul>
-                       
+
         </header>
-                            
     </article>
 
     </div>
@@ -74,27 +75,8 @@
   </div>
         
  </div>
-    
 </section>
 
-
-                           
-<script>
-    
-    var oggi;
-
-            function crea_data(){oggi=new Date();
-                    var giorno=oggi.getDate();
-                    var mese=oggi.getMonth()+1;
-                    var anno=oggi.getFullYear();
-
-                    if(mese<10) mese="0"+mese;
-                    if(giorno<10)giorno="0"+mese;
-                    var data=giorno+"-"+mese + "-"+anno;
-
-                    return oggi;
-            };
-</script>
 
 
 

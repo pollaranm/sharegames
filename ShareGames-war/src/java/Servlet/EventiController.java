@@ -17,6 +17,7 @@ import ejbFacade.EventoFacadeLocal;
 import ejbFacade.ImpiantoFacadeLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -60,19 +61,15 @@ public class EventiController extends HttpServlet {
     
     
     HttpSession s;
+            
+    int idutente;
+    String tiposocial="";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException, SQLException {
         ServletContext ctx = getServletContext();
         response.setContentType("text/html;charset=UTF-8");
         s = request.getSession();
         String action = request.getParameter("action");
-        
-        int idutente=14;
-        String tiposocial="";
-
-        if (action == null) {
-            action = "fine";
-        }
 
         if (action.equals("getregioni")) {
             Eventi e = new Eventi();
@@ -343,21 +340,32 @@ public class EventiController extends HttpServlet {
 
             out.write(tmp);
             out.close();
-        } else if (action.equals("fine")) {
+        } 
+        
+        else if (action.equals("insertevento")) {
 
             int idimpianto = Integer.parseInt(request.getParameter("impianto"));
             int idcampo = Integer.parseInt((request.getParameter("campo")));
-            String data = (String) request.getParameter("data");
-            String ora = (String) request.getParameter("ora");
-            String sport = (String) request.getParameter("sport");
-            idutente = Integer.parseInt((String) s.getAttribute("idutente"));
-
-            sport = sport.substring(0, sport.length() - 1);
-
-            gestoreEvento.addEvento(idimpianto, idcampo, data, ora, sport, "no", "no", 0, idutente);
+            String data = request.getParameter("data");
+            String ora =request.getParameter("ora");
+            String minuti=request.getParameter("minuti");
+            String sport =request.getParameter("sport");
+            String oraeminuti=ora+":"+minuti;
+            
+            if(s.getAttribute("social").equals("facebook")){
+                
+                Utente u=gestoreUtente.getObjUtente(s.getAttribute("id").toString(), "facebook");
+                idutente=u.getIdutente();
+            }
+            
+            else if(s.getAttribute("social").equals("google")){
+                Utente u=gestoreUtente.getObjUtente((String)s.getAttribute("id"), "google");
+                idutente=u.getIdutente();
+            }
 
             try {
-
+                
+                gestoreEvento.addEvento(idimpianto, idcampo, data, oraeminuti, sport, "no", "no", 0, idutente);
                 PrintWriter out = response.getWriter();
 
                 out.write("Evento aggiunto con successo!!!");
@@ -366,9 +374,10 @@ public class EventiController extends HttpServlet {
             } catch (Exception e) {
 
                 PrintWriter out = response.getWriter();
-                out.write("Errore, questo evento esiste!");
+                out.write("Errore, questo evento esiste gia'!");
             }
-        } else if (action.equals("rimuovi")) {
+        } 
+        else if (action.equals("rimuovi")) {
 
             int idevento = Integer.parseInt(request.getParameter("idevento"));
             gestoreEvento.removeEvento(idevento);
@@ -524,6 +533,30 @@ public class EventiController extends HttpServlet {
                 e2.printStackTrace();;
             }
         }
+        
+        
+        
+        
+        
+        
+        
+        else if(action.equals("caricaimpianti")){
+            
+            String impianti=(String)s.getAttribute("selectimpianto");
+            
+             try{
+                 PrintWriter out = response.getWriter(); 
+                    out.write(impianti);
+                    out.close();
+            }
+         
+            catch(Exception e2){
+                e2.printStackTrace();;
+            }
+            
+            
+        }
+
         
         
         

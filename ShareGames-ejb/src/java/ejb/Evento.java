@@ -47,6 +47,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Evento.findByPagato", query = "SELECT e FROM Evento e WHERE e.pagato = :pagato"),
     @NamedQuery(name = "Evento.findByCompleto", query = "SELECT e FROM Evento e WHERE e.completo = :completo"),
     @NamedQuery(name = "Evento.findByGiocatoripagato", query = "SELECT e FROM Evento e WHERE e.giocatoripagato = :giocatoripagato")})
+    
 public class Evento implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
@@ -75,6 +76,8 @@ public class Evento implements Serializable {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Utente idutente;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evento", fetch = FetchType.LAZY)
+    
+    
     private Collection<Listaeventiutente> listaeventiutenteCollection;
 
     public Evento() {

@@ -153,11 +153,11 @@ public class ServletController extends HttpServlet {
         state = "home";
 
         List<Impianto> l = gestoreImpianto.getImpiantoByCitta("Torino");
-        String tmp = "<select id=selectimpianto>";
+        String tmp ="";
         for (int i = 0; i < l.size(); i++) {
             tmp += "<option value=" + l.get(i).getIdimpianto() + ">" + l.get(i).getNome() + "</option>";
         }
-        tmp += "</select>";
+        //tmp += "</select>";
         s.setAttribute("selectimpianto", tmp);
 
         request.getRequestDispatcher("/homepage.jsp").forward(request, response);
