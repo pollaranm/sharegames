@@ -80,5 +80,21 @@ public class GestoreAmministratore implements GestoreAmministratoreLocal {
         }
         
     }
+
+    @Override
+    public Boolean checkAuthAmm(int id, String psw) {
+        
+        Amministratore a = amministratoreFacade.getObjAmministratore(id);
+        
+        if ( a == null){
+            return false;
+        } else {
+            
+           if (a.getAmministratorePK().getPassword().equals(psw)){
+               return true;
+           }
+        }
+        return false;
+    }
     
 }

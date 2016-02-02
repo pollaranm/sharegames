@@ -8,11 +8,9 @@ package ejb;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -28,30 +26,28 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Alex
  */
 @Entity
-@Table(catalog = "newsharegames", schema = "", uniqueConstraints = {
+@Table(name = "amministratore", catalog = "newsharegames", schema = "", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"idamministratore", "idimpianto", "nome", "cognome"})})
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Amministratore.findAll", query = "SELECT a FROM Amministratore a"),
-    @NamedQuery(name = "Amministratore.findByIdamministratore", query = "SELECT a FROM Amministratore a WHERE a.idamministratore = :idamministratore"),
+    @NamedQuery(name = "Amministratore.findByIdamministratore", query = "SELECT a FROM Amministratore a WHERE a.amministratorePK.idamministratore = :idamministratore"),
     @NamedQuery(name = "Amministratore.findByNome", query = "SELECT a FROM Amministratore a WHERE a.nome = :nome"),
-    @NamedQuery(name = "Amministratore.findByCognome", query = "SELECT a FROM Amministratore a WHERE a.cognome = :cognome")})
+    @NamedQuery(name = "Amministratore.findByCognome", query = "SELECT a FROM Amministratore a WHERE a.cognome = :cognome"),
+    @NamedQuery(name = "Amministratore.findByPassword", query = "SELECT a FROM Amministratore a WHERE a.amministratorePK.password = :password")})
 public class Amministratore implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(nullable = false)
-    private Integer idamministratore;
+    @EmbeddedId
+    protected AmministratorePK amministratorePK;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(nullable = false, length = 100)
+    @Column(name = "nome", nullable = false, length = 100)
     private String nome;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(nullable = false, length = 100)
+    @Column(name = "cognome", nullable = false, length = 100)
     private String cognome;
     @JoinColumn(name = "idimpianto", referencedColumnName = "idimpianto", nullable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
@@ -60,22 +56,26 @@ public class Amministratore implements Serializable {
     public Amministratore() {
     }
 
-    public Amministratore(Integer idamministratore) {
-        this.idamministratore = idamministratore;
+    public Amministratore(AmministratorePK amministratorePK) {
+        this.amministratorePK = amministratorePK;
     }
 
-    public Amministratore(Integer idamministratore, String nome, String cognome) {
-        this.idamministratore = idamministratore;
+    public Amministratore(AmministratorePK amministratorePK, String nome, String cognome) {
+        this.amministratorePK = amministratorePK;
         this.nome = nome;
         this.cognome = cognome;
     }
 
-    public Integer getIdamministratore() {
-        return idamministratore;
+    public Amministratore(int idamministratore, String password) {
+        this.amministratorePK = new AmministratorePK(idamministratore, password);
     }
 
-    public void setIdamministratore(Integer idamministratore) {
-        this.idamministratore = idamministratore;
+    public AmministratorePK getAmministratorePK() {
+        return amministratorePK;
+    }
+
+    public void setAmministratorePK(AmministratorePK amministratorePK) {
+        this.amministratorePK = amministratorePK;
     }
 
     public String getNome() {
@@ -105,7 +105,7 @@ public class Amministratore implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idamministratore != null ? idamministratore.hashCode() : 0);
+        hash += (amministratorePK != null ? amministratorePK.hashCode() : 0);
         return hash;
     }
 
@@ -116,7 +116,7 @@ public class Amministratore implements Serializable {
             return false;
         }
         Amministratore other = (Amministratore) object;
-        if ((this.idamministratore == null && other.idamministratore != null) || (this.idamministratore != null && !this.idamministratore.equals(other.idamministratore))) {
+        if ((this.amministratorePK == null && other.amministratorePK != null) || (this.amministratorePK != null && !this.amministratorePK.equals(other.amministratorePK))) {
             return false;
         }
         return true;
@@ -124,7 +124,7 @@ public class Amministratore implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.Amministratore[ idamministratore=" + idamministratore + " ]";
+        return "ejb.Amministratore[ amministratorePK=" + amministratorePK + " ]";
     }
     
 }

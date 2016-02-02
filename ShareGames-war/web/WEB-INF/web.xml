@@ -20,6 +20,14 @@
         <servlet-name>SquadraController</servlet-name>
         <servlet-class>Servlet.SquadraController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ClientServlet</servlet-name>
+        <servlet-class>org.me.rest.client.ClientServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>rest</servlet-name>
+        <servlet-class>Servlet.rest</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletController</servlet-name>
         <url-pattern>/ServletController</url-pattern>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>SquadraController</servlet-name>
         <url-pattern>/SquadraController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClientServlet</servlet-name>
+        <url-pattern>/ClientServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>rest</servlet-name>
+        <url-pattern>/rest</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

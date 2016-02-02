@@ -7,6 +7,7 @@ package ejbFacade;
 
 import ejb.Prezziario;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -30,14 +31,13 @@ public class PrezziarioFacade extends AbstractFacade<Prezziario> implements Prez
         super(Prezziario.class);
     }
     
-       public Prezziario getObjectPrezziario(int idCampo, int idImpianto) {
+       public List<Prezziario> getObjectPrezziario(int idImpianto) {
         Query q;
         
-        q=em.createNamedQuery("Prezziario.findByIdcampoIdimpianto");
-        q.setParameter("idcampo", idCampo);
+        q=em.createNamedQuery("Prezziario.findByIdimpianto");
         q.setParameter("idimpianto", idImpianto);
         
-        return (Prezziario) q.getResultList().get(0);
+        return q.getResultList();
     }
        
     

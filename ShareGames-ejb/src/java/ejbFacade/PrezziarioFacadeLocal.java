@@ -39,7 +39,7 @@ public interface PrezziarioFacadeLocal {
      * @param idImpianto
      * @return L'oggetto Prezziario associato all'idCampo e all'idImpianto
      */
-    Prezziario getObjectPrezziario(int idCampo, int idImpianto);
+    List<Prezziario> getObjectPrezziario(int idImpianto);
     
     
     
