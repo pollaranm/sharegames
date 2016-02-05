@@ -6,7 +6,9 @@
 package Servlet;
 
 import ejb.Amministratore;
+import ejb.Listaeventiutente;
 import ejb.Prezziario;
+import ejb.Utente;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
@@ -25,7 +27,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import manager.GestoreAmministratoreLocal;
 import manager.GestoreCampoLocal;
+import manager.GestoreListaEventiLocal;
 import manager.GestorePrezziarioLocal;
+import manager.GestoreUtenteLocal;
 import org.json.simple.*;
 
 /**
@@ -33,6 +37,10 @@ import org.json.simple.*;
  * @author Alex
  */
 public class rest extends HttpServlet {
+    @EJB
+    private GestoreListaEventiLocal gestoreListaEventi;
+    @EJB
+    private GestoreUtenteLocal gestoreUtente;
     @EJB
     private GestoreCampoLocal gestoreCampo;
     @EJB
@@ -188,6 +196,40 @@ public class rest extends HttpServlet {
                 }
                 
                 json.put("risultato","Eseguito");
+                response.setContentType("application/json");
+                    try (PrintWriter out = response.getWriter()) {
+                        out.print(json);
+                        out.flush();
+                    }
+        } else if(action.equals("authAndroid")){
+
+                JSONObject json = new JSONObject();
+                JSONArray ja = new JSONArray();
+                
+                String id = request.getParameter("id");
+                
+                if (gestoreUtente.findFacebook(id)) {
+                    Utente temp = gestoreUtente.getObjUtente(id, "facebook");
+                    List<Listaeventiutente> lv = gestoreListaEventi.getEventoByUtente(temp.getIdutente());
+                    
+                    json.put("nome", temp.getNome());
+                    for(int i = 0; i<lv.size();i++){
+                        JSONObject jo = new JSONObject();
+                        
+                        jo.put("campo", lv.get(i).getEvento().getCampo().getCampoPK().getIdcampo());
+                        jo.put("impianto", lv.get(i).getEvento().getImpianto().getNome()); 
+                        jo.put("data", lv.get(i).getEvento().getEventoPK().getData()); 
+                        jo.put("ora", lv.get(i).getEvento().getEventoPK().getOra());
+                        jo.put("pagato", lv.get(i).getEvento().getPagato());
+                        
+                        ja.add(i, jo);
+                    }
+                    json.put("eventiUtente",ja);
+
+                }else{
+                    //gestoreUtente.addUser(name, email, "", id, phone);
+                }
+                json.put("eventiUtente",ja);
                 response.setContentType("application/json");
                     try (PrintWriter out = response.getWriter()) {
                         out.print(json);
