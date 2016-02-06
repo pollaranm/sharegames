@@ -1,4 +1,7 @@
 
+
+//Questo contiene le funzione usate da Nico per l'utente IDENTICHE nel funzionamento ma con dei nomi diversi.
+//Avevo inserito qui il contenuto attualmente presente in data.js perchè dovrebbe funzionare al caricamento della pagina personal
    function editaform() {
         
     $("#data").removeProp("readonly");
@@ -7,26 +10,6 @@
     $("#idimpianto").removeProp("readonly");
     $("#edit").text("Salva dati");
     $("#edit").attr("onclick", "aggiornaform()");
-
-}
-
-        /*$("#edit").click(function(){
-     
-                var oggi;
-
-                oggi=new Date();
-                var giorno=oggi.getDate();
-                var mese=oggi.getMonth()+1;
-                var anno=oggi.getFullYear();
-
-                if(mese<10) mese="0"+mese;
-                if(giorno<10)giorno="0"+mese;
-                var data=giorno+"-"+mese + "-"+anno;
-
-                $("#data").append("<input id=data type=date name=data min=",data," required/>");
-
-        });*/
-
 
 function aggiornaform() {
 
@@ -59,6 +42,7 @@ function aggiornaform() {
 
             });
     }
+}
     
 
 

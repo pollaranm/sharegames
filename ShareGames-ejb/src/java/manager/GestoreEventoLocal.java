@@ -119,4 +119,5 @@ public interface GestoreEventoLocal {
      */
     List<Evento> getEventoCompletoByProvincia(String provincia);
     
+    
 }

@@ -80,14 +80,15 @@ $(document).ready(function(){
         
    
         //agigungere un evento
-        $("#aggiungievento").on('click', function(){
+        $("#insertevento").on('click', function(){
         
         campo=document.getElementById("selectcampo").value;
         impianto=document.getElementById("selectimpianto").value;
 
-            data=document.getElementById("data").value;
-            ora=document.getElementById("selectora").value;
-            sport=document.getElementById("selectsport").value;
+        data=document.getElementById("selectdata").value;
+        ora=document.getElementById("selectora").value;
+        minuti=document.getElementById("selectminuti").value;
+        sport=document.getElementById("selectsport").value;
 
         
     $.ajax({
@@ -95,11 +96,12 @@ $(document).ready(function(){
          url : "EventiController",
          type: 'POST',
          dataType: "html",
-         data: {action:"fine",campo:campo, impianto:impianto, data:data, ora:ora, sport:sport},
+         data: {action:"insertevento",campo:campo, impianto:impianto, data:data, ora:ora, minuti:minuti, sport:sport},
          
          
          success: function(data){
                   $("#eventoaggiunto").html(data);
+                  
          },
          
             error: function (xhr, status, error) {
@@ -138,6 +140,75 @@ $(document).ready(function(){
      });
     });
     
+    
+        //Aggiungere la l'ora dopo la selezione della data
+    $("#selectdata").click(function(){
+        
+    $.ajax({
+         url : "EventiController",
+         type: 'POST',
+         dataType: "html",
+         data: {action:"selectora"},
+         
+         
+         success: function(data){
+                  $("#selectora").html(data);
+         },
+         
+            error: function (xhr, status, error) {
+            alert(error);
+        }
+         
+     });
+    });
+    
+    
+        //Aggiungere i minuti dopo avere seleziona l'ora
+    $("#selectora").click(function(){
+        
+    $.ajax({
+         url : "EventiController",
+         type: 'POST',
+         dataType: "html",
+         data: {action:"selectminuti"},
+         
+         
+         success: function(data){
+                  $("#selectminuti").html(data);
+         },
+         
+            error: function (xhr, status, error) {
+            alert(error);
+        }
+         
+     });
+    });
+    
+    
+        
+       $.ajax({
+         url : "EventiController",
+         type: 'POST',
+         dataType: "html",
+         data: {action:"caricaimpianti"},
+         
+         
+         success: function(data){
+                  $("#selectimpianto").html(data);
+         },
+         
+            error: function (xhr, status, error) {
+            alert(error);
+        }
+         
+     });
+    
+    
+    
+
+    
+    
+ 
 });
     
 

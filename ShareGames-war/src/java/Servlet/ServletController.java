@@ -138,23 +138,12 @@ public class ServletController extends HttpServlet {
      */
     private void doPersonal(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         state = "personal";
-
-        //PRENDERE DA SESSIONE IDUTENTE!!!!
-        //s.setAttribute("idutente", 14);
-        s.setAttribute("lista", e.getListaEventiUtente(14));
+        
         request.getRequestDispatcher("/personal.jsp").forward(request, response);
     }
 
     private void doAccesso(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         state = "home";
-
-        List<Impianto> l = gestoreImpianto.getImpiantoByCitta("Torino");
-        String tmp = "<select id=selectimpianto>";
-        for (int i = 0; i < l.size(); i++) {
-            tmp += "<option value=" + l.get(i).getIdimpianto() + ">" + l.get(i).getNome() + "</option>";
-        }
-        tmp += "</select>";
-        s.setAttribute("selectimpianto", tmp);
 
         request.getRequestDispatcher("/homepage.jsp").forward(request, response);
     }
@@ -176,6 +165,7 @@ public class ServletController extends HttpServlet {
             s.setAttribute("name", temp.getNome());
             s.setAttribute("email", temp.getEmail());
             s.setAttribute("phone", temp.getTelefono());
+            s.setAttribute("idnumber", temp.getIdutente());
             if (temp.getIdsquadra() != null) {
                 s.setAttribute("team", temp.getIdsquadra().getNomesquadra());
             } else {
@@ -210,6 +200,7 @@ public class ServletController extends HttpServlet {
             s.setAttribute("name", temp.getNome());
             s.setAttribute("email", temp.getEmail());
             s.setAttribute("phone", temp.getTelefono());
+            s.setAttribute("idnumber", temp.getIdutente());
             if (temp.getIdsquadra() != null) {
                 s.setAttribute("team", temp.getIdsquadra().getNomesquadra());
             } else {
@@ -237,6 +228,8 @@ public class ServletController extends HttpServlet {
         } else if (s.getAttribute("social") == "google") {
             gestoreUtente.addUser(name, email, id, "", "");
         }
+        Utente temp = gestoreUtente.getObjUtente(id, (String)s.getAttribute("social"));
+        s.setAttribute("idnumber", temp.getIdutente());
         s.setAttribute("name", name);
         s.setAttribute("email", email);
         s.setAttribute("phone", phone);

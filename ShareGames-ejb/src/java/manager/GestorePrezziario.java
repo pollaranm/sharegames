@@ -8,6 +8,7 @@ import ejb.Prezziario;
 import ejb.PrezziarioPK;
 import ejbFacade.PrezziarioFacadeLocal;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -74,35 +75,11 @@ public class GestorePrezziario implements GestorePrezziarioLocal {
      * @return Il prezziario cercato se presente, <i>false</i> altrimenti 
      */
     @Override
-    public Prezziario getObjPrezziario(int idCampo, int idImpianto) {
-        return prezziarioFacade.getObjectPrezziario(idCampo, idImpianto);
+    public List<Prezziario> getObjPrezziario(int idImpianto) {
+        return prezziarioFacade.getObjectPrezziario(idImpianto);
     }
 
-    
-    
-    /**
-     * Rimuove il Prezziario a cui sono associati
-     * l'IdCampo e l'idImpianto passati come parametri
-     * 
-     * @param idCampo identificativo del campo 
-     * @param idImpianto identificativo dell'impianto
-     * @return <i>true</i> se l'eliminazione avviene con successo, <i>false</i> altrimenti
-     */
-    @Override
-    public boolean removePrezziario(int idCampo, int idImpianto) {
-        
-        Prezziario p= prezziarioFacade.getObjectPrezziario(idCampo, idImpianto);
-        
-        if( p == null ) {
-            return false;
-        } else {
-            prezziarioFacade.remove(p);
-            return true;
-        }  
-    }
-
-    
-    
+ 
     /**
      * Aggiorna il Prezziario a cui sono associati i parametri idCampo, idImpianto,
      * prezzo e sconto.
@@ -120,4 +97,9 @@ public class GestorePrezziario implements GestorePrezziarioLocal {
        prezziarioFacade.updateAll(idCampo, idImpianto, prezzo, sconto);
     
     }
+    
+    
+    
+    
+    
 }

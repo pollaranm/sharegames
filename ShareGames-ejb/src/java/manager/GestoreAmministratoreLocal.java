@@ -20,5 +20,7 @@ public interface GestoreAmministratoreLocal {
     Amministratore getObjAmministratore(int idAmministratore);
 
     boolean removeAmministratore(int idAmministratore);
+
+    Boolean checkAuthAmm(int id, String psw);
     
 }

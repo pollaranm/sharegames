@@ -43,4 +43,6 @@ public interface GestoreListaEventiLocal {
      */
     List<Listaeventiutente> getListaEventiUtenti();
     
+    void addEventoUtente(int idevento, int idutente);
+    
 }

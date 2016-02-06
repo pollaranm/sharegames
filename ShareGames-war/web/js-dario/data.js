@@ -9,10 +9,5 @@ function crea_data(){oggi=new Date();
         if(giorno<10)giorno="0"+mese;
         var data=giorno+"-"+mese + "-"+anno;
         
-        $("#data").append("<input id=data type=date name=data min=",data," required/>");
-        //document.write("<input id=data type=date name=data min=",data," required/>");
-}
-    
-    
-
-
+       return oggi;
+};
