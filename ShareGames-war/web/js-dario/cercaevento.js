@@ -55,8 +55,7 @@ $(document).ready(function () {
         });
     });
 
-
-
+    //effettua la ricerca degli eventi per la sezione "Cerca un evento"
     $("#searchEvento").click(function () {
         provincia = document.getElementById("searchProvincia").value;
         sport = document.getElementById("searchSport").value;
@@ -65,8 +64,6 @@ $(document).ready(function () {
             url: "EventiController",
             data: {action: "searchEvento", prov: provincia, sport: sport},
             success: function (data) {
-                /*alert("!!!");
-                alert(data);*/
                 $("#seeevento").html(data);
             },
             error: function (xhr, status, error) {
@@ -74,17 +71,17 @@ $(document).ready(function () {
             }
         });
     });
-    
-    
-    $(document).on("click", ".partecipa", function(){
+
+
+    $(document).on("click", ".partecipa", function () {
 
         alert("Benvenuto! Grazie per partecipare all'evento!");
 
     });
-    
-    
-    
-    
+
+
+
+
 
 });
 
