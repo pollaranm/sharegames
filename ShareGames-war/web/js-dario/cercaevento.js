@@ -64,7 +64,7 @@ $(document).ready(function () {
             url: "EventiController",
             data: {action: "searchEvento", prov: provincia, sport: sport},
             success: function (data) {
-                $("#seeevento").html(data);
+                $("#seeevento").html(data);//.triggerHandler(reloadGmaps());
             },
             error: function (xhr, status, error) {
                 alert(error);
@@ -97,3 +97,16 @@ $(document).on("click", ".partecipa", function () {
     });
 });
 
+//Metodo per il caricamento dinamico delle mappe di Gmap
+//dovrebbe forzare il browser a ricaricare le mappe ma il problema restano
+//le autorizzazioni di Google a fare le richieste... quindi non viene utilizzato
+//function reloadGmaps() {
+//    arrG = [];
+//    $('.gmaps').each(function(index){
+//        arrG.push($(this).prop('src'));
+//        $(this).prop('src', Math.random());
+//    });
+//    $('.gmaps').each(function(index){
+//        $(this).prop('src', arrG[index]);
+//    });
+//};
