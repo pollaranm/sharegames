@@ -45,32 +45,32 @@ import manager.GestoreUtenteLocal;
  * @author PC-STUDIO
  */
 public class EventiController extends HttpServlet {
-
+    
     @EJB
     private GestoreListaEventiLocal gestoreListaEventi;
-
+    
     @EJB
     private GestoreUtenteLocal gestoreUtente;
-
+    
     @EJB
     private GestoreEventoLocal gestoreEvento;
     @EJB
     private GestoreCampoLocal gestoreCampo;
-
+    
     HttpSession s;
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException, SQLException {
         ServletContext ctx = getServletContext();
         response.setContentType("text/html;charset=UTF-8");
         s = request.getSession();
-        Integer userid = (Integer)s.getAttribute("idnumber");
+        Integer userid = (Integer) s.getAttribute("idnumber");
         String action = request.getParameter("action");
-
+        
         if (action.equals("getregioni")) {
             Eventi e = new Eventi();
             List<Integer> id = e.getIdRegioni(); //stessa dimensione delle liste
             List<String> l = e.getRegioni();
-
+            
             PrintWriter out = response.getWriter();
             String regioni = "";
             for (int i = 0; i < l.size(); i++) {
@@ -79,12 +79,11 @@ public class EventiController extends HttpServlet {
             out.write(regioni);
             out.close();
         }
-
+        
         if (action.equals("getprovince")) {
             int idregione = Integer.parseInt(request.getParameter("idregione"));
             Eventi e = new Eventi();
             List<String> l = e.getProvince(idregione);
-            // List<String> l2=e.getSiglaProvince(idregione);
             PrintWriter out = response.getWriter();
             String citta = "";
             for (int i = 0; i < l.size(); i++) {
@@ -93,22 +92,7 @@ public class EventiController extends HttpServlet {
             out.write(citta);
             out.close();
         }
-
-        //Questo metodo potrebbe poi essere rivisto per prendere le città di una provincia ma per il momento
-        //NON VIENE UTILIZZATO
-//        if (action.equals("getcitta")) { // stesso discorso di prima, cercava le citta ma si chiamava getprovincia
-//            String citta = request.getParameter("citta");
-//            Eventi e = new Eventi();
-//            List<String> l = e.getProvince(citta);
-//            PrintWriter out = response.getWriter();
-//            String province = "";
-//
-//            for (int i = 0; i < l.size(); i++) {
-//                province += "<option value=" + l.get(i) + ">" + l.get(i) + "</option>";
-//            }
-//            out.write(province);
-//            out.close();
-//        }
+        
         if (action.equals("getsport")) {
             String sport = "";
             sport += "<option value='calcio5'>Calcio a 5</option>"
@@ -122,7 +106,7 @@ public class EventiController extends HttpServlet {
                 out.close();
             }
         }
-
+        
         if (action.equals("searchEvento")) {
             String prov = (String) request.getParameter("prov");
             String sport = (String) request.getParameter("sport");
@@ -141,19 +125,19 @@ public class EventiController extends HttpServlet {
                         + "AND evento.sport = '" + sport + "' "
                         + "AND evento.completo = 'no' "
                         + "AND evento.idevento NOT IN "
-                        + "(SELECT idevento FROM listaeventiutente WHERE idutente = '"+ userid.toString() +"')"
+                        + "(SELECT idevento FROM listaeventiutente WHERE idutente = '" + userid.toString() + "')"
                         + "ORDER BY evento.data, evento.ora";
                 
                 java.sql.Statement st = conn.createStatement();
                 ResultSet rs = st.executeQuery(query);
-
+                
                 String html = "";
                 int count = 1;
                 String col1 = "<div class='4u' id='col1'>";
                 String col2 = "<div class='4u' id='col2'>";
                 String col3 = "<div class='4u' id='col3'>";
                 String temp = "";
-
+                
                 if (rs.isBeforeFirst()) {
                     while (rs.next()) {
                         String address = rs.getString("impianto.indirizzo") + " " + rs.getString("impianto.citta");
@@ -168,14 +152,14 @@ public class EventiController extends HttpServlet {
                                 + "      <li><span>Giocatori: " + rs.getString("giocatoripagato") + "</span></li>"
                                 + "      <li><span>" + rs.getString("nome") + "</span></li>"
                                 + "      <li><span>" + rs.getString("indirizzo") + ", " + rs.getString("citta") + "</span></li>"
-                                + "      <li> <img style='width:94%;height:auto' "
+                                + "      <li> <img class='gmaps' style='width:94%;height:auto' "
                                 + "        src='http://maps.google.com/maps/api/staticmap?markers=size:mid|color:blue|" + address + "&size=500x300&sensor=false&size=600x300&key=AIzaSyAbz8o3xVmsMTpHh3DRWO1kIW38K3zBVJ4'>"
                                 + "        </img></li>"
                                 + "    </ul>"
-                                + "    <form action='EventiController' style='border-style:none'>"
+                                + "    <form onsubmit='return false' style='border-style:none'>"
                                 + "      <input type='hidden' name='action' value='joinEvento'>"
-                                + "      <input type='hidden' name='idEvento' value='" + rs.getString("idevento") + "'>"
-                                + "      <button class='button'>Partecipa</button>"
+                                + "      <input type='hidden' name='idEvento' id='idEvento' value='" + rs.getString("idevento") + "'>"
+                                + "      <button class='button partecipa'>Partecipa</button>"
                                 + "    </form>"
                                 + "  </header>"
                                 + "</article>";
@@ -196,15 +180,30 @@ public class EventiController extends HttpServlet {
                 } else {
                     html = "Nessun evento presente con queste caratteristiche!";
                 }
-
+                
                 try (PrintWriter out = response.getWriter()) {
                     out.write(html);
                     out.close();
                 }
-
+                
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+        
+        if (action.equals("joinEvento")) {
+            Integer idEvento = new Integer((String) request.getParameter("idEvento"));
+            gestoreListaEventi.addEventoUtente(idEvento, userid);
+            Evento tempE = gestoreEvento.getEvento(idEvento);
+            tempE.setGiocatoripagato(tempE.getGiocatoripagato() + 1);
+            Campo tempC = tempE.getCampo();
+            if( tempE.getGiocatoripagato() == tempC.getNumerogiocatori() ) {
+                tempE.setCompleto("si");
+            }
+            gestoreEvento.updateEvento(tempE);
+            
+            
+            
         }
 //
 //        if (action.equals("joinEvento")) {

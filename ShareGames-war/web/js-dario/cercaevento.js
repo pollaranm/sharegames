@@ -71,18 +71,29 @@ $(document).ready(function () {
             }
         });
     });
-
-
-    $(document).on("click", ".partecipa", function () {
-
-        alert("Benvenuto! Grazie per partecipare all'evento!");
-
-    });
-
-
-
-
-
 });
 
+//Al click sul tasto partecipa avvia la procedura di registrazione al'evento,
+//andando a creare una registrazione per l'utente ed incrementanto il numero di
+//partecipanti all'evento
+$(document).on("click", ".partecipa", function () {
+    form = $(this).closest("form");
+    idEvento = form.find("#idEvento").val();
+    $(this).closest("article").fadeOut("slow");
+    $.ajax({
+        type: "POST",
+        url: "EventiController",
+        data: {action: "joinEvento", idEvento: idEvento},
+        success: function (data) {
+            setTimeout(function () {
+                alert("Partecipazione registrata!");
+                location.reload();
+                ;
+            }, 1000);
+        },
+        error: function (xhr, status, error) {
+            alert(error);
+        }
+    });
+});
 

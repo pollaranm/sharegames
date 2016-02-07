@@ -163,6 +163,11 @@ public class GestoreEvento implements GestoreEventoLocal {
     public List<Evento> getEventoCompletoByProvincia(String provincia) {
         return eventoFacade.getEventoCompletoByProvincia(provincia);
     }
+
+    @Override
+    public void updateEvento(Evento event) {
+        eventoFacade.edit(event);
+    }
     
 
     
