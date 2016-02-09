@@ -118,6 +118,8 @@ public interface GestoreEventoLocal {
      * Restituisce una lista di eventi giocati nella provincia indicata come parametro in cui il campo COMPLETO=SI
      */
     List<Evento> getEventoCompletoByProvincia(String provincia);
+
+    void updateEvento(Evento event);
     
     
 }

@@ -1,8 +1,4 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//Effettua il loguot dell'utente richiamando la funzione nella servlet
 function logoutUtente() {
     form = $(document.createElement('form'));
     $(form).attr("action", "ServletController");
@@ -12,6 +8,7 @@ function logoutUtente() {
     $(form).submit();
 }
 
+//Rende editabile il form contenente le informazioni personali
 function editableForm() {
     $("#namePersonal").removeProp("readonly");
     $("#phonePersonal").removeProp("readonly");
@@ -23,6 +20,7 @@ function editableForm() {
     $("#buttonPersonal").attr("onclick", "updateForm()");
 }
 
+//Aggiorna i dati personali modificati nel form utente
 function updateForm() {
     $("#namePersonal").attr("style", "");
     $("#phonePersonal").attr("style", "");
@@ -49,6 +47,5 @@ function updateForm() {
         error: function (xhr, status, error) {
             alert(error);
         }
-
     });
 }

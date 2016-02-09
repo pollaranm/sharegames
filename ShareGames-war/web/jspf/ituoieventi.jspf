@@ -2,17 +2,10 @@
 <%@ page pageEncoding="UTF-8" %>
 <section id="ituoieventi" class="two">
     <div class="container">
-        <h1 style="font-size: 50px">I tuoi eventi</h1> </br>
-        <p>             </p>
-        <div class="row">
-        </div>
+        <header>
+            <h2>I tuoi prossimi eventi</h2>
+        </header>
+
+    </div>
 </section>
-
-<%
-    String form = (String) request.getSession().getAttribute("lista");
-%>
-
-<script>
-    $(".row").append("<%=form%>");
-</script>
 

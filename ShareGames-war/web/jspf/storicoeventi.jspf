@@ -1,15 +1,14 @@
 <%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
-<section id="eventiprenotati" class="three">
+<section id="storicoeventi" class="three">
     <div class="container">
 
         <header>
             <h2>Storico eventi</h2>
         </header>
-
-        <a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a>
-
-        <div id="storico"></div>
+        <div id="storico">
+            
+        </div>
 
     </div>
 </section>

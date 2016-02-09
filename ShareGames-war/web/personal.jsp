@@ -19,11 +19,13 @@
 
         <script src="js-nico/utente.js"></script>
         <script src="js-nico/squadra.js"></script>
+        <script src="js-nico/storico.js"></script>
         <script src="js-dario/evento.js"></script>
-        <script src="js-dario/cercaevento.js"></script>         
+        <script src="js-dario/cercaevento.js"></script>
+        <!--<script src="js-dario/data.js"></script>
         <script src="js-dario/storicoeventi.js"></script>
         <script src="js-dario/formselect.js"></script>
-        <!--<script src="js-dario/data.js"></script>-->
+        <script src="js-dario/data.js"></script>-->
 
         
 
@@ -66,12 +68,11 @@
 
                 <!-- Nav -->
                 <nav id="nav">
-                    <ul>
+                    <ul> 
                         <li><a href="#cercaunevento" id="cercaunevento-link" class="skel-layers-ignoreHref"><span class="icon fa-search">Cerca un evento</span></a></li>
-                        <li><a href="#ituoieventi" id="ituoieventi-link" class="skel-layers-ignoreHref"><span class="icon fa-crosshairs">I tuoi eventi</span></a></li>
-                        <li><a href="#ituoieventi" id="ituoieventi-link" class="skel-layers-ignoreHref"><span class="icon fa-crosshairs">Aggiungi evento</span></a></li>
-                        <li><a href="#eventiprenotati" id="eventiprenotati-link" class="skel-layers-ignoreHref"><span class="icon fa-ticket">Storico eventi</span></a></li>
-                        <li><a href="#pagamenti" id="pagamenti-link" class="skel-layers-ignoreHref"><span class="icon fa-dollar">Pagamenti</span></a></li>
+                        <li><a href="#creaunevento" id="ituoieventi-link" class="skel-layers-ignoreHref"><span class="icon fa-pencil-square-o">Crea un evento</span></a></li>
+                        <li><a href="#ituoieventi" id="ituoieventi-link" class="skel-layers-ignoreHref"><span class="icon fa-crosshairs">I tuoi prossimi eventi</span></a></li>
+                        <li><a href="#storicoeventi" id="storicoeventi-link" class="skel-layers-ignoreHref"><span class="icon fa-ticket">Storico eventi</span></a></li>
                         <li><a href="#latuasquadra" id="latuasquadra-link" class="skel-layers-ignoreHref"><span class="icon fa-users">La tua squadra</span></a></li>
                         <li><a href="#paginapersonale" id="paginapersonale-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Pagina personale</span></a></li>
                     </ul>
@@ -86,25 +87,21 @@
             <!-- Cerca un evento -->
             <%@include file='jspf/cercaunevento.jspf' %>
 
+            <!-- Crea un evento -->
+            <%@include file='jspf/creaunevento.jspf' %>
+            
             <!-- I tuoi eventi -->
-            <%//@include file='jspf/ituoieventi.jspf' %>
+            <%@include file='jspf/ituoieventi.jspf' %>
 
-            <!-- eventi prenotati -->
-            <%@include file='jspf/eventiprenotati.jspf' %>
-
-            <!-- pagamenti -->
-            <%@include file='jspf/pagamenti.jspf' %>
+            <!-- Storico eventi -->
+            <%@include file='jspf/storicoeventi.jspf' %>
 
             <!-- latuasquadra -->
             <%@include file='jspf/latuasquadra.jspf' %>
 
             <!-- paginapersonale -->
             <%@include file='jspf/paginapersonale.jspf' %>
-            
-              <!-- aggiungievento -->
-              <%@include file='jspf/aggiungievento.jsp' %>
-              
-        
+                   
 
 
         </div>

@@ -1,11 +1,6 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 $(document).ready(function () {
+    //Preimposta l'elenco delle regioni nel form per la ricerca
+    //e la creazione delle squadre
     $.ajax({
         type: "POST",
         url: "EventiController",
@@ -19,6 +14,8 @@ $(document).ready(function () {
         }
     });
     
+    //Recupera le informazioni relative alla squadra dell'utente
+    //e costruisce il form contententi tali informazioni
     $.ajax({
         type: 'POST',
         url: 'SquadraController',
@@ -31,6 +28,8 @@ $(document).ready(function () {
         }
     });
     
+    //Carica dinamicamente l'elenco delle provincie al cambio della regione.
+    //Al caricamento della pagina preimposta la regione selezionata con id=1
     idregione = 1;
     $.ajax({
         type: "POST",
@@ -44,6 +43,8 @@ $(document).ready(function () {
             alert(error);
         }
     });
+    
+    //Precarica l'elenco degli sport selezionabili
     $.ajax({
         type: "POST",
         url: "EventiController",
@@ -56,6 +57,9 @@ $(document).ready(function () {
             alert(error);
         }
     });
+    
+    //Al cambio della regione nel form di ricerca squadre carica le
+    //provincie nella selezione
     $("#geo1").change(function () {
         idregione = document.getElementById("geo1").value;
         $.ajax({
@@ -70,6 +74,9 @@ $(document).ready(function () {
             }
         });
     });
+    
+    //Al cambio della regione nel form di creazione squadre carica le
+    //provincie nella selezione
     $("#geo3").change(function () {
         idregione = document.getElementById("geo3").value;
         $.ajax({
@@ -85,6 +92,8 @@ $(document).ready(function () {
         });
     });
     
+    //In seguito al click sul tasto di creazione di una squadra richiama
+    //la servlet e la crea nel database
     $("#createTeamBtn").click(function () {
         $.ajax({
             url: 'SquadraController',
@@ -105,13 +114,11 @@ $(document).ready(function () {
             }
         });
     });  
-    
-    
-    
 });
 
+//Funzione richiamata per effettuare la rierca di squadre con i parametri di 
+//ricerca indicati nel form
 function retrieveTeams() {
-
     $.ajax({
         url: 'SquadraController',
         type: 'POST',
@@ -122,17 +129,19 @@ function retrieveTeams() {
             sport: $('#team_sport').val()
         },
         success: function (data) {
-            //window.alert("Valori aggiornati con successo!");
             $('#team_div_res').html(data);
         },
         error: function (xhr, status, error) {
             alert(error);
         }
-
     });
 }
+
 //l'on si mette in ascolto di eventi ANCHE su oggetti generati dinamicamente
 //dopo la creazione del DOM
+
+//Funzione che permette di ritornare alla creazione di una squadra nel caso 
+//la ricerca non dia risultati
  $(document).on("click","#returnCreateBtn",function() {
      $.ajax({
             url: 'SquadraController',
