@@ -12,13 +12,13 @@ import ejb.Utente;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
-import java.sql.SQLException;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
@@ -31,6 +31,8 @@ import manager.GestoreListaEventiLocal;
 import manager.GestorePrezziarioLocal;
 import manager.GestoreUtenteLocal;
 import org.json.simple.*;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 /**
  *
@@ -93,115 +95,204 @@ public class rest extends HttpServlet {
             }
         }else if(action.equals("getPrezziario")){
             
-                int id = Integer.parseInt(request.getParameter("idimpianto"));
-                List<Prezziario> p = gestorePrezziario.getObjPrezziario(id);
-                JSONObject json = new JSONObject();   
-                
-                JSONArray ja = new JSONArray();
-                  
-                    for(int i = 0; i<p.size();i++){
+            JSONObject json = new JSONObject();
+            try{
+                    
+                    String gg = request.getParameter("json");
+                            
+                    if (request.getParameter("identity").equals("firstcall")){
                         
-                        JSONObject jo = new JSONObject();
-                        
-                        jo.put("id", i);
-                        jo.put("campo", p.get(i).getCampo().getCampoPK().getIdcampo());
-                        jo.put("prezzo", p.get(i).getPrezzo()); 
-                        jo.put("sconto", p.get(i).getSconto()); 
-                        
-                        ja.add(i, jo);
+                        JSONObject json1 = (JSONObject) new JSONParser().parse(gg);
+                        System.out.println(gg);
+                    
+                        int idimpianto = Integer.parseInt( json1.get("idimpianto").toString());
 
+                        try{
+                            List<Prezziario> p = gestorePrezziario.getObjPrezziario(idimpianto);   
+                            JSONArray ja = new JSONArray();
+                            for(int i = 0; i<p.size();i++){
+                                JSONObject jo = new JSONObject();
+                                    jo.put("id", i);
+                                    jo.put("campo", p.get(i).getCampo().getCampoPK().getIdcampo());
+                                    jo.put("prezzo", p.get(i).getPrezzo()); 
+                                    jo.put("sconto", p.get(i).getSconto()); 
+                                    ja.add(i, jo);
+                            }
+                            json.put("prezziario",ja);
+                        }catch(Exception e){
+                            json.put("risultato","Errore");
+                            response.setContentType("application/json");
+                        
+                        try (PrintWriter out = response.getWriter()) {
+                                out.print(json); out.flush();
+                            }
+                        }
+
+                        json.put("risultato","Eseguito");
+                        response.setContentType("application/json");
+                        try (PrintWriter out = response.getWriter()) {
+                            out.print(json);
+                            out.flush();
+                        }
+
+                    }else if(request.getParameter("identity").equals("refreshtcall")){
+                        
+                        
+                        JSONObject json1 = (JSONObject) new JSONParser().parse(gg);
+                        System.out.println(gg);
+                    
+                        int idimpianto = Integer.parseInt( json1.get("idimpianto").toString());
+                        String message = "";
+
+                        try{
+                            List<Prezziario> p = gestorePrezziario.getObjPrezziario(idimpianto);   
+                            for(int i = 0; i<p.size();i++){
+                               
+                                message += "<tr><td>"+p.get(i).getCampo().getCampoPK().getIdcampo()+"</td><td>"+p.get(i).getPrezzo()+"</td><td>"+p.get(i).getSconto()+"</td></tr>";
+ 
+                            }
+                            
+                            json.put("prezziario",message);
+                        }catch(Exception e){
+                            json.put("risultato","Errore");
+                            response.setContentType("application/json");
+                            try (PrintWriter out = response.getWriter()) {
+                                out.print(json); out.flush();
+                            }
+                        }
+
+                        json.put("risultato","Eseguito");
+                        response.setContentType("application/json");
+                        try (PrintWriter out = response.getWriter()) {
+                            out.print(json);
+                            out.flush();
+                        }
+                        
                     }
                     
-                json.put("prezziario",ja);
-                response.setContentType("application/json");
-                    try (PrintWriter out = response.getWriter()) {
-                        out.print(json);
-                        out.flush();
-                    }
+                    
+                }catch(ParseException ex){
+                    Logger.getLogger(rest.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
         }else if(action.equals("addCampo")){
                 
-                JSONObject json = new JSONObject();
-                
-                int id = Integer.parseInt(request.getParameter("id"));
-                int idimpianto = Integer.parseInt(request.getParameter("idimpianto"));
-                String tipologia = (request.getParameter("tipologia"));
-                int numerogiocatori = Integer.parseInt(request.getParameter("numero"));
-                float prezzo = Float.parseFloat(request.getParameter("prezzo"));
-                int sconto = Integer.parseInt(request.getParameter("sconto"));
-                BigDecimal bd = new BigDecimal(prezzo);
-                
                 try{
-                    gestoreCampo.addCampo(id, idimpianto, tipologia, numerogiocatori);
-                    gestorePrezziario.addPrezziario(id, idimpianto, bd, sconto);
+                    
+                    String gg = request.getParameter("json");
+                    
+                    System.out.println(gg);
+                    
+                    JSONObject json = new JSONObject();
+                    JSONObject json1 = (JSONObject) new JSONParser().parse(gg);
 
-                }catch(Exception e){
-                    json.put("risultato","Errore");
+                    int id = Integer.parseInt(json1.get("id").toString());
+                    int idimpianto = Integer.parseInt( json1.get("idimpianto").toString());
+                    String tipologia = (json1.get("tipologia").toString());
+                    int numerogiocatori = Integer.parseInt(json1.get("numero").toString());
+                    float prezzo = Float.parseFloat(json1.get("prezzo").toString());
+                    int sconto = Integer.parseInt(json1.get("sconto").toString());
+                    BigDecimal bd = new BigDecimal(prezzo);
+                    
+                    try{
+                        gestoreCampo.addCampo(id, idimpianto, tipologia, numerogiocatori);
+                        gestorePrezziario.addPrezziario(id, idimpianto, bd, sconto);
+                        
+                    }catch(Exception e){
+                        json.put("risultato","Errore");
+                        response.setContentType("application/json");
+                        try (PrintWriter out = response.getWriter()) {
+                            out.print(json);
+                            out.flush();
+                        }
+                    }
+                    
+                    json.put("risultato","Eseguito");
                     response.setContentType("application/json");
                     try (PrintWriter out = response.getWriter()) {
                         out.print(json);
                         out.flush();
                     }
+                }catch(ParseException ex){
+                    Logger.getLogger(rest.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
-                json.put("risultato","Eseguito");
-                response.setContentType("application/json");
-                    try (PrintWriter out = response.getWriter()) {
-                        out.print(json);
-                        out.flush();
-                    }
         }else if(action.equals("removeCampo")){
                 
-                JSONObject json = new JSONObject();
-                
-                int id = Integer.parseInt(request.getParameter("idcampo"));
-                int idimpianto = Integer.parseInt(request.getParameter("idimpianto"));
-                
                 try{
-                    gestoreCampo.removeCampo(id, idimpianto);
-
-                }catch(Exception e){
-                    json.put("risultato","Errore");
+                    
+                    String gg = request.getParameter("json");
+                    
+                    JSONObject json = new JSONObject();
+                    JSONObject json1 = (JSONObject) new JSONParser().parse(gg);
+                    
+                    System.out.println(gg);
+                    
+                    int id = Integer.parseInt(json1.get("id").toString());
+                    int idimpianto = Integer.parseInt( json1.get("idimpianto").toString());
+                    
+                    try{
+                        gestoreCampo.removeCampo(id, idimpianto);
+                        
+                    }catch(Exception e){
+                        json.put("risultato","Errore");
+                        response.setContentType("application/json");
+                        try (PrintWriter out = response.getWriter()) {
+                            out.print(json);
+                            out.flush();
+                        }
+                    }
+                    
+                    json.put("risultato","Eseguito");
                     response.setContentType("application/json");
                     try (PrintWriter out = response.getWriter()) {
                         out.print(json);
                         out.flush();
                     }
+                }catch(ParseException ex){
+                    Logger.getLogger(rest.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
-                json.put("risultato","Eseguito");
-                response.setContentType("application/json");
-                    try (PrintWriter out = response.getWriter()) {
-                        out.print(json);
-                        out.flush();
-                    }
-        }else if(action.equals("removeCampo")){
-                
-                JSONObject json = new JSONObject();
-                
-                int id = Integer.parseInt(request.getParameter("idcampo"));
-                int idimpianto = Integer.parseInt(request.getParameter("idimpianto"));
-                String tipologia = (request.getParameter("tipologia"));
-                int numerogiocatori = Integer.parseInt(request.getParameter("numerogiocatori"));
+        }else if(action.equals("editCampo")){
                 
                 try{
-                    gestoreCampo.updateCampo(id, idimpianto, tipologia, numerogiocatori);
+                    
+                    String gg = request.getParameter("json");
+                    
+                    System.out.println(gg);
+                    
+                    JSONObject json = new JSONObject();
+                    JSONObject json1 = (JSONObject) new JSONParser().parse(gg);
 
-                }catch(Exception e){
-                    json.put("risultato","Errore");
+                    int id = Integer.parseInt(json1.get("id").toString());
+                    int idimpianto = Integer.parseInt( json1.get("idimpianto").toString());
+                    String tipologia = (json1.get("tipologia").toString());
+                    int numerogiocatori = Integer.parseInt(json1.get("numero").toString());
+                    float prezzo = Float.parseFloat(json1.get("prezzo").toString());
+                    int sconto = Integer.parseInt(json1.get("sconto").toString());
+                    BigDecimal bd = new BigDecimal(prezzo);
+                    
+                    try{
+                        gestoreCampo.updateCampo(id, idimpianto, tipologia, numerogiocatori);
+                        gestorePrezziario.updatePrezziario(id, idimpianto, bd, sconto);
+                        
+                    }catch(Exception e){
+                        json.put("risultato","Errore");
+                        response.setContentType("application/json");
+                        try (PrintWriter out = response.getWriter()) {
+                            out.print(json);
+                            out.flush();
+                        }
+                    }
+                    
+                    json.put("risultato","Eseguito");
                     response.setContentType("application/json");
                     try (PrintWriter out = response.getWriter()) {
                         out.print(json);
                         out.flush();
                     }
+                }catch(ParseException ex){
+                    Logger.getLogger(rest.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
-                json.put("risultato","Eseguito");
-                response.setContentType("application/json");
-                    try (PrintWriter out = response.getWriter()) {
-                        out.print(json);
-                        out.flush();
-                    }
-        } else if(action.equals("authAndroid")){
+        }else if(action.equals("authAndroid")){
 
                 JSONObject json = new JSONObject();
                 JSONArray ja = new JSONArray();
