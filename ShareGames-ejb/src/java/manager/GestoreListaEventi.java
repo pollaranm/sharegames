@@ -33,13 +33,6 @@ public class GestoreListaEventi implements GestoreListaEventiLocal {
        return listaeventiutenteFacade.getEventoByUtente(idutente);
     }
     
-    
-
-
-
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
-
     @Override
     public List<Evento> getEventoByPagato(int idutente) {
         return listaeventiutenteFacade.getEventoByPagato(idutente);
@@ -50,9 +43,24 @@ public class GestoreListaEventi implements GestoreListaEventiLocal {
         return listaeventiutenteFacade.getListaEventiUtenti();
     }
     
+    @Override
     public void addEventoUtente(int idevento, int idutente){
         Listaeventiutente l=listaeventiutenteFacade.addEventoUtente(idevento, idutente);
         listaeventiutenteFacade.create(l);
     }
+
+    @Override
+    public Listaeventiutente getObjByIdUtenteIdEvento(int idutente, int idevento) {
+        return listaeventiutenteFacade.getObjByIdUtenteIdEvento(idutente, idevento);
+    }
+
+    @Override
+    public void removeEventoUtente(int idevento, int idutente) {
+        listaeventiutenteFacade.removeEventoUtente(idevento, idutente);
+    }
+    
+    
+    
+    
 
 }

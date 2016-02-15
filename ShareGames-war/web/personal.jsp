@@ -8,6 +8,7 @@
         <meta name="description" content="" />
         <meta name="keywords" content="" />
         <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script src="js-p/jquery.min-p.js"></script>
         <script src="js-p/jquery.scrolly.min-p.js"></script>
         <script src="js-p/jquery.scrollzer.min-p.js"></script>
@@ -20,6 +21,8 @@
         <script src="js-nico/utente.js"></script>
         <script src="js-nico/squadra.js"></script>
         <script src="js-nico/storico.js"></script>
+        <script src="js-nico/prossimieventi.js"></script>
+
         <script src="js-dario/evento.js"></script>
         <script src="js-dario/cercaevento.js"></script>
         <!--<script src="js-dario/data.js"></script>
@@ -27,7 +30,7 @@
         <script src="js-dario/formselect.js"></script>
         <script src="js-dario/data.js"></script>-->
 
-        
+
 
 
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
@@ -44,6 +47,9 @@
         <link rel="stylesheet" type="text/css" media="all" href="css-p/styles-p.css">
         <link rel="stylesheet" type="text/css" media="all" href="css-p/switchery.min-p.css">
         <script type="text/javascript" src="js-p/switchery.min-p.js"></script>
+        
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/south-street/jquery-ui.css">
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     </head>
     <body>
 
@@ -81,7 +87,7 @@
 
         </div>
         <!-- /Header -->
-        
+
         <!-- Main -->
         <div id="main">
             <!-- Cerca un evento -->
@@ -89,7 +95,7 @@
 
             <!-- Crea un evento -->
             <%@include file='jspf/creaunevento.jspf' %>
-            
+
             <!-- I tuoi eventi -->
             <%@include file='jspf/ituoieventi.jspf' %>
 
@@ -101,7 +107,7 @@
 
             <!-- paginapersonale -->
             <%@include file='jspf/paginapersonale.jspf' %>
-                   
+
 
 
         </div>
