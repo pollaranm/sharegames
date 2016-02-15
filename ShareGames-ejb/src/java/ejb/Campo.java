@@ -43,7 +43,7 @@ public class Campo implements Serializable {
     protected CampoPK campoPK;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 9)
+    @Size(min = 1, max = 20)
     @Column(nullable = false, length = 9)
     private String tipologia;
     @Basic(optional = false)

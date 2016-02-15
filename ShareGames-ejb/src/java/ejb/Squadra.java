@@ -48,7 +48,7 @@ public class Squadra implements Serializable {
     @Column(length = 100)
     private String nomesquadra;
     private Integer numerocomponenti;
-    @Size(max = 9)
+    @Size(max = 20)
     @Column(length = 9)
     private String tipologia;
     @Size(max = 45)
