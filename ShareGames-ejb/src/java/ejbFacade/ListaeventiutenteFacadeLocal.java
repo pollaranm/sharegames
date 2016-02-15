@@ -66,6 +66,10 @@ public interface ListaeventiutenteFacadeLocal {
      * Quando un utente vuole partecipare ad un evento registra su listaeventiutente un nuovo record
      */
     Listaeventiutente addEventoUtente(int idevento, int idutente);
+
+    Listaeventiutente getObjByIdUtenteIdEvento(int idutente, int idevento);
+
+    void removeEventoUtente(int idevento, int idutente);
     
     
 }

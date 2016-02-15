@@ -30,6 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Listaeventiutente.findAll", query = "SELECT l FROM Listaeventiutente l"),
+    @NamedQuery(name = "Listaeventiutente.deleteIdUtenteIdEvento", query = "DELETE FROM Listaeventiutente l WHERE l.listaeventiutentePK.idutente = :idutente AND l.listaeventiutentePK.idevento = :idevento"),
     @NamedQuery(name = "Listaeventiutente.findByIdlistaeventiutente", query = "SELECT l FROM Listaeventiutente l WHERE l.listaeventiutentePK.idlistaeventiutente = :idlistaeventiutente"),
     @NamedQuery(name = "Listaeventiutente.findByIdevento", query = "SELECT l FROM Listaeventiutente l WHERE l.listaeventiutentePK.idevento = :idevento"),
     @NamedQuery(name = "Listaeventiutente.findByIdutente", query = "SELECT l FROM Listaeventiutente l WHERE l.listaeventiutentePK.idutente = :idutente"),
