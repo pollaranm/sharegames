@@ -96,12 +96,12 @@ public class EventiController extends HttpServlet {
 
         if (action.equals("getsport")) {
             String sport = "";
-            sport += "<option value='calcio5'>Calcio a 5</option>"
-                    + "<option value='calcio7'>Calcio a 7</option>"
-                    + "<option value='calcio11'>Calcio a 11</option>"
-                    + "<option value='pallavolo'>Pallavolo</option>"
-                    + "<option value='pallacanestro'>Pallacanestro</option>"
-                    + "<option value='tennis'>Tennis</option>";
+            sport += "<option value='Calcio a 5'>Calcio a 5</option>"
+                    + "<option value='Calcio a 7'>Calcio a 7</option>"
+                    + "<option value='Calcio a 11'>Calcio a 11</option>"
+                    + "<option value='Pallavolo'>Pallavolo</option>"
+                    + "<option value='Basket'>Basket</option>"
+                    + "<option value='Tennis'>Tennis</option>";
             try (PrintWriter out = response.getWriter()) {
                 out.write(sport);
                 out.close();
