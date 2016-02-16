@@ -55,7 +55,7 @@ public class Evento implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
-    @Column(nullable = false, length = 9)
+    @Column(nullable = false, length = 20)
     private String sport;
     @Basic(optional = false)
     @NotNull

@@ -25,7 +25,27 @@ $(document).ready(function () {
     });
 
     $("#searchFields").click(function () {
-        alert($('#createData').val());
+        provincia = document.getElementById("createProvincia").value;
+        sport = document.getElementById("createSport").value;
+        dataE = document.getElementById("createData").value;
+        ora = document.getElementById("createOra").value;
+        $.ajax({
+            type: "POST",
+            url: "EventiController",
+            data: {
+                action: 'searchFields',
+                provincia: provincia,
+                sport: sport,
+                dataE: dataE,
+                ora: ora
+            },
+            success: function (data) {
+                $("#exploreResearch").html(data);
+            },
+            error: function (xhr, status, error) {
+                alert(error);
+            }
+        });
     });
 
 });
@@ -111,3 +131,44 @@ function setupOraCreate() {
     });
 }
 
+//Metodo in ascolto per la creazione di un evento
+$(document).on("click", ".createE", function () {
+    form = $(this).closest("form");
+    idC = form.find("#idCampo").val();
+    idI = form.find("#idImpianto").val();
+    ora = $("#createOra").val();
+    data = $("#createData").val();
+    sport = $("#createSport").val();
+    if (idC === "") {
+        alert("Devi scegliere un campo in cui giocare!");
+    } else {
+        form.closest("div").fadeOut("slow");
+        $.ajax({
+            type: "POST",
+            url: "EventiController",
+            data: {
+                action: "createEvento",
+                idC: idC,
+                idI: idI,
+                ora: ora,
+                data: data,
+                sport: sport
+            },
+            success: function (data) {
+                setTimeout(function () {
+                    getNextEvents();
+                    ;
+                }, 1000);
+            },
+            error: function (xhr, status, error) {
+                alert(error);
+            }
+        });
+    }
+
+});
+
+//Sciccheria grafica per la rimozione del placeholder nella select del campo
+$(document).on("click", "#idCampo", function () {
+    $(this).find('option:disabled').remove();
+});
