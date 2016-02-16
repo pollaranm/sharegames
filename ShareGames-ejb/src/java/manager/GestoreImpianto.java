@@ -74,5 +74,28 @@ public class GestoreImpianto implements GestoreImpiantoLocal {
         
     }
 
+    @Override
+    public Impianto getImpiantoByNomePartitaivaTelefono(String nome, String partitaiva, String telefono) {
+        
+
+        return (Impianto)impiantoFacade.getImpiantoByNomePartitaivaTelefono(nome, partitaiva, telefono);
+    }
+
+    @Override
+    public Boolean checkImpianto(String nome, String partitaiva, String telefono) {
+        
+        
+        Impianto i = impiantoFacade.getImpiantoByNomePartitaivaTelefono(nome, partitaiva, telefono);
+
+        
+        if ( i == null){
+            
+           return false;
+           
+        } 
+           return true;
+        
+    }
+
     
 }

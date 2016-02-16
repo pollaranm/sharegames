@@ -15,12 +15,14 @@ import javax.ejb.Local;
 @Local
 public interface GestoreAmministratoreLocal {
     
-    void addAmministratore(int idImpianto, String nome, String cognome);
+    void addAmministratore(int idImpianto, String nome, String cognome, String psw);
 
     Amministratore getObjAmministratore(int idAmministratore);
 
     boolean removeAmministratore(int idAmministratore);
 
     Boolean checkAuthAmm(int id, String psw);
+
+    Amministratore getObjAmministratoreByIdimpianto(int idimpianto);
     
 }

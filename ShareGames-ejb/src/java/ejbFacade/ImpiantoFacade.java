@@ -55,5 +55,25 @@ public class ImpiantoFacade extends AbstractFacade<Impianto> implements Impianto
 
         return (List<Impianto>) q.getResultList();
     }
+
+    @Override
+    public Impianto getImpiantoByNomePartitaivaTelefono(String nome, String partitaiva, String telefono) {
     
+        Query q = em.createNamedQuery("Impianto.getImpiantoByNomePartitaivaTelefono");
+        q.setParameter("nome", nome);
+        q.setParameter("telefono", telefono);
+        q.setParameter("partitaiva", partitaiva);
+        
+        Impianto i = null;
+        
+        try {
+           i = (Impianto) q.getResultList().get(0);
+
+        } catch (Exception e) {
+            return i;
+        }
+        return i;
+    }
+
+
 }

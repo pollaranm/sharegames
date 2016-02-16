@@ -39,5 +39,8 @@ public interface AmministratoreFacadeLocal {
      * @return oggetto Amministratore
      */
     Amministratore getObjAmministratore(int idAmministratore);
+
+    Amministratore getObjAmministratoreByImpianto(int idimpianto);
+
     
 }

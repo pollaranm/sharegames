@@ -35,5 +35,9 @@ public interface ImpiantoFacadeLocal {
     List<Impianto> getImpiantoByProvincia(String provincia);
 
     List<Impianto> getImpiantoByCitta(String citta);
+
+    Impianto getImpiantoByNomePartitaivaTelefono(String nome, String partitaiva, String telefono);
+
+
     
 }

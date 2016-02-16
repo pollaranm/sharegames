@@ -3,6 +3,7 @@ package manager;
 import javax.ejb.Stateless;
 
 import ejb.Amministratore;
+import ejb.AmministratorePK;
 import ejb.Impianto;
 import ejbFacade.AmministratoreFacadeLocal;
 import javax.ejb.EJB;
@@ -32,16 +33,18 @@ public class GestoreAmministratore implements GestoreAmministratoreLocal {
      * @param cognome Cognome dell'amministratore
      */
     @Override
-    public void addAmministratore(int idImpianto, String nome, String cognome) {
+    public void addAmministratore(int idImpianto, String nome, String cognome, String psw) {
         
         Impianto i= new Impianto();
         i.setIdimpianto(idImpianto);
         
         Amministratore a = new Amministratore();
+        AmministratorePK a_pk = new AmministratorePK();
+        a.setAmministratorePK(a_pk);
+        a_pk.setPassword(psw);
         a.setIdimpianto(i);
         a.setNome(nome);
         a.setCognome(cognome);
-        
         amministratoreFacade.create(a);  
     }
 
@@ -95,6 +98,12 @@ public class GestoreAmministratore implements GestoreAmministratoreLocal {
            }
         }
         return false;
+    }
+
+    @Override
+    public Amministratore getObjAmministratoreByIdimpianto(int idimpianto) {
+        
+        return amministratoreFacade.getObjAmministratoreByImpianto(idimpianto);
     }
     
 }

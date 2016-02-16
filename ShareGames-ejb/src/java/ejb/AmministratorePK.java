@@ -19,12 +19,12 @@ import javax.validation.constraints.Size;
 @Embeddable
 public class AmministratorePK implements Serializable {
     @Basic(optional = false)
-    @Column(name = "idamministratore", nullable = false)
+    @Column(nullable = false)
     private int idamministratore;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "password", nullable = false, length = 45)
+    @Column(nullable = false, length = 45)
     private String password;
 
     public AmministratorePK() {

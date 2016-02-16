@@ -6,18 +6,21 @@
 package Servlet;
 
 import ejb.Amministratore;
+import ejb.Impianto;
 import ejb.Listaeventiutente;
 import ejb.Prezziario;
 import ejb.Utente;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.sql.SQLException;
 
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
+import javax.ejb.TransactionRolledbackLocalException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import manager.GestoreAmministratoreLocal;
 import manager.GestoreCampoLocal;
+import manager.GestoreImpiantoLocal;
 import manager.GestoreListaEventiLocal;
 import manager.GestorePrezziarioLocal;
 import manager.GestoreUtenteLocal;
@@ -39,6 +43,8 @@ import org.json.simple.parser.ParseException;
  * @author Alex
  */
 public class rest extends HttpServlet {
+    @EJB
+    private GestoreImpiantoLocal gestoreImpianto;
     @EJB
     private GestoreListaEventiLocal gestoreListaEventi;
     @EJB
@@ -62,37 +68,99 @@ public class rest extends HttpServlet {
         
         if(action.equals("auth")){
             
-            int id = Integer.parseInt(request.getParameter("id"));
-            String psw  = request.getParameter("psw");
+            JSONObject json = new JSONObject();
+            try{
+                    
+                    String gg = request.getParameter("json");
+                            
+                    if (request.getParameter("registrazione").equals("false")){
+                        
+                        JSONObject json1 = (JSONObject) new JSONParser().parse(gg);
+                        System.out.println(gg);
+
+                        int id = Integer.parseInt(json1.get("id").toString());
+                        String psw  = json1.get("psw").toString();
+
+                        if(gestoreAmministratore.checkAuthAmm(id,psw)){
+                        Amministratore a = gestoreAmministratore.getObjAmministratore(id);
+
+                        json.put("name", a.getNome());
+                        json.put("cognome", a.getCognome());
+                        json.put("impianto",a.getIdimpianto().getNome());
+                        json.put("id", a.getAmministratorePK().getIdamministratore());
+                        json.put("via", a.getIdimpianto().getIndirizzo());
+                        json.put("idimpianto",""+a.getIdimpianto().getIdimpianto());
+                        json.put("partitaiva", a.getIdimpianto().getPartitaiva());
+                        json.put("citta", a.getIdimpianto().getCitta());
+                        response.setContentType("application/json");
+                        try (PrintWriter out = response.getWriter()) {
+                            out.print(json);
+                            out.flush();
+                            } 
+                        }
+                    }else if (request.getParameter("registrazione").equals("true")){
+                        
+                        JSONObject json1 = (JSONObject) new JSONParser().parse(gg);
+                        System.out.println(gg);
+
+                        String nomeimpianto = (json1.get("nomeimpianto").toString());
+                        String regione = (json1.get("regione").toString());
+                        String provincia = (json1.get("provincia").toString());
+                        String citta = (json1.get("citta").toString());
+                        String indirizzo = (json1.get("indirizzo").toString());
+                        String telefono = (json1.get("telefono").toString());
+                        String partitaiva = (json1.get("partitaiva").toString());
+                        String nomeamministratore = (json1.get("nomeamministratore").toString());
+                        String cognomeamministratore = (json1.get("cognomeamministratore").toString());
+                        String psw  = json1.get("psw").toString();
+                        
+                        Impianto i = null;
+                        Amministratore a = null;
+                        
+                        
+                        if(gestoreImpianto.checkImpianto(nomeimpianto, partitaiva, telefono)){
+                            
+                            json.put("risultato", "errore");
+                            System.out.println(json);
+                             response.setContentType("application/json");
+                            try (PrintWriter out = response.getWriter()) {
+                            out.print(json);
+                            out.flush();
+                            } 
+
+                        }else {
+                           gestoreImpianto.addImpianto(nomeimpianto, "Italia", regione, provincia, citta, indirizzo, telefono, partitaiva, "08-22", provincia);
+                           i = gestoreImpianto.getImpiantoByNomePartitaivaTelefono(nomeimpianto, partitaiva, telefono);
+                           gestoreAmministratore.addAmministratore(i.getIdimpianto(), nomeamministratore, cognomeamministratore, psw);
+                           a = gestoreAmministratore.getObjAmministratoreByIdimpianto(i.getIdimpianto());
+                           
+                           
+                            json.put("risultato", "Eseguito");
+                            json.put("name", nomeamministratore);
+                            json.put("cognome", cognomeamministratore);
+                            json.put("impianto",nomeimpianto);
+                            json.put("id","5");
+                            json.put("via", indirizzo);
+                            json.put("idimpianto","5");
+                            json.put("partitaiva", partitaiva);
+                            json.put("citta", citta);
+                            response.setContentType("application/json");
+                            try (PrintWriter out = response.getWriter()) {
+                            out.print(json);
+                            out.flush();
+                            } 
+                        }
+
+                    }
+                    
+                    json.put("risultato", "errore");
+                    PrintWriter out = response.getWriter();
+                            out.print(json);
+                            out.flush();
             
-            if(gestoreAmministratore.checkAuthAmm(id,psw)){
-                Amministratore a = gestoreAmministratore.getObjAmministratore(id);
-                JSONObject json = new JSONObject();
-            
-                json.put("name", a.getNome());
-                json.put("cognome", a.getCognome());
-                json.put("impianto",a.getIdimpianto().getNome());
-                json.put("id", a.getAmministratorePK().getIdamministratore());
-                json.put("via", a.getIdimpianto().getIndirizzo());
-                json.put("idimpianto",""+a.getIdimpianto().getIdimpianto());
-                json.put("partitaiva", a.getIdimpianto().getPartitaiva());
-                json.put("citta", a.getIdimpianto().getCitta());
-                response.setContentType("application/json");
-                try (PrintWriter out = response.getWriter()) {
-                    out.print(json);
-                    out.flush();
-                } 
-            }
-            else{
-                JSONObject json = new JSONObject();
-                json.put("risultato", "Errore");
-                response.setContentType("application/json");
-                try (PrintWriter out = response.getWriter()) {
-                    out.print(json);
-                    out.flush();
-                } 
-                
-            }
+                }catch(ParseException ex){
+                    Logger.getLogger(rest.class.getName()).log(Level.SEVERE, null, ex);
+                    }
         }else if(action.equals("getPrezziario")){
             
             JSONObject json = new JSONObject();

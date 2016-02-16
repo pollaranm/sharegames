@@ -37,5 +37,16 @@ public class AmministratoreFacade extends AbstractFacade<Amministratore> impleme
         
         return (Amministratore) q.getResultList().get(0);
     }
+
+    @Override
+    public Amministratore getObjAmministratoreByImpianto(int idimpianto) {
+        
+        Query q=em.createNamedQuery("Amministratore.findByIdimpianto");
+        q.setParameter("idimpianto", idimpianto);
+        
+        return (Amministratore) q.getResultList().get(0);
+    }
+    
+    
     
 }
