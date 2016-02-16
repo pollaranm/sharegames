@@ -190,8 +190,8 @@ public class SquadraController extends HttpServlet {
         if (action.equals("leaveTeam")) {
             gestoreUtente.leaveSquadra(gestoreUtente.getObjUtente(id, social));
             request.getSession().setAttribute("team", null);
-            rdErr = ctx.getRequestDispatcher("/personal.jsp");
-            rdErr.forward(request, response);
+
+            request.getRequestDispatcher("/personal.jsp").forward(request, response);
         }
     }
 

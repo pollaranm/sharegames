@@ -22,16 +22,7 @@
         <script src="js-nico/squadra.js"></script>
         <script src="js-nico/storico.js"></script>
         <script src="js-nico/prossimieventi.js"></script>
-
-        <script src="js-dario/evento.js"></script>
         <script src="js-dario/cercaevento.js"></script>
-        <!--<script src="js-dario/data.js"></script>
-        <script src="js-dario/storicoeventi.js"></script>
-        <script src="js-dario/formselect.js"></script>
-        <script src="js-dario/data.js"></script>-->
-
-
-
 
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 
