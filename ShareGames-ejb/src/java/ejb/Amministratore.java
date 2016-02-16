@@ -34,8 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Amministratore.findByIdamministratore", query = "SELECT a FROM Amministratore a WHERE a.amministratorePK.idamministratore = :idamministratore"),
     @NamedQuery(name = "Amministratore.findByNome", query = "SELECT a FROM Amministratore a WHERE a.nome = :nome"),
     @NamedQuery(name = "Amministratore.findByCognome", query = "SELECT a FROM Amministratore a WHERE a.cognome = :cognome"),
-    @NamedQuery(name = "Amministratore.findByPassword", query = "SELECT a FROM Amministratore a WHERE a.amministratorePK.password = :password"),
-    @NamedQuery(name = "Amministratore.findByIdimpianto", query = "SELECT a FROM Amministratore a WHERE a.idimpianto = :idimpianto")})
+    @NamedQuery(name = "Amministratore.findByPassword", query = "SELECT a FROM Amministratore a WHERE a.amministratorePK.password = :password")})
 public class Amministratore implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId

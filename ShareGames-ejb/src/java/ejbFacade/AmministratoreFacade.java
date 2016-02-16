@@ -6,6 +6,8 @@
 package ejbFacade;
 
 import ejb.Amministratore;
+import ejb.Campo;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -41,10 +43,24 @@ public class AmministratoreFacade extends AbstractFacade<Amministratore> impleme
     @Override
     public Amministratore getObjAmministratoreByImpianto(int idimpianto) {
         
-        Query q=em.createNamedQuery("Amministratore.findByIdimpianto");
-        q.setParameter("idimpianto", idimpianto);
+        Query q=em.createNamedQuery("Amministratore.findAll");
+
+                 
+        List<Amministratore> a ;
+        a=(List<Amministratore>)q.getResultList();
+
+        for(int i = 0;i<a.size();i++){
+
+            if(a.get(i).getIdimpianto().getIdimpianto() == idimpianto){
+
+                return (Amministratore)a.get(i);
+            }
+
+        }
+                
+        return null;
         
-        return (Amministratore) q.getResultList().get(0);
+        
     }
     
     

@@ -74,23 +74,24 @@ public class Controller extends HttpServlet {
             out.println("<head>");
             out.println("<title>Servlet Controller</title>");
 
+            //System.out.println(gestoreAmministratore.getObjAmministratoreByIdimpianto(72));
             //*************************************************************************
             //Preload delle mappe in caso di problemi di autorizzazione Google
-            List<Impianto> listaI = gestoreImpianto.getImpiantoByProvincia("Torino");
-            for (Impianto temp : listaI) {
-                String address = temp.getIndirizzo() + " " + temp.getProvincia();
-                address = address.replace(" ", "+");
-                String url = "http://maps.google.com/maps/api/staticmap?markers=size:mid|color:blue|" + address + "&size=500x300&sensor=false&size=600x300&key=AIzaSyAbz8o3xVmsMTpHh3DRWO1kIW38K3zBVJ4";
-                InputStream responseStream = new URL(url).openStream();
-                System.out.println(responseStream.toString());
-            } 
-            for (Impianto temp : listaI) {
-                String address = temp.getIndirizzo() + " " + temp.getProvincia();
-                address = address.replace(" ", "+");
-                String url = "http://maps.google.com/maps/api/staticmap?markers=size:mid|color:blue|" + address + "&size=500x300&sensor=false&size=600x300&key=AIzaSyAbz8o3xVmsMTpHh3DRWO1kIW38K3zBVJ4";
-                out.println("<img src='"+url+"'/>");
-                out.println("<a href='"+url+"'>link</a>");
-            }
+//            List<Impianto> listaI = gestoreImpianto.getImpiantoByProvincia("Torino");
+//            for (Impianto temp : listaI) {
+//                String address = temp.getIndirizzo() + " " + temp.getProvincia();
+//                address = address.replace(" ", "+");
+//                String url = "http://maps.google.com/maps/api/staticmap?markers=size:mid|color:blue|" + address + "&size=500x300&sensor=false&size=600x300&key=AIzaSyAbz8o3xVmsMTpHh3DRWO1kIW38K3zBVJ4";
+//                InputStream responseStream = new URL(url).openStream();
+//                System.out.println(responseStream.toString());
+//            } 
+//            for (Impianto temp : listaI) {
+//                String address = temp.getIndirizzo() + " " + temp.getProvincia();
+//                address = address.replace(" ", "+");
+//                String url = "http://maps.google.com/maps/api/staticmap?markers=size:mid|color:blue|" + address + "&size=500x300&sensor=false&size=600x300&key=AIzaSyAbz8o3xVmsMTpHh3DRWO1kIW38K3zBVJ4";
+//                out.println("<img src='"+url+"'/>");
+//                out.println("<a href='"+url+"'>link</a>");
+//            }
             //*************************************************************************
             
             //gestoreImpianto.addImpianto();

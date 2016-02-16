@@ -139,9 +139,9 @@ public class rest extends HttpServlet {
                             json.put("name", nomeamministratore);
                             json.put("cognome", cognomeamministratore);
                             json.put("impianto",nomeimpianto);
-                            json.put("id","5");
+                            json.put("id",a.getAmministratorePK().getIdamministratore());
                             json.put("via", indirizzo);
-                            json.put("idimpianto","5");
+                            json.put("idimpianto",""+a.getIdimpianto().getIdimpianto());
                             json.put("partitaiva", partitaiva);
                             json.put("citta", citta);
                             response.setContentType("application/json");
