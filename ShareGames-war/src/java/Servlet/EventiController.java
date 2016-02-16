@@ -108,6 +108,21 @@ public class EventiController extends HttpServlet {
             }
         }
 
+        if (action.equals("getora")) {
+            String orari = "";
+            int i;
+            for (i = 7; i < 10; i++) {
+                orari += "<option value='0" + i + ":00'>0" + i + ":00</option>";
+            }
+            for (i = 10; i < 24; i++) {
+                orari += "<option value='" + i + ":00'>" + i + ":00</option>";
+            }
+            try (PrintWriter out = response.getWriter()) {
+                out.write(orari);
+                out.close();
+            }
+        }
+
         if (action.equals("searchEvento")) {
             String prov = (String) request.getParameter("prov");
             String sport = (String) request.getParameter("sport");
@@ -349,13 +364,13 @@ public class EventiController extends HttpServlet {
         if (action.equals("withdrawEvento")) {
             Integer idEvento = new Integer((String) request.getParameter("idEvento"));
             gestoreListaEventi.removeEventoUtente(idEvento, userid);
-            Evento tempE = gestoreEvento.getEvento(idEvento);          
+            Evento tempE = gestoreEvento.getEvento(idEvento);
             tempE.setCompleto("no");
             tempE.setGiocatoripagato(tempE.getGiocatoripagato() - 1);
             gestoreEvento.updateEvento(tempE);
 
         }
-        
+
         if (action.equals("deleteEvento")) {
             Integer idEvento = new Integer((String) request.getParameter("idEvento"));
             gestoreEvento.removeEvento(idEvento);
