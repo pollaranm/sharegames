@@ -54,7 +54,7 @@
                     <div class="social" style="margin-top: 4%"> <span>Scegli il social network</br>che vuoi utilizzare</span></div>
                     <div class="buttons">
                         <a onclick="fb_login();" id="bottone"><button id="bottone" style="font-size: medium; text-transform: capitalize;" class="facebook" ><i class="fa fa-facebook"></i>Facebook</button></a>
-                        <a onclick="twitter_login();"><button style="font-size: medium; text-transform: capitalize;" class="twitter" ><i class="fa fa-twitter"></i>Twitter</button></a>
+                        <a style="pointer-events: none;cursor: default;"><button style="font-size: medium; text-transform: lowercase;" class="" ><i class=""></i>... oppure ...</button></a>
                         <div id="buttonGoogle">
                             <button style="font-size: medium; text-transform: capitalize;" class="google"><i class="fa fa-google-plus"></i>Google</button>
                         </div>
