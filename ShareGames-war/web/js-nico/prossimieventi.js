@@ -1,5 +1,5 @@
 $(document).ready(function () {
-//inizializzazione campo regioni per la ricerca
+    //inizializzazione campo regioni per la ricerca
     getNextEvents();
 });
 
@@ -28,7 +28,7 @@ $(document).on("click", ".cancellaE", function () {
         success: function (data) {
             setTimeout(function () {
                 alert("Evento cancellato!");
-                getNextEvents(); //ricordars di toglierlo e mettere una chiamata alla ajax che ripopola la sezione eventi
+                getNextEvents();
                 ;
             }, 1000);
         },

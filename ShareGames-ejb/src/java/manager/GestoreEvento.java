@@ -101,7 +101,7 @@ public class GestoreEvento implements GestoreEventoLocal {
         l.setListaeventiutentePK(l_pk);
         l.setEvento(tmp);
         l.setUtente(u);
-        l.setPostopagato("no");
+        l.setPostopagato("si");
         l.setProprietario("si");
         
         listaeventiutenteFacade.create(l);

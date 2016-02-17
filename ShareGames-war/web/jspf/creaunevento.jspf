@@ -1,7 +1,53 @@
 <section id="creaunevento" class="one dark cover">
     <div class="container">
+
         <header>
-            <h2>Crea un evento</h2>
+            <h2 class="alt">Crea un evento</h2>
         </header>
+        <div id="wrapper">
+            <div id='createForm'>
+                <form onsubmit='return false'>
+                    <div class="col-3">
+                        <label>Seleziona la regione: 
+                            <select id="createRegione" name="createRegione" tabindex="1">
+                            </select>
+                        </label>
+                    </div> 
+                    <div class="col-3">
+                        <label> Seleziona la provincia:  
+                            <select id="createProvincia" name="createProvincia" tabindex="2">
+                            </select>
+                        </label>
+                    </div>
+                    <div class="col-3">
+                        <label> Seleziona lo sport:
+                            <select id="createSport" name="createSport" tabindex="3">
+                            </select>
+                        </label>
+                    </div>
+                    <div class="col-2">
+                        <label> Seleziona il giorno:  
+                            <input type="date" id="createData" name="createData" tabindex="4">
+<!--                            <script>
+                                $(function () {
+                                    $("#datepicker").datepicker();
+                                });
+                            </script>-->
+                        </label>
+                    </div>
+                    <div class="col-2">
+                        <label> Seleziona l'ora:
+                            <select id="createOra" name="createOra">
+                            </select>
+                        </label>
+                    </div>
+                    <div class="col-submit">
+                        <button class="submitbtn" id="searchFields">Cerca campi disponibili</button>
+                    </div>
+                </form>
+            </div>
+            <div id="exploreResearch">
+            </div>
+        </div>
     </div>
 </section>

@@ -108,6 +108,21 @@ public class EventiController extends HttpServlet {
             }
         }
 
+        if (action.equals("getora")) {
+            String orari = "";
+            int i;
+            for (i = 7; i < 10; i++) {
+                orari += "<option value='0" + i + ":00'>0" + i + ":00</option>";
+            }
+            for (i = 10; i < 24; i++) {
+                orari += "<option value='" + i + ":00'>" + i + ":00</option>";
+            }
+            try (PrintWriter out = response.getWriter()) {
+                out.write(orari);
+                out.close();
+            }
+        }
+
         if (action.equals("searchEvento")) {
             String prov = (String) request.getParameter("prov");
             String sport = (String) request.getParameter("sport");
@@ -244,7 +259,7 @@ public class EventiController extends HttpServlet {
                     }
 
                 } else {
-                    html = "Nessun evento presente con queste caratteristiche!";
+                    html = "Non hai ancora partecipato a nessun evento...";
                 }
 
                 html += "</form></div>";
@@ -349,16 +364,136 @@ public class EventiController extends HttpServlet {
         if (action.equals("withdrawEvento")) {
             Integer idEvento = new Integer((String) request.getParameter("idEvento"));
             gestoreListaEventi.removeEventoUtente(idEvento, userid);
-            Evento tempE = gestoreEvento.getEvento(idEvento);          
+            Evento tempE = gestoreEvento.getEvento(idEvento);
             tempE.setCompleto("no");
             tempE.setGiocatoripagato(tempE.getGiocatoripagato() - 1);
             gestoreEvento.updateEvento(tempE);
 
         }
-        
+
         if (action.equals("deleteEvento")) {
             Integer idEvento = new Integer((String) request.getParameter("idEvento"));
             gestoreEvento.removeEvento(idEvento);
+
+        }
+
+        if (action.equals("searchFields")) {
+            String provincia = (String) request.getParameter("provincia");
+            String data = (String) request.getParameter("dataE");
+            String ora = (String) request.getParameter("ora");
+            String sport = (String) request.getParameter("sport");
+            try {
+                String myDriver = "com.mysql.jdbc.Driver";
+                String myUrl = "jdbc:mysql://localhost:3306/newsharegames?zeroDateTimeBehavior=convertToNull";
+                Class.forName(myDriver);
+                Connection conn = DriverManager.getConnection(myUrl, "root", "root");
+                String query = ""
+                        + "SELECT * FROM impianto, campo, prezziario "
+                        + "WHERE campo.idimpianto=impianto.idimpianto "
+                        + "AND campo.idcampo = prezziario.idcampo "
+                        + "AND campo.idimpianto = prezziario.idimpianto "
+                        + "AND impianto.provincia = '" + provincia + "' "
+                        + "AND campo.tipologia = '" + sport + "' "
+                        + "AND NOT EXISTS "
+                        + "(SELECT * FROM evento "
+                        + "WHERE evento.idimpianto = campo.idimpianto "
+                        + "AND evento.idcampo = campo.idcampo "
+                        + "AND evento.data = '" + data + "' "
+                        + "AND evento.ora = '" + ora + "') "
+                        + "ORDER BY impianto.idimpianto ";
+
+                java.sql.Statement st = conn.createStatement();
+                ResultSet rs = st.executeQuery(query);
+
+                String html = "<div id='wrapper' style='float:left;width: 50%'>"
+                        + "  <form onsubmit='return false'>";
+                int imp = -1;
+                if (rs.isBeforeFirst()) {
+                    rs.next();
+                    String address = rs.getString("impianto.indirizzo") + " " + rs.getString("impianto.citta");
+                    address = address.replace(" ", "+");
+                    Double tempPrice = new Double(rs.getDouble("prezzo") * (Double) (100.00 - rs.getDouble("sconto")) / 100);
+                    String actualPrice = String.format("%.2f", tempPrice);
+                    html += ""
+                            + "<div class='col-1'>"
+                            + "    <label style='text-align: center'>"
+                            + "        <input style='text-align: center' value='" + rs.getString("impianto.nome") + "' readonly='true'>"
+                            + "        <input style='text-align: center' value='" + rs.getString("impianto.indirizzo") + " " + rs.getString("impianto.citta") + "' readonly='true'>"
+                            + "        <img class='gmaps' style='width:94%;height:auto' "
+                            + "        src='http://maps.google.com/maps/api/staticmap?markers=size:mid|color:blue|" + address + "&size=500x300&sensor=false&size=600x300&key=AIzaSyAbz8o3xVmsMTpHh3DRWO1kIW38K3zBVJ4'>"
+                            + "        </img>"
+                            + "        <input type='hidden' id='idImpianto' name='idImpianto' value='" + rs.getString("idimpianto") + "'>"
+                            + "        <select id='idCampo' name='idCampo'>"
+                            + "            <option value='" + rs.getString("idcampo") + "'>Campo n°" + rs.getString("idcampo") + " - " + actualPrice + "&euro; a testa";
+
+                    while (rs.next()) {
+                        if (imp == rs.getInt("idimpianto")) {
+                            tempPrice = new Double(rs.getDouble("prezzo") * (Double) (100.00 - rs.getDouble("sconto")) / 100);
+                            actualPrice = String.format("%.2f", tempPrice);
+                            html += "<option value='" + rs.getString("idcampo") + "'>Campo n°" + rs.getString("idcampo") + " - " + actualPrice + "&euro; a testa</option>";;
+
+                        } else {
+                            imp = rs.getInt("idimpianto");
+                            html += ""
+                                    + "</select>"
+                                    + "<button class='button createE'>Crea evento</button>"
+                                    + "</label>"
+                                    + "</div>"
+                                    + "</form>"
+                                    + "</div>"
+                                    + "<div id='wrapper' style='float:left;width: 50%'>"
+                                    + "  <form onsubmit='return false'>";
+
+                            address = rs.getString("impianto.indirizzo") + " " + rs.getString("impianto.citta");
+                            address = address.replace(" ", "+");
+                            tempPrice = new Double(rs.getDouble("prezzo") * (Double) (100.00 - rs.getDouble("sconto")) / 100);
+                            actualPrice = String.format("%.2f", tempPrice);
+                            html += ""
+                                    + "<div class='col-1'>"
+                                    + "    <label style='text-align: center'>"
+                                    + "        <input style='text-align: center' value='" + rs.getString("impianto.nome") + "' readonly='true'>"
+                                    + "        <input style='text-align: center' value='" + rs.getString("impianto.indirizzo") + " " + rs.getString("impianto.citta") + "' readonly='true'>"
+                                    + "        <img class='gmaps' style='width:94%;height:auto' "
+                                    + "        src='http://maps.google.com/maps/api/staticmap?markers=size:mid|color:blue|" + address + "&size=500x300&sensor=false&size=600x300&key=AIzaSyAbz8o3xVmsMTpHh3DRWO1kIW38K3zBVJ4'>"
+                                    + "        </img>"
+                                    + "        <input type='hidden' id='idImpianto' name='idImpianto' value='" + rs.getString("idimpianto") + "'>"
+                                    + "        <select id='idCampo' name='idCampo'>"
+                                    + "            <option value='" + rs.getString("idcampo") + "'>Campo n°" + rs.getString("idcampo") + " - " + actualPrice + "&euro; a testa";
+                        }
+                    }
+                    html += "</select>"
+                            + "<button class='button createE'>Crea evento</button>"
+                            + "</label>"
+                            + "</div>";
+
+                } else {
+                    html = "Nessun campo disponibile per questa richiesta! Prova altre date od orari.";
+                }
+
+                html += "</form></div>";
+
+                try (PrintWriter out = response.getWriter()) {
+                    out.write(html);
+                    out.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (action.equals("createEvento")) {
+            Integer idimpianto = new Integer((String) request.getParameter("idI"));
+            Integer idcampo = new Integer((String) request.getParameter("idC"));
+            String data = (String) request.getParameter("data");
+            String ora = (String) request.getParameter("ora");
+            String sport = (String) request.getParameter("sport");
+//            System.out.println(idimpianto);
+//            System.out.println(idcampo);
+//            System.out.println(data);
+//            System.out.println(ora);
+//            System.out.println(sport);
+//            System.out.println(userid);
+            gestoreEvento.addEvento(idimpianto, idcampo, data, ora, sport, "si", "no", 1, userid);
 
         }
 

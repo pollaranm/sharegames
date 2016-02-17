@@ -22,17 +22,8 @@
         <script src="js-nico/squadra.js"></script>
         <script src="js-nico/storico.js"></script>
         <script src="js-nico/prossimieventi.js"></script>
-
-        <script src="js-dario/evento.js"></script>
         <script src="js-dario/cercaevento.js"></script>
-        <!--<script src="js-dario/data.js"></script>
-        <script src="js-dario/storicoeventi.js"></script>
-        <script src="js-dario/formselect.js"></script>
-        <script src="js-dario/data.js"></script>-->
-
-
-
-
+        <script src="js-nico/creaevento.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 
         <noscript>
@@ -47,9 +38,7 @@
         <link rel="stylesheet" type="text/css" media="all" href="css-p/styles-p.css">
         <link rel="stylesheet" type="text/css" media="all" href="css-p/switchery.min-p.css">
         <script type="text/javascript" src="js-p/switchery.min-p.js"></script>
-        
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/south-street/jquery-ui.css">
-        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
     </head>
     <body>
 
