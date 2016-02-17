@@ -157,7 +157,7 @@ $(document).on("click", ".createE", function () {
             success: function (data) {
                 setTimeout(function () {
                     getNextEvents();
-                    ;
+                    alert("Nuovo evento creato!");
                 }, 1000);
             },
             error: function (xhr, status, error) {

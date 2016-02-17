@@ -17,21 +17,8 @@ $(document).ready(function () {
         });
     });
 
-    //effettua la ricerca degli eventi per la sezione "Cerca un evento"
     $("#searchEvento").click(function () {
-        provincia = document.getElementById("searchProvincia").value;
-        sport = document.getElementById("searchSport").value;
-        $.ajax({
-            type: "POST",
-            url: "EventiController",
-            data: {action: "searchEvento", prov: provincia, sport: sport},
-            success: function (data) {
-                $("#seeevento").html(data);
-            },
-            error: function (xhr, status, error) {
-                alert(error);
-            }
-        });
+        searchEvento();
     });
 });
 
@@ -49,8 +36,8 @@ $(document).on("click", ".partecipa", function () {
         success: function (data) {
             setTimeout(function () {
                 alert("Partecipazione registrata!");
-                location.reload(); //ricordars di toglierlo e mettere una chiamata alla ajax che ripopola la sezione eventi
-                ;
+                searchEvento();
+                getNextEvents();
             }, 1000);
         },
         error: function (xhr, status, error) {
@@ -93,6 +80,23 @@ function setupFormRicerca() {
         data: {action: "getsport"},
         success: function (data) {
             $("#searchSport").html(data);
+        },
+        error: function (xhr, status, error) {
+            alert(error);
+        }
+    });
+}
+
+//effettua la ricerca degli eventi per la sezione "Cerca un evento"
+function searchEvento() {
+    provincia = document.getElementById("searchProvincia").value;
+    sport = document.getElementById("searchSport").value;
+    $.ajax({
+        type: "POST",
+        url: "EventiController",
+        data: {action: "searchEvento", prov: provincia, sport: sport},
+        success: function (data) {
+            $("#seeevento").html(data);
         },
         error: function (xhr, status, error) {
             alert(error);
