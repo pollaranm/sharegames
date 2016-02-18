@@ -71,19 +71,24 @@ public class ListaeventiutenteController extends HttpServlet {
                         + "  <form id='mystorico' onsubmit='return false'>";
                 if (rs.isBeforeFirst()) {
                     while (rs.next()) {
-                        html += "   <div class='col-3'>"
+                        html += "   <div class='col-4'>"
                                 + "    <label>"
-                                + "        <input value='" + rs.getString("data") + " " + rs.getString("sport") + "' readonly='true'>"
+                                + "        <input value='" + rs.getString("data") + "' readonly='true' style='text-align:center'>"
                                 + "    </label>"
                                 + "</div>"
-                                + "<div class='col-3'>"
+                                + "<div class='col-4'>"
                                 + "    <label>"
-                                + "        <input value='" + rs.getString("impianto.nome") + "' readonly='true'>"
+                                + "        <input value='" + rs.getString("sport") + "' readonly='true' style='text-align:center'>"
                                 + "    </label>"
                                 + "</div>"
-                                + "<div class='col-3'>"
+                                + "<div class='col-4'>"
                                 + "    <label>"
-                                + "        <input value='" + rs.getString("impianto.indirizzo") + " - " + rs.getString("impianto.provincia") + "' readonly='true'>"
+                                + "        <input value='" + rs.getString("impianto.nome") + "' readonly='true' style='text-align:center'>"
+                                + "    </label>"
+                                + "</div>"
+                                + "<div class='col-4'>"
+                                + "    <label>"
+                                + "        <input value='" + rs.getString("impianto.provincia") + " - " + rs.getString("impianto.indirizzo") + "' readonly='true' style='text-align:center'>"
                                 + "    </label>"
                                 + "</div>";
                     }
@@ -132,11 +137,11 @@ public class ListaeventiutenteController extends HttpServlet {
                         Double tempPrice = new Double(rs.getDouble("prezzo") * (Double) (100.00 - rs.getDouble("sconto")) / 100);
                         String actualPrice = String.format("%.2f", tempPrice);
                         temp = " <article class='item'>"
-                                + "  <h3>Evento n°" + rs.getString("idevento") + "<br>" + rs.getString("sport") + "</h3>"
                                 + "  <header>"
                                 + "    <ul style='text - align: left;margin - left: 5%'>"
                                 + "      <li><span>Data: " + rs.getString("data") + " - " + rs.getString("ora") + "</span></li>"
-                                + "      <li><span>Giocatori: " + rs.getString("giocatoripagato") + "</span></li>"
+                                + "      <li><span>Sport: " + rs.getString("sport") + "</span></li>"
+                                + "      <li><span>Giocatori: " + rs.getString("giocatoripagato") + "</span></li>" //usare 'completo' per fare fare la spunta ok o meno
                                 + "      <li><span>Costo: " + actualPrice + " &euro;</span></li>"
                                 + "      <li><span>" + rs.getString("nome") + "</span></li>"
                                 + "      <li><span>" + rs.getString("indirizzo") + ", " + rs.getString("citta") + "</span></li>"

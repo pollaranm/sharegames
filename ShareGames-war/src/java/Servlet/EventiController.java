@@ -99,8 +99,10 @@ public class EventiController extends HttpServlet {
                 String myUrl = "jdbc:mysql://localhost:3306/newsharegames?zeroDateTimeBehavior=convertToNull";
                 Class.forName(myDriver);
                 Connection conn = DriverManager.getConnection(myUrl, "root", "root");
-                String query = "SELECT * FROM evento, impianto WHERE "
+                String query = "SELECT * FROM evento, impianto, prezziario WHERE "
                         + "evento.idimpianto=impianto.idimpianto "
+                        + "AND evento.idimpianto=prezziario.idimpianto "
+                        + "AND evento.idcampo=prezziario.idcampo "
                         + "AND evento.data >= curdate() "
                         + "AND impianto.provincia = '" + prov + "' "
                         + "AND evento.sport = '" + sport + "' "
@@ -121,11 +123,13 @@ public class EventiController extends HttpServlet {
                     while (rs.next()) {
                         String address = rs.getString("impianto.indirizzo") + " " + rs.getString("impianto.citta");
                         address = address.replace(" ", "+");
+                        Double tempPrice = new Double(rs.getDouble("prezzo") * (Double) (100.00 - rs.getDouble("sconto")) / 100);
+                        String actualPrice = String.format("%.2f", tempPrice);
                         temp = " <article class='item'>"
                                 + "  <header>"
                                 + "    <ul style='text - align: left;margin - left: 5%'>"
-                                + "      <li><span>Data: " + rs.getString("data") + "</span></li>"
-                                + "      <li><span>Ora: " + rs.getString("ora") + "</span></li>"
+                                + "      <li><span>Data: " + rs.getString("data") + " - " + rs.getString("ora") + "</span></li>"
+                                + "      <li><span>Costo: " + actualPrice + " &euro;</span></li>"
                                 + "      <li><span>Giocatori: " + rs.getString("giocatoripagato") + "</span></li>"
                                 + "      <li><span>" + rs.getString("nome") + "</span></li>"
                                 + "      <li><span>" + rs.getString("indirizzo") + ", " + rs.getString("citta") + "</span></li>"
