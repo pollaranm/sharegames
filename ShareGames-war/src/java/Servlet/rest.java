@@ -13,14 +13,12 @@ import ejb.Utente;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
-import java.sql.SQLException;
 
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
-import javax.ejb.TransactionRolledbackLocalException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -83,7 +81,8 @@ public class rest extends HttpServlet {
 
                         if(gestoreAmministratore.checkAuthAmm(id,psw)){
                         Amministratore a = gestoreAmministratore.getObjAmministratore(id);
-
+                        
+                        json.put("risultato", "Eseguito");
                         json.put("name", a.getNome());
                         json.put("cognome", a.getCognome());
                         json.put("impianto",a.getIdimpianto().getNome());
@@ -97,6 +96,14 @@ public class rest extends HttpServlet {
                             out.print(json);
                             out.flush();
                             } 
+                        }else{
+                            json.put("risultato", "errore");
+                            System.out.println(json);
+                             response.setContentType("application/json");
+                            try (PrintWriter out = response.getWriter()) {
+                            out.print(json);
+                            out.flush();
+                            }
                         }
                     }else if (request.getParameter("registrazione").equals("true")){
                         
@@ -341,6 +348,41 @@ public class rest extends HttpServlet {
                     try{
                         gestoreCampo.updateCampo(id, idimpianto, tipologia, numerogiocatori);
                         gestorePrezziario.updatePrezziario(id, idimpianto, bd, sconto);
+                        
+                    }catch(Exception e){
+                        json.put("risultato","Errore");
+                        response.setContentType("application/json");
+                        try (PrintWriter out = response.getWriter()) {
+                            out.print(json);
+                            out.flush();
+                        }
+                    }
+                    
+                    json.put("risultato","Eseguito");
+                    response.setContentType("application/json");
+                    try (PrintWriter out = response.getWriter()) {
+                        out.print(json);
+                        out.flush();
+                    }
+                }catch(ParseException ex){
+                    Logger.getLogger(rest.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }else if(action.equals("eraseImpianto")){
+                
+                try{
+                    
+                    String gg = request.getParameter("json");
+                    
+                    System.out.println(gg);
+                    
+                    JSONObject json = new JSONObject();
+                    JSONObject json1 = (JSONObject) new JSONParser().parse(gg);
+
+                    int idimpianto = Integer.parseInt( json1.get("idimpianto").toString());
+
+
+                    try{
+                       gestoreImpianto.removeImpianto(idimpianto);
                         
                     }catch(Exception e){
                         json.put("risultato","Errore");

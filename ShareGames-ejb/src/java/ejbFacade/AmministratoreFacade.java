@@ -37,7 +37,15 @@ public class AmministratoreFacade extends AbstractFacade<Amministratore> impleme
         q=em.createNamedQuery("Amministratore.findByIdamministratore");
         q.setParameter("idamministratore", idAmministratore);
         
-        return (Amministratore) q.getResultList().get(0);
+        Amministratore a = null;
+        
+        try {
+           a = (Amministratore) q.getResultList().get(0);
+
+        } catch (Exception e) {
+            return a;
+        }
+        return a;
     }
 
     @Override
