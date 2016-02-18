@@ -6,7 +6,7 @@ $(document).ready(function () {
 function getNextEvents() {
     $.ajax({
         type: "POST",
-        url: "EventiController",
+        url: "ListaeventiutenteController",
         data: {action: "getnextevents"},
         success: function (data) {
             //alert(data);
@@ -44,7 +44,7 @@ $(document).on("click", ".ritiratiE", function () {
     $(this).closest("article").fadeOut("slow");
     $.ajax({
         type: "POST",
-        url: "EventiController",
+        url: "ListaeventiutenteController",
         data: {action: "withdrawEvento", idEvento: idEvento},
         success: function (data) {
             setTimeout(function () {

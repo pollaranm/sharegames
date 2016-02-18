@@ -31,7 +31,7 @@ $(document).on("click", ".partecipa", function () {
     $(this).closest("article").fadeOut("slow");
     $.ajax({
         type: "POST",
-        url: "EventiController",
+        url: "ListaeventiutenteController",
         data: {action: "joinEvento", idEvento: idEvento},
         success: function (data) {
             setTimeout(function () {

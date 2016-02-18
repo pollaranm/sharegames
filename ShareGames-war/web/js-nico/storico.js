@@ -6,7 +6,7 @@ $(document).ready(function () {
 function getStorico() {
     $.ajax({
         type: "POST",
-        url: "EventiController",
+        url: "ListaeventiutenteController",
         data: {action: "getstorico"},
         success: function (data) {
             $("#storico").html(data);
