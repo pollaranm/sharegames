@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ejbFacade;
 
 import ejb.Campo;
@@ -13,10 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-/**
- *
- * @author Alex
- */
+
 @Stateless
 public class CampoFacade extends AbstractFacade<Campo> implements CampoFacadeLocal {
     @PersistenceContext(unitName = "ShareGames-ejbPU")
@@ -31,6 +23,13 @@ public class CampoFacade extends AbstractFacade<Campo> implements CampoFacadeLoc
         super(Campo.class);
     }
     
+    /**
+     * Restituisce un oggetto Campo, passando come parametri idcampo 
+     * e idimpianto.
+     * @param idcampo id del campo
+     * @param idimpianto id dell'impianto
+     * @return oggetto di tipo Campo
+    */
     public Campo getObjectCampo(int idcampo,int idimpianto) {
         
         Query q  = em.createNamedQuery("Campo.findByIdcampo");
@@ -51,6 +50,11 @@ public class CampoFacade extends AbstractFacade<Campo> implements CampoFacadeLoc
         return null;
     }
 
+    /**
+     * Restituisce un oggetto List<Campo> usando il parametro tipologia
+     * @param tipologia tipologia del campo
+     * @return oggetto List<Campo>
+    */
     @Override
     public List<Campo> getCampoByTipologia(String tipologia) {
         
@@ -61,6 +65,11 @@ public class CampoFacade extends AbstractFacade<Campo> implements CampoFacadeLoc
         
     }
 
+    /**
+     * Restituisce un oggetto List<Campo> usando il parametro idimpianto
+     * @param idimpianto id dell'impianto
+     * @return oggetto List<Campo>
+    */
     @Override
     public List<Campo> getCampoByImpianto(int idimpianto) {
         

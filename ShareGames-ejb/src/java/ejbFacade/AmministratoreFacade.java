@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ejbFacade;
 
 import ejb.Amministratore;
@@ -13,10 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-/**
- *
- * @author Alex
- */
+
 @Stateless
 public class AmministratoreFacade extends AbstractFacade<Amministratore> implements AmministratoreFacadeLocal {
     @PersistenceContext(unitName = "ShareGames-ejbPU")
@@ -30,7 +22,12 @@ public class AmministratoreFacade extends AbstractFacade<Amministratore> impleme
     public AmministratoreFacade() {
         super(Amministratore.class);
     }
-    
+       
+    /**
+     * Restituisce un oggetto Amministratore passando come parametro idAmministratore
+     * @param idAmministratore è l'id dell'amministratore
+     * @return un oggetto di tipo Amministratore
+    */
     public Amministratore getObjAmministratore(int idAmministratore) {
         Query q;
         
@@ -48,6 +45,12 @@ public class AmministratoreFacade extends AbstractFacade<Amministratore> impleme
         return a;
     }
 
+    /**
+     * Restituisce un nuovo oggetto di tipo Amministratore passando come 
+     * parametro idimpianto
+     * @param idimpianto è l'id dell'impianto
+     * @return un oggetto Amministratore
+    */
     @Override
     public Amministratore getObjAmministratoreByImpianto(int idimpianto) {
         
@@ -70,7 +73,5 @@ public class AmministratoreFacade extends AbstractFacade<Amministratore> impleme
         
         
     }
-    
-    
-    
+
 }

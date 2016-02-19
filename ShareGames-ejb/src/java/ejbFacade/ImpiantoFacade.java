@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ejbFacade;
 
 import ejb.Impianto;
@@ -12,10 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-/**
- *
- * @author Alex
- */
+
 @Stateless
 public class ImpiantoFacade extends AbstractFacade<Impianto> implements ImpiantoFacadeLocal {
     @PersistenceContext(unitName = "ShareGames-ejbPU")
@@ -30,6 +22,12 @@ public class ImpiantoFacade extends AbstractFacade<Impianto> implements Impianto
         super(Impianto.class);
     }
     
+    
+    /**
+     * Restituisce un oggetto Impianto passando id impianto
+     * @param id è l'id dell'impianto
+     * @return oggetto Impianto
+    */
     @Override
     public Impianto getObjImpianto(int id) {
         
@@ -39,6 +37,12 @@ public class ImpiantoFacade extends AbstractFacade<Impianto> implements Impianto
         return (Impianto) q.getResultList().get(0);
 
     }
+    
+    /**
+     * Restituisce una lista List<Impianto> degli impianti di una provincia
+     * @param provincia è il nome della provincia
+     * @return oggetto List<Impianto>
+    */
     @Override
     public List<Impianto> getImpiantoByProvincia(String provincia) {
         
@@ -47,6 +51,13 @@ public class ImpiantoFacade extends AbstractFacade<Impianto> implements Impianto
 
         return (List<Impianto>) q.getResultList();
     }
+    
+    
+    /**
+     * Restituisce una lista List<Impianto> degli impianti di una città 
+     * @param citta è la città
+     * @return oggetto List<Impianto>
+    */
     @Override
     public List<Impianto> getImpiantoByCitta(String citta){
         
@@ -56,6 +67,15 @@ public class ImpiantoFacade extends AbstractFacade<Impianto> implements Impianto
         return (List<Impianto>) q.getResultList();
     }
 
+    
+    
+    /**
+     * Restituisce un oggetto Impianto
+     * @param nome nome dell'impianto
+     * @param partitaiva è il numero P.IVA
+     * @param telefono è il numero telefonico dell'impianto
+     * @return oggetto Impianto
+    */
     @Override
     public Impianto getImpiantoByNomePartitaivaTelefono(String nome, String partitaiva, String telefono) {
     

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ejbFacade;
 
 import ejb.Utente;
@@ -11,10 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-/**
- *
- * @author Alex
- */
+
 @Stateless
 public class UtenteFacade extends AbstractFacade<Utente> implements UtenteFacadeLocal {
 
@@ -31,6 +23,11 @@ public class UtenteFacade extends AbstractFacade<Utente> implements UtenteFacade
     }
 
 
+    /**
+     * Indica se un utente è registrato mediante facebook al database
+     * @param id è l'id dell'utente
+     * @return true o false
+    */
     @Override
     public boolean findbyface(String id) {
 
@@ -43,6 +40,11 @@ public class UtenteFacade extends AbstractFacade<Utente> implements UtenteFacade
 
     }
 
+    /**
+     * Indica se un utente è registrato mediante google al database
+     * @param id è l'id dell'utente
+     * @return true o false
+    */
     @Override
     public boolean findbygoogle(String id) {
         Query q = em.createNamedQuery("Utente.findByIdgoogle");
@@ -54,6 +56,12 @@ public class UtenteFacade extends AbstractFacade<Utente> implements UtenteFacade
         
     }
 
+    /**
+     * Restituisce un oggetto Utente cercando il social
+     * @param idsocial è l'id del social
+     * @param tipo è il tipo di social (Facebook, Google)
+     * @return oggetto di tipo Utente
+    */
     @Override
     public Utente getObjUtente(String idsocial, String tipo) {
         Query q;

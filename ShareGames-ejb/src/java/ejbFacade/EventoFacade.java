@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ejbFacade;
 
 import ejb.Evento;
@@ -16,10 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-/**
- *
- * @author Alex
- */
+
 @Stateless
 public class EventoFacade extends AbstractFacade<Evento> implements EventoFacadeLocal {
     @EJB
@@ -36,9 +28,12 @@ public class EventoFacade extends AbstractFacade<Evento> implements EventoFacade
     public EventoFacade() {
         super(Evento.class);
     }
-    
-    
 
+    /**
+     * Restituisce un oggetto Evento passando il parametro idevento
+     * @param idevento id dell'evento
+     * @return oggetto Evento
+    */
     @Override
     public Evento getObjEvento(int idevento) {
 
@@ -50,9 +45,13 @@ public class EventoFacade extends AbstractFacade<Evento> implements EventoFacade
         return (Evento) q.getResultList().get(0);
 
     }
-    
-    
-    
+
+    /**
+     * Restituisce il numero di giocatori che hanno pagato
+     * usando il parametro idevento
+     * @param idevento id dell'evento
+     * @return int dei giocatori che hanno pagato
+    */
     @Override
     public int getGiocatoriPagato(int idevento) {
 
@@ -66,6 +65,19 @@ public class EventoFacade extends AbstractFacade<Evento> implements EventoFacade
 
     }
 
+    
+    /**
+     * Aggiorna un evento passato i parametri necessari 
+     * @param idimp id dell'impianto
+     * @param idcam id del campo
+     * @param data data dell'evento
+     * @param ora ora dell'evento
+     * @param idevento id dell'evento
+     * @param pagato si se hanno pagato tutti
+     * @param giocatoripagato numero giocatori pagato
+     * @param sport tipo di sport
+     * @return void
+    */
     @Override
     public void update(int idimp, int idcam, String data, String ora, int idevento,String pagato,int giocatoripagato, String sport) {
         Query q;
@@ -83,6 +95,12 @@ public class EventoFacade extends AbstractFacade<Evento> implements EventoFacade
 
     }
 
+    
+    /**
+     * Restituisce una lista di eventi giocati in una data precisa
+     * @param data indica la data
+     * @return List<Evento> contenente eventi
+    */
     @Override
     public List<Evento> getEventoByData(String data) {
          Query q;
@@ -92,6 +110,12 @@ public class EventoFacade extends AbstractFacade<Evento> implements EventoFacade
         return q.getResultList();
     }
 
+    
+    /**
+     * Restituisce una lista di eventi giocati ad un'ora precisa
+     * @param ora indica l'orario
+     * @return List<Evento> contenente eventi
+    */
     @Override
     public List<Evento> getEventoByOra(String ora) {
         Query q;
@@ -101,6 +125,12 @@ public class EventoFacade extends AbstractFacade<Evento> implements EventoFacade
         return q.getResultList();
     }
 
+    
+    /**
+     * Restituisce una lista di eventi giocati in una città
+     * @param citta identifica la città
+     * @return List<Evento> contenente eventi
+    */
     @Override
     public List<Evento> getEventoByCitta(String citta) {
         Query q;
@@ -144,11 +174,12 @@ public class EventoFacade extends AbstractFacade<Evento> implements EventoFacade
         
         return finale;
     }
-    
-    
-    
-    
 
+    /**
+     * Restituisce una lista di eventi di un certo sport
+     * @param sport indica lo sport
+     * @return List<Evento> contenente eventi
+    */
     @Override
     public List<Evento> getEventoBySport(String sport) {
         
@@ -159,11 +190,16 @@ public class EventoFacade extends AbstractFacade<Evento> implements EventoFacade
         
         return q.getResultList();
         
-        
     }
 
+    
+    /**
+     * Restituisce una lista di eventi completi per città
+     * @param citta indica la città
+     * @return List<Evento> contenente eventi
+    */
     @Override
-    public List<Evento> getEventoCompletoByCitta(String citta) { //VEDI COMMENTI getEventoByCitta
+    public List<Evento> getEventoCompletoByCitta(String citta) { 
         
                 Query q;
 
@@ -178,12 +214,12 @@ public class EventoFacade extends AbstractFacade<Evento> implements EventoFacade
         
         
         for(int i=0; i<l.size(); i++){
-             idimpianto.add(i,(int)l.get(i).getIdimpianto());  //aggiungo i vari impianti
+             idimpianto.add(i,(int)l.get(i).getIdimpianto());  
         }
         
         int k=0;
         
-        for(int i=0; i<idimpianto.size(); i++){  //Per ogni impianto aggiungo in eventi la lista degli eventi di quell'impianto
+        for(int i=0; i<idimpianto.size(); i++){
             
             int index=(int)idimpianto.get(i);    
             
@@ -208,6 +244,12 @@ public class EventoFacade extends AbstractFacade<Evento> implements EventoFacade
         return finale;
     }
 
+    
+    /**
+     * Restituisce una lista di eventi completi per provincia
+     * @param provincia indica la provincia
+     * @return List<Evento> contenente eventi completi
+    */
     @Override
     public List<Evento> getEventoCompletoByProvincia(String provincia) { //VEDI COMMENTI getEventoByCitta
         Query q;
@@ -254,6 +296,14 @@ public class EventoFacade extends AbstractFacade<Evento> implements EventoFacade
         
     }
 
+    /**
+     * Restituisce oggetto Evento cercando l' EventoPK
+     * @param idimpianto indica l'id impianto
+     * @param idcampo indica l'id del campo
+     * @param ora indica l'ora
+     * @param data indica la data
+     * @return oggetto di tipo Evento
+    */
     @Override
     public Evento getObjEventoByPK(int idimpianto, int idcampo, String ora, String data) {
         
@@ -270,4 +320,3 @@ public class EventoFacade extends AbstractFacade<Evento> implements EventoFacade
     
     
 }
-

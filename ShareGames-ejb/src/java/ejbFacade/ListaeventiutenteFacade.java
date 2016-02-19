@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ejbFacade;
 
 import ejb.Evento;
@@ -17,10 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import manager.GestoreEventoLocal;
 
-/**
- *
- * @author Alex
- */
+
 @Stateless
 public class ListaeventiutenteFacade extends AbstractFacade<Listaeventiutente> implements ListaeventiutenteFacadeLocal {
 
@@ -37,14 +29,26 @@ public class ListaeventiutenteFacade extends AbstractFacade<Listaeventiutente> i
     public ListaeventiutenteFacade() {
         super(Listaeventiutente.class);
     }
-
+    
+    
+    /**
+     * Restituisce una lista degli eventi di un utente
+     * @param idutente è l'id dell'utente
+     * @return oggetto List<Listaeventiutente>
+    */
     @Override
     public List<Listaeventiutente> getEventoByUtente(int idutente) {
         Query q = em.createNamedQuery("Listaeventiutente.findByIdutente");
         q.setParameter("idutente", idutente);
         return q.getResultList();
     }
-
+    
+    
+    /**
+     * Restituisce lista degli eventi pagati da un utente
+     * @param idutente è l'id dell'utente
+     * @return lista List<Evento>
+    */
     @Override
     public List<Evento> getEventoByPagato(int idutente) {
 
@@ -77,12 +81,23 @@ public class ListaeventiutenteFacade extends AbstractFacade<Listaeventiutente> i
 
     }
 
+    /**
+     * Restituisce una lista con tutti gli eventi per tutti gli utenti
+     * @return lista List<Listaeventiutente>
+    */
     @Override
     public List<Listaeventiutente> getListaEventiUtenti() {
         Query q = em.createNamedQuery("Listaeventiutente.findAll");
         return q.getResultList();
     }
 
+    
+    /**
+     * Aggiunge un evento per un determinato utente
+     * @param idevento è l'id dell'evento
+     * @param idutente è l'id dell'utente
+     * @return Listaeventiutente
+    */
     @Override
     public Listaeventiutente addEventoUtente(int idevento, int idutente) {
         ListaeventiutentePK lista_pk = new ListaeventiutentePK();
@@ -103,6 +118,12 @@ public class ListaeventiutenteFacade extends AbstractFacade<Listaeventiutente> i
 
     }
 
+    /**
+     * Restituisce oggetto Listaeventiutente con un unico evento di un utente  
+     * @param idutente è l'id utente
+     * @param idevento è l'id dell'evento
+     * @return oggetto Listaeventiutente
+    */
     @Override
     public Listaeventiutente getObjByIdUtenteIdEvento(int idutente, int idevento) {
         List<Listaeventiutente> tL = this.getEventoByUtente(idutente);
@@ -115,6 +136,13 @@ public class ListaeventiutenteFacade extends AbstractFacade<Listaeventiutente> i
         return res;
     }
 
+    
+    /**
+     * Rimuove un evento di un utente usando idutente e idevento
+     * @param idevento è l'id dell'evento
+     * @param idutente è l'id dell'evento
+     * @return void
+    */
     @Override
     public void removeEventoUtente(int idevento, int idutente) {
         Query q = em.createNamedQuery("Listaeventiutente.deleteIdUtenteIdEvento");
