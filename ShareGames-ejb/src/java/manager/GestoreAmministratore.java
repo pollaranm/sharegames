@@ -13,7 +13,6 @@ import javax.ejb.Stateless;
  *Beans dedicato all'interazione con gli oggetti persistenti di tipo Amministratore.
  * Contiene le info degli Amministratori: "idImpianto", "nome" e "cognome".
  * 
- * @author Ivan
  */
 
 
@@ -26,11 +25,13 @@ public class GestoreAmministratore implements GestoreAmministratoreLocal {
     
     
     /**
-     * Metodo costruttore di un oggetto persistente di tipo Amministratore.
+     * Aggiunta di un nuovo oggetto di tipo Amministratore nel database. 
      * 
      * @param idImpianto Nome dell'impianto a cui appartiene l'amministratore
      * @param nome Nome dell'amministratore     
      * @param cognome Cognome dell'amministratore
+     * @param psw Password amministratore
+     * @return void
      */
     @Override
     public void addAmministratore(int idImpianto, String nome, String cognome, String psw) {
@@ -52,9 +53,9 @@ public class GestoreAmministratore implements GestoreAmministratoreLocal {
     
     /**
      * Recupera l'oggetto persistente amministratore 
-     * associato all'Id passato come parametro
+     * associato all'IdAmministratore passato come parametro
      *
-     * @param idAmministratore id identificativo dell'amministratore
+     * @param idAmministratore idImpianto identificativo dell'amministratore
      * @return L'amministratore cercato se presente, <i>false</i> altrimenti 
      */
     @Override
@@ -65,9 +66,9 @@ public class GestoreAmministratore implements GestoreAmministratoreLocal {
     
     
     /**
-     *  Rimuove l'amministratore a cui è associato l'id passato di tipo intero
+     * Rimuove l'amministratore a cui è associato l'id passato di tipo intero
      *
-     * @param idAmministratore Id amministratore da ricercare e rimuovere
+     * @param idAmministratore IdAmministratore
      * @return <i>true</i> se l'eliminazione avviene con successo, <i>false</i> altrimenti
      */
     @Override
@@ -83,7 +84,15 @@ public class GestoreAmministratore implements GestoreAmministratoreLocal {
         }
         
     }
-
+    
+    
+    /**
+     * Controllo corrispondenza password e idAmministratore
+     *
+     * @param id Id amministratore
+     * @param psw Password amministratore
+     * @return <i>true</i> se la corrispondenza id/psw è corretta, <i>false</i> altrimenti.
+     */
     @Override
     public Boolean checkAuthAmm(int id, String psw) {
         
@@ -99,7 +108,15 @@ public class GestoreAmministratore implements GestoreAmministratoreLocal {
         }
         return false;
     }
-
+    
+    
+    /**
+     * Recupera l'oggetto persistente amministratore 
+     * associato all'Idimpianto passato come parametro
+     *
+     * @param idImpianto idImpianto identificativo dell'amministratore
+     * @return L'amministratore cercato se presente, <i>false</i> altrimenti 
+     */
     @Override
     public Amministratore getObjAmministratoreByIdimpianto(int idimpianto) {
         

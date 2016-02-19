@@ -30,7 +30,7 @@ public interface ImpiantoFacadeLocal {
 
     int count();
 
-    Impianto getObjUtente(int id);
+    Impianto getObjImpianto(int id);
 
     List<Impianto> getImpiantoByProvincia(String provincia);
 

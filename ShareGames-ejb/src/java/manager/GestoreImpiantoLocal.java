@@ -28,10 +28,6 @@ public interface GestoreImpiantoLocal {
 
     Impianto getObjectImpiantoById(int id);
 
-    void updateImpianto(String nomeimpianto, String stato, String regione, String provincia, 
-                            String citta, String indirizzo, String telefono, String partitaiva, 
-                            String fasciaoraria, String servizi,int idimpianto);
-
     Impianto getImpiantoByNomePartitaivaTelefono(String nome, String partitaiva, String telefono);
 
     Boolean checkImpianto(String nome, String partitaiva, String telefono);

@@ -1,6 +1,5 @@
 package manager;
 
-
 import ejb.Campo;
 import ejb.CampoPK;
 import ejb.Impianto;
@@ -16,8 +15,6 @@ import javax.ejb.Stateless;
  * Beans dedicato all'interazione con gli oggetti persistenti di tipo Prezziario.
  * Contiene le info prezzo e sconto, relativi ad un impianto (idImpianto) ed un
  * campo (idCampo)
- * 
- * @author Ivan 
  */
 
 @Stateless

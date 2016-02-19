@@ -31,7 +31,7 @@ public class ImpiantoFacade extends AbstractFacade<Impianto> implements Impianto
     }
     
     @Override
-    public Impianto getObjUtente(int id) {
+    public Impianto getObjImpianto(int id) {
         
         Query q  = em.createNamedQuery("Impianto.findByIdimpianto");
               q.setParameter("idimpianto", id);

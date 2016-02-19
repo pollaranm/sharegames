@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package manager;
 
 import ejb.Squadra;
@@ -15,8 +10,6 @@ import javax.ejb.Stateless;
 /**
  * Beans dedicato all'interazione con gli oggetti persistenti di tipo Utente.
  * Contiene le info degli utenti nome, email, idgoogle, idfacebook e telefono.
- * 
- * @author Alex
  */
 @Stateless
 public class GestoreUtente implements GestoreUtenteLocal {
