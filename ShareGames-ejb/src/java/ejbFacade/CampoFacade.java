@@ -28,7 +28,7 @@ public class CampoFacade extends AbstractFacade<Campo> implements CampoFacadeLoc
      * e idimpianto.
      * @param idcampo id del campo
      * @param idimpianto id dell'impianto
-     * @return oggetto di tipo Campo
+     * @return <i>Campo</i>
     */
     public Campo getObjectCampo(int idcampo,int idimpianto) {
         
@@ -53,7 +53,7 @@ public class CampoFacade extends AbstractFacade<Campo> implements CampoFacadeLoc
     /**
      * Restituisce un oggetto List<Campo> usando il parametro tipologia
      * @param tipologia tipologia del campo
-     * @return oggetto List<Campo>
+     * @return <i>List</i>
     */
     @Override
     public List<Campo> getCampoByTipologia(String tipologia) {
@@ -68,7 +68,7 @@ public class CampoFacade extends AbstractFacade<Campo> implements CampoFacadeLoc
     /**
      * Restituisce un oggetto List<Campo> usando il parametro idimpianto
      * @param idimpianto id dell'impianto
-     * @return oggetto List<Campo>
+     * @return <i>List</i>
     */
     @Override
     public List<Campo> getCampoByImpianto(int idimpianto) {

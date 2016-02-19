@@ -34,7 +34,7 @@ public class ListaeventiutenteFacade extends AbstractFacade<Listaeventiutente> i
     /**
      * Restituisce una lista degli eventi di un utente
      * @param idutente è l'id dell'utente
-     * @return oggetto List<Listaeventiutente>
+     * @return <i>List</i>
     */
     @Override
     public List<Listaeventiutente> getEventoByUtente(int idutente) {
@@ -47,7 +47,7 @@ public class ListaeventiutenteFacade extends AbstractFacade<Listaeventiutente> i
     /**
      * Restituisce lista degli eventi pagati da un utente
      * @param idutente è l'id dell'utente
-     * @return lista List<Evento>
+     * @return <i>List</i>
     */
     @Override
     public List<Evento> getEventoByPagato(int idutente) {
@@ -83,7 +83,7 @@ public class ListaeventiutenteFacade extends AbstractFacade<Listaeventiutente> i
 
     /**
      * Restituisce una lista con tutti gli eventi per tutti gli utenti
-     * @return lista List<Listaeventiutente>
+     * @return <i>List</i>
     */
     @Override
     public List<Listaeventiutente> getListaEventiUtenti() {
@@ -96,7 +96,7 @@ public class ListaeventiutenteFacade extends AbstractFacade<Listaeventiutente> i
      * Aggiunge un evento per un determinato utente
      * @param idevento è l'id dell'evento
      * @param idutente è l'id dell'utente
-     * @return Listaeventiutente
+     * @return <i>List</i>
     */
     @Override
     public Listaeventiutente addEventoUtente(int idevento, int idutente) {
@@ -122,7 +122,7 @@ public class ListaeventiutenteFacade extends AbstractFacade<Listaeventiutente> i
      * Restituisce oggetto Listaeventiutente con un unico evento di un utente  
      * @param idutente è l'id utente
      * @param idevento è l'id dell'evento
-     * @return oggetto Listaeventiutente
+     * @return <i>List</i>
     */
     @Override
     public Listaeventiutente getObjByIdUtenteIdEvento(int idutente, int idevento) {
@@ -141,7 +141,6 @@ public class ListaeventiutenteFacade extends AbstractFacade<Listaeventiutente> i
      * Rimuove un evento di un utente usando idutente e idevento
      * @param idevento è l'id dell'evento
      * @param idutente è l'id dell'evento
-     * @return void
     */
     @Override
     public void removeEventoUtente(int idevento, int idutente) {

@@ -26,7 +26,7 @@ public class AmministratoreFacade extends AbstractFacade<Amministratore> impleme
     /**
      * Restituisce un oggetto Amministratore passando come parametro idAmministratore
      * @param idAmministratore è l'id dell'amministratore
-     * @return un oggetto di tipo Amministratore
+     * @return <i>Amministratore</i>
     */
     public Amministratore getObjAmministratore(int idAmministratore) {
         Query q;
@@ -49,7 +49,7 @@ public class AmministratoreFacade extends AbstractFacade<Amministratore> impleme
      * Restituisce un nuovo oggetto di tipo Amministratore passando come 
      * parametro idimpianto
      * @param idimpianto è l'id dell'impianto
-     * @return un oggetto Amministratore
+     * @return <i>Amministratore</i>
     */
     @Override
     public Amministratore getObjAmministratoreByImpianto(int idimpianto) {

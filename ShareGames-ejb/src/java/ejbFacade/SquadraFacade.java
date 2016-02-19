@@ -21,11 +21,10 @@ public class SquadraFacade extends AbstractFacade<Squadra> implements SquadraFac
         super(Squadra.class);
     }
 
-    
     /**
      * Restituisce un oggetto Squadra in base all'idsquadra
      * @param idSquadra è l'id della squadra
-     * @return oggetto di tipo Squadra
+     * @return <i>Squadra</i>
     */
     @Override
     public Squadra getObjSquadra(Integer idSquadra) {
@@ -37,7 +36,7 @@ public class SquadraFacade extends AbstractFacade<Squadra> implements SquadraFac
     /**
      * Restituisce un oggetto Squadra in base al nome 
      * @param nomeSquadra è il nome della squadra
-     * @return un oggetto di tipo Squadra
+     * @return <i>Squadra</i>
     */
     @Override
     public Squadra getObjSquadraByName(String nomeSquadra) {
@@ -49,7 +48,7 @@ public class SquadraFacade extends AbstractFacade<Squadra> implements SquadraFac
     /**
      * Indica se una squadra esiste oppure no 
      * @param name
-     * @return true o false
+     * @return <i>boolean</i>
     */
     @Override
     public Boolean checkNomeSquadra(String name) {
@@ -61,7 +60,7 @@ public class SquadraFacade extends AbstractFacade<Squadra> implements SquadraFac
     /**
      * Restituisce una collezione di squadra in base alla città
      * @param city è la città 
-     * @return Collection<Squadra>
+     * @return <i>Collection</i>
     */
     @Override
     public Collection<Squadra> getSquadraByCitta(String city) {
@@ -73,7 +72,7 @@ public class SquadraFacade extends AbstractFacade<Squadra> implements SquadraFac
     /**
      * Restituisce una collezione di squadra in base alla tipologia 
      * @param tipologia è la tipologia della squadra
-     * @return oggetto Collection<Squadra>
+     * @return <i>Collection</i>
     */
     @Override
     public Collection<Squadra> getSquadraByTipologia(String tipologia) {
@@ -86,7 +85,7 @@ public class SquadraFacade extends AbstractFacade<Squadra> implements SquadraFac
      * Restituisce un oggetto collezione squadra in base all tipologia e città
      * @param citta è la città
      * @param tipologia è la tipologia di sport
-     * @return oggetto Collection<Squadra>
+     * @return <i>Collection</i>
     */
     @Override
     public Collection<Squadra> getSquadraByCittaTipologia(String citta, String tipologia) {

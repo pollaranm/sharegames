@@ -32,7 +32,7 @@ public class EventoFacade extends AbstractFacade<Evento> implements EventoFacade
     /**
      * Restituisce un oggetto Evento passando il parametro idevento
      * @param idevento id dell'evento
-     * @return oggetto Evento
+     * @return <i>Evento</i>
     */
     @Override
     public Evento getObjEvento(int idevento) {
@@ -50,7 +50,7 @@ public class EventoFacade extends AbstractFacade<Evento> implements EventoFacade
      * Restituisce il numero di giocatori che hanno pagato
      * usando il parametro idevento
      * @param idevento id dell'evento
-     * @return int dei giocatori che hanno pagato
+     * @return <i>int</i>
     */
     @Override
     public int getGiocatoriPagato(int idevento) {
@@ -76,7 +76,6 @@ public class EventoFacade extends AbstractFacade<Evento> implements EventoFacade
      * @param pagato si se hanno pagato tutti
      * @param giocatoripagato numero giocatori pagato
      * @param sport tipo di sport
-     * @return void
     */
     @Override
     public void update(int idimp, int idcam, String data, String ora, int idevento,String pagato,int giocatoripagato, String sport) {
@@ -99,7 +98,7 @@ public class EventoFacade extends AbstractFacade<Evento> implements EventoFacade
     /**
      * Restituisce una lista di eventi giocati in una data precisa
      * @param data indica la data
-     * @return List<Evento> contenente eventi
+     * @return <i>List/i>
     */
     @Override
     public List<Evento> getEventoByData(String data) {
@@ -114,7 +113,7 @@ public class EventoFacade extends AbstractFacade<Evento> implements EventoFacade
     /**
      * Restituisce una lista di eventi giocati ad un'ora precisa
      * @param ora indica l'orario
-     * @return List<Evento> contenente eventi
+     * @return <i>List</i>
     */
     @Override
     public List<Evento> getEventoByOra(String ora) {
@@ -129,7 +128,7 @@ public class EventoFacade extends AbstractFacade<Evento> implements EventoFacade
     /**
      * Restituisce una lista di eventi giocati in una città
      * @param citta identifica la città
-     * @return List<Evento> contenente eventi
+     * @return <i>List</i>
     */
     @Override
     public List<Evento> getEventoByCitta(String citta) {
@@ -178,7 +177,7 @@ public class EventoFacade extends AbstractFacade<Evento> implements EventoFacade
     /**
      * Restituisce una lista di eventi di un certo sport
      * @param sport indica lo sport
-     * @return List<Evento> contenente eventi
+     * @return <i>List</i>
     */
     @Override
     public List<Evento> getEventoBySport(String sport) {
@@ -196,7 +195,7 @@ public class EventoFacade extends AbstractFacade<Evento> implements EventoFacade
     /**
      * Restituisce una lista di eventi completi per città
      * @param citta indica la città
-     * @return List<Evento> contenente eventi
+     * @return <i>List</i>
     */
     @Override
     public List<Evento> getEventoCompletoByCitta(String citta) { 
@@ -248,7 +247,7 @@ public class EventoFacade extends AbstractFacade<Evento> implements EventoFacade
     /**
      * Restituisce una lista di eventi completi per provincia
      * @param provincia indica la provincia
-     * @return List<Evento> contenente eventi completi
+     * @return <i>List</i>
     */
     @Override
     public List<Evento> getEventoCompletoByProvincia(String provincia) { //VEDI COMMENTI getEventoByCitta
@@ -302,7 +301,7 @@ public class EventoFacade extends AbstractFacade<Evento> implements EventoFacade
      * @param idcampo indica l'id del campo
      * @param ora indica l'ora
      * @param data indica la data
-     * @return oggetto di tipo Evento
+     * @return <i>Evento</i>
     */
     @Override
     public Evento getObjEventoByPK(int idimpianto, int idcampo, String ora, String data) {

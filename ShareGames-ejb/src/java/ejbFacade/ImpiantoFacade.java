@@ -26,7 +26,7 @@ public class ImpiantoFacade extends AbstractFacade<Impianto> implements Impianto
     /**
      * Restituisce un oggetto Impianto passando id impianto
      * @param id è l'id dell'impianto
-     * @return oggetto Impianto
+     * @return <i>Impianto</i>
     */
     @Override
     public Impianto getObjImpianto(int id) {
@@ -41,7 +41,7 @@ public class ImpiantoFacade extends AbstractFacade<Impianto> implements Impianto
     /**
      * Restituisce una lista List<Impianto> degli impianti di una provincia
      * @param provincia è il nome della provincia
-     * @return oggetto List<Impianto>
+     * @return <i>List</i>
     */
     @Override
     public List<Impianto> getImpiantoByProvincia(String provincia) {
@@ -56,7 +56,7 @@ public class ImpiantoFacade extends AbstractFacade<Impianto> implements Impianto
     /**
      * Restituisce una lista List<Impianto> degli impianti di una città 
      * @param citta è la città
-     * @return oggetto List<Impianto>
+     * @return <i>List</i>
     */
     @Override
     public List<Impianto> getImpiantoByCitta(String citta){
@@ -74,7 +74,7 @@ public class ImpiantoFacade extends AbstractFacade<Impianto> implements Impianto
      * @param nome nome dell'impianto
      * @param partitaiva è il numero P.IVA
      * @param telefono è il numero telefonico dell'impianto
-     * @return oggetto Impianto
+     * @return <i>Impianto</i>
     */
     @Override
     public Impianto getImpiantoByNomePartitaivaTelefono(String nome, String partitaiva, String telefono) {

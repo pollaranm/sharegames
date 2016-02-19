@@ -22,11 +22,10 @@ public class UtenteFacade extends AbstractFacade<Utente> implements UtenteFacade
         super(Utente.class);
     }
 
-
     /**
      * Indica se un utente è registrato mediante facebook al database
      * @param id è l'id dell'utente
-     * @return true o false
+     * @return <i>boolean</i>
     */
     @Override
     public boolean findbyface(String id) {
@@ -43,7 +42,7 @@ public class UtenteFacade extends AbstractFacade<Utente> implements UtenteFacade
     /**
      * Indica se un utente è registrato mediante google al database
      * @param id è l'id dell'utente
-     * @return true o false
+     * @return <i>boolean</i>
     */
     @Override
     public boolean findbygoogle(String id) {
@@ -60,7 +59,7 @@ public class UtenteFacade extends AbstractFacade<Utente> implements UtenteFacade
      * Restituisce un oggetto Utente cercando il social
      * @param idsocial è l'id del social
      * @param tipo è il tipo di social (Facebook, Google)
-     * @return oggetto di tipo Utente
+     * @return <i>Utente</i>
     */
     @Override
     public Utente getObjUtente(String idsocial, String tipo) {

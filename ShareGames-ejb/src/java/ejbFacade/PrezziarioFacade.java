@@ -22,11 +22,10 @@ public class PrezziarioFacade extends AbstractFacade<Prezziario> implements Prez
         super(Prezziario.class);
     }
     
-    
        /**
         * Restituisce una lista prezziario di un impianto
         * @param idImpianto è l'id dell'impianto
-        * @return oggetto List<Prezziario>
+        * @return <i>List</i>
        */
        public List<Prezziario> getObjectPrezziario(int idImpianto) {
         Query q;
@@ -43,7 +42,6 @@ public class PrezziarioFacade extends AbstractFacade<Prezziario> implements Prez
        * @param idImpianto è l'id dell'impianto
        * @param prezzo è il prezzo
        * @param sconto è lo sconto da applicare
-       * @return void
       */
       public void updateAll(int idCampo, int idImpianto, BigDecimal prezzo, int sconto) {
         Query q;
@@ -56,7 +54,5 @@ public class PrezziarioFacade extends AbstractFacade<Prezziario> implements Prez
         
         q.executeUpdate();
     }
-       
-    
     
 }
