@@ -23,19 +23,15 @@ public class GestoreEvento implements GestoreEventoLocal {
     @EJB
     private CampoFacadeLocal campoFacade;
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
-    
      @EJB
     private EventoFacadeLocal eventoFacade;
      
      
     /**
-     * Recupera l'oggetto persistente Evento 
-     * associato all'idEvento passato come parametro
+     * Recupera l'oggetto Evento associato all'idEvento passato come parametro.
      *
      * @param idEvento idEvento identificativo
-     * @return Evento <i>null</i> altrimenti 
+     * @return <i>Evento</i>,<i>null</i> altrimenti 
     */
     @Override
     public Evento getEvento(int idevento) {
@@ -59,7 +55,7 @@ public class GestoreEvento implements GestoreEventoLocal {
      * @param completo completo(si/no)
      * @param giocatoripagato numero giocatori che hanno pagato
      * @param idutente id dell'utente creatore dell'evento
-     * @return void
+     * @return <i>void</i>
     */
     
     @Override
@@ -100,21 +96,17 @@ public class GestoreEvento implements GestoreEventoLocal {
         e.setImpianto(i);
         e.setPagato(pagato);
         e.setSport(sport);
-                            //ADESSO AGGIUNGO UN OGGETTO IN LISTAEVENTIUTENTE
        
         eventoFacade.create(e);
         
         Evento tmp=eventoFacade.getObjEventoByPK(idimpianto, idcampo, ora, data); 
                 
-            
         Listaeventiutente l=new Listaeventiutente();
         ListaeventiutentePK l_pk=new ListaeventiutentePK();
-        
         
         l_pk.setIdevento(tmp.getEventoPK().getIdevento());
         l_pk.setIdutente(idutente);
       
-        
         l.setListaeventiutentePK(l_pk);
         l.setEvento(tmp);
         l.setUtente(u);
@@ -125,21 +117,24 @@ public class GestoreEvento implements GestoreEventoLocal {
      
     }
 
+    
     /**
-     * Rimuove l'evento passato da paramentro dal database
+     * Rimuove l'evento tramite idevento da paramentro.
      * 
      * @param idevento id dell'evento
-     * @return void
+     * @return <i>void</i>
     */
     @Override
     public void removeEvento(int idevento) {
         
          Evento e=eventoFacade.getObjEvento(idevento);
          eventoFacade.remove(e);
+         
     }
     
+    
     /**
-     * Aggiornamento dei parametri del oggetto di tipo Evento nel database.
+     * Aggiornamento dei parametri del oggetto di tipo Evento.
      * 
      * @param idcampo id del campo interessato
      * @param idimpianto id dell' impianto
@@ -148,7 +143,7 @@ public class GestoreEvento implements GestoreEventoLocal {
      * @param sport (calcio a 5,calcio a 7,calcio a 11,pallavolo ,basket , tennis)
      * @param pagato pagato(si/no)
      * @param giocatoripagato numero giocatori che hanno pagato
-     * @return void
+     * @return <i>void</i>
     */
     @Override
     public void updateEvento(int idimpianto, int idcampo, int idevento, 
@@ -157,11 +152,12 @@ public class GestoreEvento implements GestoreEventoLocal {
         eventoFacade.update(idimpianto, idcampo, data, ora, idevento,pagato,giocatoripagato,sport );       
     }
 
+    
     /**
-     * Recupera numero giocatori partecipanti all'evento passato da parametro che hanno pagato dal database
+     * Recupera numero giocatori che hanno pagato all'evento passato da parametro.
      * 
      * @param idevento id dell'evento
-     * @return numero giocatori pagati
+     * @return <i>int giocatori</i>
     */
     @Override
     public int getGiocatoriPagato(int idevento) {
@@ -172,10 +168,10 @@ public class GestoreEvento implements GestoreEventoLocal {
 
     
     /**
-     * Recupera la lista degli eventi nella data passata da parametro
+     * Recupera la lista degli eventi nella data passata da parametro.
      * 
      * @param data data dell'evento
-     * @return lista eventi nella data indicata
+     * @return <i>List Evento</i>
     */
     @Override
     public List<Evento> getEventoByData(String data) {
@@ -185,10 +181,10 @@ public class GestoreEvento implements GestoreEventoLocal {
     
     
     /**
-     * Recupera la lista degli eventi organizzati per l'ora passata da parametro
+     * Recupera la lista degli eventi organizzati per l'ora passata da parametro.
      * 
      * @param ora ora dell'evento
-     * @return lista eventi nell'ora indicata
+     * @return <i>List Evento</i>
     */
     @Override
     public List<Evento> getEventoByOra(String ora) {
@@ -197,10 +193,10 @@ public class GestoreEvento implements GestoreEventoLocal {
     
     
     /**
-     * Recupera la lista di tutti gli eventi nella citta passata da parametro
+     * Recupera la lista di tutti gli eventi nella citta passata da parametro.
      * 
      * @param citta città dell'evento
-     * @return lista eventi nella città indicata
+     * @return <i>List Evento</i>
     */
     @Override
     public List<Evento> getEventoByCitta(String citta) {
@@ -209,10 +205,10 @@ public class GestoreEvento implements GestoreEventoLocal {
     
     
     /**
-     * Recupera la lista degli eventi riferiti allo sport passato come parametro
+     * Recupera la lista degli eventi riferiti allo sport passato come parametro.
      * 
      * @param sport sport dell'evento
-     * @return lista eventi riferiti allo sport indicato
+     * @return <i>List Evento</i>
     */
     @Override
     public List<Evento> getEventoBySport(String sport) {
@@ -221,10 +217,10 @@ public class GestoreEvento implements GestoreEventoLocal {
     
     
     /**
-     * Recupera la lista degli eventi "completi" nella città passata da parametro
+     * Recupera la lista degli eventi "completi" nella città passata da parametro.
      * 
      * @param citta città dell'evento
-     * @return lista eventi completi nella città indicata
+     * @return <i>List Evento</i>
     */
     @Override
     public List<Evento> getEventoCompletoByCitta(String citta) {
@@ -233,10 +229,10 @@ public class GestoreEvento implements GestoreEventoLocal {
     
     
     /**
-     * Recupera la lista degli eventi "completi" nella provincia passata da parametro
+     * Recupera la lista degli eventi "completi" nella provincia passata da parametro.
      * 
      * @param provincia provincia dell'evento
-     * @return lista eventi nella provincia indicata
+     * @return <i>List Evento</i>
     */
     @Override
     public List<Evento> getEventoCompletoByProvincia(String provincia) {
@@ -245,10 +241,10 @@ public class GestoreEvento implements GestoreEventoLocal {
     
     
    /**
-     * Aggiorna l'evento, modificandolo attraverso i parametri dell'oggetto Evento event
+     * Aggiorna l'evento, modificandolo attraverso i parametri dell'oggetto Evento event.
      *
      * @param event oggetto Evento dal quale prendiamo i valori per la modifica
-     * @return void
+     * @return <i>void</i>
      */
     @Override
     public void updateEvento(Evento event) {

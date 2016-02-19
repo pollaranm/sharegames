@@ -26,13 +26,14 @@ public class GestorePrezziario implements GestorePrezziarioLocal {
     
     
     /**
-     * Metodo costruttore di un oggetto persistente di tipo Prezziario
-     *
-     * @param idCampo identificativo del campo già esistente
-     * @param idImpianto identificativo dell'impianto già esistente
-     * @param prezzo prezzo totale della partita 
-     * @param sconto sconto applicato (opzionale)
-     */
+     * Aggiunta di un nuovo prezziario nel database. 
+     * 
+     * @param idCampo nome dell'impianto
+     * @param idImpianto stato nel quale l'impianto è locato
+     * @param prezzo regione nella quale l'impianto è locato
+     * @param sconto provincia nella quale l'impianto è locato
+     * @return <i>void</i>
+    */
     @Override
     public void addPrezziario(int idCampo, int idImpianto, BigDecimal prezzo, int sconto) {
         
@@ -64,12 +65,10 @@ public class GestorePrezziario implements GestorePrezziarioLocal {
     
     
     /**
-     * Recupera il Prezziario a cui sono associati
-     * l'IdCampo e l'idImpianto passati come parametri
+     * Recupera il Prezziario del campo attraverso l'idimpianto passato da parametro.
      *
-     * @param idCampo identificativo del campo 
      * @param idImpianto identificativo dell'impianto
-     * @return Il prezziario cercato se presente, <i>false</i> altrimenti 
+     * @return <i>List Impianto</i>
      */
     @Override
     public List<Prezziario> getObjPrezziario(int idImpianto) {
@@ -78,15 +77,13 @@ public class GestorePrezziario implements GestorePrezziarioLocal {
 
  
     /**
-     * Aggiorna il Prezziario a cui sono associati i parametri idCampo, idImpianto,
-     * prezzo e sconto.
-     * L'aggiornamento interessa ESCLUSIVAMENTE i parametri "prezzo" e "sconto", 
-     * in quanto ritengo che non avrebbe senso aggiornare anche idCampo e IdPrezziario
+     * Aggiorna il Prezziario attraverso idcampo, idimpianto, prezzo, sconto passati tramite parametro.
      *
-     * @param idCampo identificativo del campo 
-     * @param idImpianto identificativo dell'impianto 
-     * @param prezzo prezzo totale della partita 
+     * @param idCampo id del campo 
+     * @param idImpianto id dell'impianto 
+     * @param prezzo prezzo cad
      * @param sconto sconto applicato (opzionale)
+     * @return <i>void</i>
      */
     @Override
     public void updatePrezziario(int idCampo, int idImpianto, BigDecimal prezzo, int sconto) {

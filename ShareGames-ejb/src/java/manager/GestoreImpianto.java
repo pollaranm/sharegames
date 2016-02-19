@@ -25,7 +25,7 @@ public class GestoreImpianto implements GestoreImpiantoLocal {
      * @param partitaiva numero di partita iva
      * @param fasciaoraria ora apertura/chiusura
      * @param servizi servizi offerti dall'impianto
-     * @return void
+     * @return <i>void</i>
     */
 @Override
     public void addImpianto(String nomeimpianto, String stato, String regione, String provincia, 
@@ -46,10 +46,10 @@ public class GestoreImpianto implements GestoreImpiantoLocal {
     
     
     /**
-     * Rimuove l'impianto passato da paramentro dal database
+     * Rimuove l'impianto passato da paramentro dal database.
      * 
      * @param id id dell'impianto
-     * @return void
+     * @return <i>void</i>
     */    
     @Override
     public void removeImpianto(int id) {
@@ -59,10 +59,10 @@ public class GestoreImpianto implements GestoreImpiantoLocal {
 
     
     /**
-     * Recupera lista impianti nella città passata da parametro
+     * Recupera lista impianti nella città passata da parametro.
      * 
      * @param citta città dell'evento
-     * @return List impianti
+     * @return <i>List Impianto</i>
     */
     @Override
     public List<Impianto> getImpiantoByCitta(String citta) {
@@ -73,10 +73,10 @@ public class GestoreImpianto implements GestoreImpiantoLocal {
 
     
     /**
-     * Recupera lista impianti nella provincia passata da parametro
+     * Recupera lista impianti nella provincia passata da parametro.
      * 
      * @param provincia provincia dell'evento
-     * @return List impianti 
+     * @return <i>List Impianto</i>
     */
     @Override
     public List<Impianto> getImpiantoByProvincia(String provincia) {
@@ -87,10 +87,10 @@ public class GestoreImpianto implements GestoreImpiantoLocal {
 
     
     /**
-     * Recupera l'oggetto Impianto tramite il suo id passato da parametro
+     * Recupera l'oggetto Impianto tramite il suo id passato da parametro.
      * 
      * @param citta città dell'evento
-     * @return Impianto
+     * @return <i>Impianto</i>
     */
     @Override
     public Impianto getObjectImpiantoById(int id) {
@@ -101,12 +101,12 @@ public class GestoreImpianto implements GestoreImpiantoLocal {
     
     
     /**
-     * Recupera l'oggetto Impianto tramite Nome,partitaiva e telefono passati da parametro
+     * Recupera l'oggetto Impianto tramite nome,partitaiva e telefono passati da parametro.
      * 
      * @param nome nome dell'impianto
      * @param partitaiva partita iva dell'impianto
      * @param telefono numero di telefono dell'impianto
-     * @return Impianto
+     * @return <i>Impianto</i>
     */
     @Override
     public Impianto getImpiantoByNomePartitaivaTelefono(String nome, String partitaiva, String telefono) {
@@ -117,12 +117,12 @@ public class GestoreImpianto implements GestoreImpiantoLocal {
 
     
     /**
-     * Controllo dell'esistenza di un'altro oggetto Impianto con gli stessi parametri passati
+     * Controllo dell'esistenza di un'altro oggetto Impianto con gli stessi parametri passati.
      * 
      * @param nome nome dell'impianto
      * @param partitaiva partita iva dell'impianto
      * @param telefono numero di telefono dell'impianto
-     * @return <i>true<i> se esiste, <i>false<i> altrimenti
+     * @return <i>true</i> se esiste, <i>false</i> altrimenti
     */
     @Override
     public Boolean checkImpianto(String nome, String partitaiva, String telefono) {

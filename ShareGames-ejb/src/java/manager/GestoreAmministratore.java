@@ -52,8 +52,7 @@ public class GestoreAmministratore implements GestoreAmministratoreLocal {
     
     
     /**
-     * Recupera l'oggetto persistente amministratore 
-     * associato all'IdAmministratore passato come parametro
+     * Recupera l'oggetto persistente amministratore attraverso IdAmministratore passato come parametro
      *
      * @param idAmministratore idImpianto identificativo dell'amministratore
      * @return L'amministratore cercato se presente, <i>false</i> altrimenti 
@@ -66,7 +65,7 @@ public class GestoreAmministratore implements GestoreAmministratoreLocal {
     
     
     /**
-     * Rimuove l'amministratore a cui è associato l'id passato di tipo intero
+     * Rimuove l'amministratore a cui è associato l'id passato da parametro
      *
      * @param idAmministratore IdAmministratore
      * @return <i>true</i> se l'eliminazione avviene con successo, <i>false</i> altrimenti
@@ -87,7 +86,7 @@ public class GestoreAmministratore implements GestoreAmministratoreLocal {
     
     
     /**
-     * Controllo corrispondenza password e idAmministratore
+     * Controllo corrispondenza password e idAmministratore passati da parametro
      *
      * @param id Id amministratore
      * @param psw Password amministratore
@@ -111,8 +110,7 @@ public class GestoreAmministratore implements GestoreAmministratoreLocal {
     
     
     /**
-     * Recupera l'oggetto persistente amministratore 
-     * associato all'Idimpianto passato come parametro
+     * Recupera l'oggetto Amministratore associato all'Idimpianto passato come parametro
      *
      * @param idImpianto idImpianto identificativo dell'amministratore
      * @return L'amministratore cercato se presente, <i>false</i> altrimenti 

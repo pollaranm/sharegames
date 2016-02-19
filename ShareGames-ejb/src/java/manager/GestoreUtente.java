@@ -20,15 +20,16 @@ public class GestoreUtente implements GestoreUtenteLocal {
     private UtenteFacadeLocal utenteFacade;
 
     
-    /**
-     * Metodo costruttore di un oggetto persistente di tipo Utente.
+     /**
+     * Aggiunta di un nuovo oggetto di tipo Impianto nel database. 
      * 
-     * @param name Nome dell'utente
-     * @param email Email dell'utente
-     * @param idgoogle Id Google associato all'utente
-     * @param idfacebook Id Facebook associato all'utente
-     * @param telefono Numero di telefono
-     */
+     * @param name nome dell'utente
+     * @param email email dell'utente
+     * @param idgoogle id account google
+     * @param idfacebook id account facebook
+     * @param telefono telefono utente
+     * @return <i>void</i>
+    */
     @Override
     public void addUser(String name, String email, String idgoogle, String idfacebook, String telefono) {
 
@@ -45,8 +46,8 @@ public class GestoreUtente implements GestoreUtenteLocal {
     /**
      * Controlla la presenza di un Utente associato all'id Facebook passato come parametro.
      * 
-     * @param idfacebook Id da ricercare tra gli utenti registrati
-     * @return Restituisce <i>true</i> se l'utente è già presente, <i>false</i> altrimenti.
+     * @param idfacebook id account facebook
+     * @return <i>true</i> se l'utente è già presente, <i>false</i> altrimenti.
      */
     @Override
     public boolean findFacebook(String idfacebook) {
@@ -58,8 +59,8 @@ public class GestoreUtente implements GestoreUtenteLocal {
     /**
      * Controlla la presenza di un Utente associato all'id Google passato come parametro.
      * 
-     * @param idgoogle Id da ricercare tra gli utenti registrati
-     * @return Restituisce <i>true</i> se l'utente è già presente, <i>false</i> altrimenti.
+     * @param idgoogle id account google
+     * @return <i>true</i> se l'utente è già presente, <i>false</i> altrimenti.
      */
     @Override
     public boolean findGoogle(String idgoogle) {
@@ -93,13 +94,22 @@ public class GestoreUtente implements GestoreUtenteLocal {
      * 
      * @param idsocial Id identificativo dell'utente
      * @param tipo Social network utilizzato, 'facebook' o 'google'
-     * @return L'utente cercato se presente, <i>false</i> altrimenti
+     * @return L'utente cercato se presente, <i>null</i> altrimenti
      */
     @Override
     public Utente getObjUtente(String idsocial, String tipo) {
         return utenteFacade.getObjUtente(idsocial, tipo);
     }
 
+    
+    /**
+     * Inserisce l'utente nella squadra con identificativo idSquadra,
+     * aggiorna le informazioni dell'utente nel database
+     * 
+     * @param utente Oggetto utente
+     * @param idSquadra id della squadra
+     * @return <i>void</i>
+     */
     @Override
     public void joinSquadra(Utente utente, Integer idSquadra) {
         Squadra temp = squadraFacade.getObjSquadra(idSquadra);
@@ -109,6 +119,13 @@ public class GestoreUtente implements GestoreUtenteLocal {
         squadraFacade.edit(temp);
     }
 
+    
+    /**
+     * Rimuove l'utente dalla squadra associata al suo profilo
+     * 
+     * @param utente Oggetto utente
+     * @return <i>void</i>
+     */
     @Override
     public void leaveSquadra(Utente utente) {
         Squadra temp = utente.getIdsquadra();
@@ -118,6 +135,17 @@ public class GestoreUtente implements GestoreUtenteLocal {
         squadraFacade.edit(temp);
     }
 
+    
+    /**
+     * Aggiorna le informazioni dell'utente 
+     * 
+     * @param idsocial id del social di accesso 'facebook' o 'google'
+     * @param tipo 'facebook' o 'google'
+     * @param nome nome utente
+     * @param email email utente
+     * @param telefono telefono dell'utente
+     * @return <i>void</i>
+     */
     @Override
     public void updateUtente(String idsocial, String tipo, String nome, String email, String telefono) {
         Utente u = utenteFacade.getObjUtente(idsocial, tipo);

@@ -16,10 +16,10 @@ public class GestoreListaEventi implements GestoreListaEventiLocal {
     
     
 /**
-     * Recupera la lista degli eventi ai quali l'utente partecipa
+     * Recupera la lista degli eventi ai quali l'utente partecipa attravero l'id utente passato da parametro.
      * 
      * @param idutente idutente dell'evento
-     * @return List Evento
+     * @return <i>List Evento</i>
     */
     @Override
     public List<Listaeventiutente> getEventoByUtente(int idutente) {
@@ -28,10 +28,10 @@ public class GestoreListaEventi implements GestoreListaEventiLocal {
     
     
     /**
-     * Recupera la lista degli eventi pagati ai quali l'utente partecipa
+     * Recupera la lista degli eventi pagati ai quali l'utente partecipa attraveso l'id utente passato da parametro.
      * 
      * @param idutente idutente dell'evento
-     * @return List Evento
+     * @return <i>List Evento</i>
     */
     @Override
     public List<Evento> getEventoByPagato(int idutente) {
@@ -40,9 +40,9 @@ public class GestoreListaEventi implements GestoreListaEventiLocal {
     
     
     /**
-     * Recupera tutti gli eventi
+     * Recupera tutti gli eventi.
      * 
-     * @return List Evento
+     * @return <i>List Evento</i>
     */
     @Override
     public List<Listaeventiutente> getListaEventiUtenti() {
@@ -51,11 +51,11 @@ public class GestoreListaEventi implements GestoreListaEventiLocal {
     
     
     /**
-     * Aggiunta di un nuovo oggetto di tipo EventoUtente nella listaeventiutente nel database. 
+     * Aggiunta di un nuovo oggetto di tipo EventoUtente nella listaeventiutente attraveso idevento e idutente passati come parametro.
      * 
      * @param idutente idutente creatore
      * @param idevento idevento partecipante o creato
-     * @return void
+     * @return <i>void</i>
     */
     @Override
     public void addEventoUtente(int idevento, int idutente){
@@ -65,11 +65,11 @@ public class GestoreListaEventi implements GestoreListaEventiLocal {
 
     
     /**
-     * Recupera evento al quale al quale l'utente partecipa
+     * Recupera l'evento al quale l'utente partecipa attraverso idutente e idevento passati come parametro.
      * 
      * @param idutente idutente dell'evento
      * @param idevento id evento dell'evento
-     * @return Evento
+     * @return <i>Evento</i>
     */
     @Override
     public Listaeventiutente getObjByIdUtenteIdEvento(int idutente, int idevento) {
@@ -78,11 +78,11 @@ public class GestoreListaEventi implements GestoreListaEventiLocal {
 
     
     /**
-     * Rimuove l'evento dell'utente passato da paramentro dal database
+     * Rimuove l'evento dell'utente passato da paramentro dal database.
      * 
      * @param idevento id dell'evento
      * @param idutente id dell'utente
-     * @return void
+     * @return <i>void</i>
     */  
     @Override
     public void removeEventoUtente(int idevento, int idutente) {
