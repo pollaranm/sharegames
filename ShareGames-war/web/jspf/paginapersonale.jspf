@@ -2,50 +2,11 @@
 <%@ page pageEncoding="UTF-8" %>
 <section id="paginapersonale" class="four">
     <div class="container">
-
         <header>
             <h2>Pagina Personale</h2>
         </header>
-
         <div id="wrapper">
-
-            <form onsubmit="return false">
-                <div class="col-2">
-                    <label> Nome
-                        <input value="<%= request.getSession().getAttribute("name")%>" id="namePersonal" name="namePersonal" tabindex="1" readonly="true">
-                    </label>
-                </div>
-                <div class="col-2">
-                    <label> Email
-                        <input value="<%= request.getSession().getAttribute("email")%>" id="emailPersonal" name="emailPersonal" tabindex="2" readonly="true">
-                    </label>
-                </div> 
-                <div class="col-2">
-                    <label> Telefono 
-                        <input value="<%= request.getSession().getAttribute("phone")%>" id="phonePersonal" name="phonePersonal" tabindex="3" readonly="true">
-                    </label>
-                </div>
-                <div class="col-2">
-                    <label> Squadra 
-                        <%
-                        String teamPersonal = "Sei ancora senza squadra? Cercane una o creala!";
-                        if(request.getSession().getAttribute("team")!=null){
-                            teamPersonal=(String)request.getSession().getAttribute("team");
-                        }
-                        %>
-                        <input placeholder="<%=teamPersonal%>" id="teamPersonal" name="teamPersonal" tabindex="5" readonly="true">
-                    </label>
-                </div>
-                <div class="col-submit">
-                    <button class="submitbtn" id="buttonPersonal" onclick="editableForm()">Aggiorna i tuoi dati</button>
-                </div>
-
-            </form>
-
-
-
-
+            <form id='myPersonal' onsubmit="return false"></form>
         </div>
-
     </div>
 </section>

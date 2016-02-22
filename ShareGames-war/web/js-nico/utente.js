@@ -1,3 +1,22 @@
+$(document).ready(function(){
+    getMyPersonal();
+});
+
+//Recupera lo specchietto contenente le informazioni personali
+function getMyPersonal() {
+    $.ajax({
+        type: "POST",
+        url: "UtenteController",
+        data: {action: "getMyPersonal"},
+        success: function (data) {
+            $("#myPersonal").html(data);
+        },
+        error: function (xhr, status, error) {
+            alert(error);
+        }
+    });
+}
+
 //Effettua il loguot dell'utente richiamando la funzione nella servlet
 function logoutUtente() {
     form = $(document.createElement('form'));
