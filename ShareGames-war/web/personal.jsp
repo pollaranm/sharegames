@@ -24,7 +24,7 @@
         <script src="js-nico/prossimieventi.js"></script>
         <script src="js-dario/cercaevento.js"></script>
         <script src="js-nico/creaevento.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+<!--        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">-->
 
         <noscript>
         <link rel="stylesheet" href="css-p/skel-p.css" />
@@ -38,10 +38,12 @@
         <link rel="stylesheet" type="text/css" media="all" href="css-p/styles-p.css">
         <link rel="stylesheet" type="text/css" media="all" href="css-p/switchery.min-p.css">
         <script type="text/javascript" src="js-p/switchery.min-p.js"></script>
-
+        <link rel="stylesheet" href="alertify/themes/alertify.core.css" />
+        <link rel="stylesheet" href="alertify/themes/alertify.default.css"/>
+        <script src="alertify/lib/alertify.min.js"></script>
     </head>
     <body>
-
+        
         <!-- Header -->
         <div id="header" class="skel-layers-fixed">
             <div class="top">

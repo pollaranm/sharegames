@@ -3,7 +3,7 @@
 <section id="ituoieventi" class="two">
     <div class="container">
         <header>
-            <h2>I tuoi prossimi eventi</h2>
+            <h2 style="margin-bottom: 30px">I tuoi prossimi eventi</h2>
         </header>
         <div id='yournext'>
         </div>

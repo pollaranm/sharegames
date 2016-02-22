@@ -41,7 +41,15 @@ function updateForm() {
             phone: $("#phonePersonal").val()
         },
         success: function (data) {
-            window.alert("Valori aggiornati con successo!");
+
+//            alertify.confirm("This is a confirm dialog", function (e) {
+//                if (e) {
+//                    alertify.success("You've clicked OK");
+//                } else {
+//                    alertify.error("You've clicked Cancel");
+//                }
+//            });
+            alertify.success("Valori aggiornati!", "", 0);
             $("#menu_profileName").html("Benvenuto<br>" + $("#namePersonal").val());
         },
         error: function (xhr, status, error) {

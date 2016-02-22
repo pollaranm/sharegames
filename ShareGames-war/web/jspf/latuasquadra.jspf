@@ -73,7 +73,7 @@
                         </label>
                     </div>
                     <div class="col-submit">
-                        <button class="submitbtn" id="createTeamBtn">Crea una squadra</button>
+                        <button class="button" id="createTeamBtn">Crea una squadra</button>
                     </div>
                 </form>
         </div> 
