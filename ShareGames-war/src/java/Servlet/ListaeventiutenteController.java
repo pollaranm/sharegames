@@ -18,7 +18,6 @@ import javax.servlet.http.HttpSession;
 import manager.GestoreEventoLocal;
 import manager.GestoreListaEventiLocal;
 
-
 @WebServlet(name = "ListaeventiutenteController", urlPatterns = {"/ListaeventiutenteController"})
 public class ListaeventiutenteController extends HttpServlet {
 
@@ -38,7 +37,7 @@ public class ListaeventiutenteController extends HttpServlet {
         s = request.getSession();
         Integer userid = (Integer) s.getAttribute("idnumber");
         String action = request.getParameter("action");
-        
+
         if (action.equals("joinEvento")) {
             Integer idEvento = new Integer((String) request.getParameter("idEvento"));
             gestoreListaEventi.addEventoUtente(idEvento, userid);
@@ -50,7 +49,7 @@ public class ListaeventiutenteController extends HttpServlet {
             }
             gestoreEvento.updateEvento(tempE);
         }
-        
+
         if (action.equals("getstorico")) {
             try {
                 String myDriver = "com.mysql.jdbc.Driver";
@@ -71,6 +70,16 @@ public class ListaeventiutenteController extends HttpServlet {
                         + "  <form id='mystorico' onsubmit='return false'>";
                 if (rs.isBeforeFirst()) {
                     while (rs.next()) {
+                        String tipo = "";
+                        if (rs.getString("sport").equals("Calcio5")) {
+                            tipo = "Calcio a 5";
+                        } else if (rs.getString("sport").equals("Calcio7")) {
+                            tipo = "Calcio a 7";
+                        } else if (rs.getString("sport").equals("Calcio11")) {
+                            tipo = "Calcio a 11";
+                        } else {
+                            tipo = rs.getString("sport");
+                        }
                         html += "   <div class='col-4'>"
                                 + "    <label>"
                                 + "        <input value='" + rs.getString("data") + "' readonly='true' style='text-align:center'>"
@@ -78,7 +87,7 @@ public class ListaeventiutenteController extends HttpServlet {
                                 + "</div>"
                                 + "<div class='col-4'>"
                                 + "    <label>"
-                                + "        <input value='" + rs.getString("sport") + "' readonly='true' style='text-align:center'>"
+                                + "        <input value='" + tipo + "' readonly='true' style='text-align:center'>"
                                 + "    </label>"
                                 + "</div>"
                                 + "<div class='col-4'>"
@@ -105,7 +114,7 @@ public class ListaeventiutenteController extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        
+
         if (action.equals("getnextevents")) {
             try {
                 String myDriver = "com.mysql.jdbc.Driver";
@@ -136,11 +145,22 @@ public class ListaeventiutenteController extends HttpServlet {
                         address = address.replace(" ", "+");
                         Double tempPrice = new Double(rs.getDouble("prezzo") * (Double) (100.00 - rs.getDouble("sconto")) / 100);
                         String actualPrice = String.format("%.2f", tempPrice);
+                        String tipo = "";
+                        if (rs.getString("sport").equals("Calcio5")) {
+                            tipo = "Calcio a 5";
+                        } else if (rs.getString("sport").equals("Calcio7")) {
+                            tipo = "Calcio a 7";
+                        } else if (rs.getString("sport").equals("Calcio11")) {
+                            tipo = "Calcio a 11";
+                        } else {
+                            tipo = rs.getString("sport");
+                        }
+
                         temp = " <article class='item'>"
                                 + "  <header>"
                                 + "    <ul style='text - align: left;margin - left: 5%'>"
                                 + "      <li><span>Data: " + rs.getString("data") + " - " + rs.getString("ora") + "</span></li>"
-                                + "      <li><span>Sport: " + rs.getString("sport") + "</span></li>"
+                                + "      <li><span>Sport: " + tipo + "</span></li>"
                                 + "      <li><span>Giocatori: " + rs.getString("giocatoripagato") + "</span></li>" //usare 'completo' per fare fare la spunta ok o meno
                                 + "      <li><span>Costo: " + actualPrice + " &euro;</span></li>"
                                 + "      <li><span>" + rs.getString("nome") + "</span></li>"

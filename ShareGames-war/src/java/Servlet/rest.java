@@ -187,10 +187,21 @@ public class rest extends HttpServlet {
                             List<Prezziario> p = gestorePrezziario.getObjPrezziario(idimpianto);
                             JSONArray ja = new JSONArray();
                             for(int i = 0; i<p.size();i++){
+                                
+                            String tipo = "";
+                                if (p.get(i).getCampo().getTipologia().equals("Calcio5")) {
+                                    tipo = "Calcio a 5";
+                                } else if (p.get(i).getCampo().getTipologia().equals("Calcio7")) {
+                                    tipo = "Calcio a 7";
+                                } else if (p.get(i).getCampo().getTipologia().equals("Calcio11")) {
+                                    tipo = "Calcio a 11";
+                                } else {
+                                    tipo = p.get(i).getCampo().getTipologia();
+                                }
                                 JSONObject jo = new JSONObject();
                                     jo.put("id", i);
                                     jo.put("campo", p.get(i).getCampo().getCampoPK().getIdcampo());
-                                    jo.put("tipologia", p.get(i).getCampo().getTipologia());
+                                    jo.put("tipologia", tipo );
                                     jo.put("prezzo", p.get(i).getPrezzo()); 
                                     jo.put("sconto", p.get(i).getSconto()); 
                                     ja.add(i, jo);
@@ -223,8 +234,17 @@ public class rest extends HttpServlet {
                         try{
                             List<Prezziario> p = gestorePrezziario.getObjPrezziario(idimpianto);   
                             for(int i = 0; i<p.size();i++){
-                                
-                                message += "<tr><td>"+p.get(i).getCampo().getCampoPK().getIdcampo()+"</td><td>"+p.get(i).getCampo().getTipologia()+"</td><td>"+p.get(i).getPrezzo()+"</td><td>"+p.get(i).getSconto()+"</td></tr>";
+                                String tipo = "";
+                                if (p.get(i).getCampo().getTipologia().equals("Calcio5")) {
+                                    tipo = "Calcio a 5";
+                                } else if (p.get(i).getCampo().getTipologia().equals("Calcio7")) {
+                                    tipo = "Calcio a 7";
+                                } else if (p.get(i).getCampo().getTipologia().equals("Calcio11")) {
+                                    tipo = "Calcio a 11";
+                                } else {
+                                    tipo = p.get(i).getCampo().getTipologia();
+                                }
+                                message += "<tr><td>"+p.get(i).getCampo().getCampoPK().getIdcampo()+"</td><td>"+tipo+"</td><td>"+p.get(i).getPrezzo()+"</td><td>"+p.get(i).getSconto()+"</td></tr>";
  
                             }
                             
@@ -348,7 +368,7 @@ public class rest extends HttpServlet {
                     
                     try{
                         gestoreCampo.updateCampo(id, idimpianto, tipologia, numerogiocatori);
-                        //gestorePrezziario.updatePrezziario(id, idimpianto, bd, sconto);
+                        gestorePrezziario.updatePrezziario(id, idimpianto, bd, sconto);
                         
                     }catch(Exception e){
                         json.put("risultato","Errore");

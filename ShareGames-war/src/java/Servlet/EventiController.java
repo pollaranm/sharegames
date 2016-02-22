@@ -63,9 +63,9 @@ public class EventiController extends HttpServlet {
 
         if (action.equals("getsport")) {
             String sport = "";
-            sport += "<option value='Calcio a 5'>Calcio a 5</option>"
-                    + "<option value='Calcio a 7'>Calcio a 7</option>"
-                    + "<option value='Calcio a 11'>Calcio a 11</option>"
+            sport += "<option value='Calcio5'>Calcio a 5</option>"
+                    + "<option value='Calcio7'>Calcio a 7</option>"
+                    + "<option value='Calcio11'>Calcio a 11</option>"
                     + "<option value='Pallavolo'>Pallavolo</option>"
                     + "<option value='Basket'>Basket</option>"
                     + "<option value='Tennis'>Tennis</option>";

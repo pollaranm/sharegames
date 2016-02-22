@@ -158,6 +158,16 @@ public class SquadraController extends HttpServlet {
         if (action.equals("getMyTeam")) {
             if (request.getSession().getAttribute("team") != null) {
                 Squadra myTeam = gestoreSquadra.getObjSquadraByName((String) request.getSession().getAttribute("team"));
+                String tipo = "";
+                if (myTeam.getTipologia().equals("Calcio5")) {
+                    tipo = "Calcio a 5";
+                } else if (myTeam.getTipologia().equals("Calcio7")) {
+                    tipo = "Calcio a 7";
+                } else if (myTeam.getTipologia().equals("Calcio11")) {
+                    tipo = "Calcio a 11";
+                } else {
+                    tipo = myTeam.getTipologia();
+                }
                 String tmp = "<div class='col-4'>"
                         + "    <label> Nome"
                         + "        <input value='" + myTeam.getNomesquadra() + "' id='myTeamName' name='myTeamName' tabindex='1' readonly='true'>"
@@ -170,7 +180,7 @@ public class SquadraController extends HttpServlet {
                         + "</div> "
                         + "<div class='col-4'>"
                         + "    <label> Sport"
-                        + "        <input value='" + myTeam.getTipologia() + "' id='myTeamSport' name='myTeamSport' tabindex='3' readonly='true'>"
+                        + "        <input value='" + tipo + "' id='myTeamSport' name='myTeamSport' tabindex='3' readonly='true'>"
                         + "    </label>"
                         + "</div>"
                         + "<div class='col-4'>"
