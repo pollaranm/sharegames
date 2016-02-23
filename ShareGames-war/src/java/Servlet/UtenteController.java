@@ -58,6 +58,41 @@ public class UtenteController extends HttpServlet {
             s.setAttribute("email", email);
             s.setAttribute("phone", phone);
         }
+
+        if (action.equals("getMyPersonal")) {
+            String teamPersonal = "Sei ancora senza squadra?!";
+            if (request.getSession().getAttribute("team") != null) {
+                teamPersonal = (String) request.getSession().getAttribute("team");
+            }
+            String html = ""
+                    + "<div class='col-2'>"
+                    + "    <label> Nome"
+                    + "        <input value='" + request.getSession().getAttribute("name") + "' id='namePersonal' name='namePersonal' tabindex='1' readonly='true'>"
+                    + "    </label>"
+                    + "</div>"
+                    + "<div class='col-2'>"
+                    + "    <label> Email"
+                    + "        <input value='" + request.getSession().getAttribute("email") + "' id='emailPersonal' name='emailPersonal' tabindex='2' readonly='true'>"
+                    + "    </label>"
+                    + "</div> "
+                    + "<div class='col-2'>"
+                    + "    <label> Telefono "
+                    + "        <input value='" + request.getSession().getAttribute("phone") + "' id='phonePersonal' name='phonePersonal' tabindex='3' readonly='true'>"
+                    + "    </label>"
+                    + "</div>"
+                    + "<div class='col-2'>"
+                    + "    <label> Squadra "
+                    + "         <input placeholder='" + teamPersonal + "' id='teamPersonal' name='teamPersonal' tabindex='5' readonly='true'>"
+                    + "    </label>"
+                    + "</div>"
+                    + "<div class='col-submit'>"
+                    + "    <button class='button' id='buttonPersonal' onclick='editableForm()'>Aggiorna i tuoi dati</button>"
+                    + "</div>";
+            try (PrintWriter out = response.getWriter()) {
+                out.write(html);
+                out.close();
+            } 
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
