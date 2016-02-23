@@ -185,6 +185,7 @@ public class rest extends HttpServlet {
 
                         try{
                             List<Prezziario> p = gestorePrezziario.getObjPrezziario(idimpianto);
+                            System.out.println(p);
                             JSONArray ja = new JSONArray();
                             for(int i = 0; i<p.size();i++){
                                 
