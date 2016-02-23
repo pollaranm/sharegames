@@ -60,7 +60,7 @@ public class UtenteController extends HttpServlet {
         }
 
         if (action.equals("getMyPersonal")) {
-            String teamPersonal = "Sei ancora senza squadra? Cercane una o creala!";
+            String teamPersonal = "Sei ancora senza squadra?!";
             if (request.getSession().getAttribute("team") != null) {
                 teamPersonal = (String) request.getSession().getAttribute("team");
             }

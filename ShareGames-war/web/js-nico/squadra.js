@@ -1,23 +1,6 @@
 $(document).ready(function () {
-
-    setupRegioniTeam();
-    setupProvinceTeam();
-    setupSportTeam();
-
-    //Recupera le informazioni relative alla squadra dell'utente
-    //e costruisce il form contententi tali informazioni
-    $.ajax({
-        type: 'POST',
-        url: 'SquadraController',
-        data: {action: 'getMyTeam'},
-        success: function (data) {
-            $("#myTeamForm").html(data);
-        },
-        error: function (xhr, status, error) {
-            alert(error);
-        }
-    });
-
+    getMyTeamSection();
+    
     //Al cambio della regione nel form di ricerca squadre carica le
     //provincie nella selezione
     $("#geo1").change(function () {
@@ -52,28 +35,6 @@ $(document).ready(function () {
         });
     });
 
-    //In seguito al click sul tasto di creazione di una squadra richiama
-    //la servlet e la crea nel database
-    $("#createTeamBtn").click(function () {
-        $.ajax({
-            url: 'SquadraController',
-            type: 'POST',
-            dataType: 'html',
-            data: {
-                action: 'createTeam',
-                prov: $('#geo4').val(),
-                sport: $('#team_sport2').val(),
-                newname: $('#newteamname').val()
-            },
-            success: function (data) {
-                window.alert(data);
-                location.reload();
-            },
-            error: function (xhr, status, error) {
-                alert(error);
-            }
-        });
-    });
 });
 
 //Preimposta l'elenco delle regioni nel form per la ricerca
@@ -126,6 +87,24 @@ function setupSportTeam() {
         }
     });
 }
+//Recupera le informazioni relative alla squadra dell'utente
+//e costruisce il form contententi tali informazioni
+function getMyTeamSection() {
+    $.ajax({
+        type: 'POST',
+        url: 'SquadraController',
+        data: {action: 'getMyTeamSection'},
+        success: function (data) {
+            $("#myTeamSection").html(data);
+            setupRegioniTeam();
+            setupProvinceTeam();
+            setupSportTeam();
+        },
+        error: function (xhr, status, error) {
+            alert(error);
+        }
+    });
+}
 
 //Funzione richiamata per effettuare la rierca di squadre con i parametri di 
 //ricerca indicati nel form
@@ -171,5 +150,69 @@ $(document).on("click", "#returnCreateBtn", function () {
     });
 });
 
+//In seguito al click sul tasto di creazione di una squadra richiama
+//la servlet e la crea nel database
+$(document).on("click", "#createTeamBtn", function () {
+    $.ajax({
+        url: 'SquadraController',
+        type: 'POST',
+        dataType: 'html',
+        data: {
+            action: 'createTeam',
+            prov: $('#geo4').val(),
+            sport: $('#team_sport2').val(),
+            newname: $('#newteamname').val()
+        },
+        success: function (data) {
+            window.alert(data);
+            getMyTeamSection();
+            getMyPersonal();
+        },
+        error: function (xhr, status, error) {
+            alert(error);
+        }
+    });
+});
 
+$(document).on("click", ".joinTeam", function () {
+    form = $(this).closest("form");
+    idsquadra = form.find("#idsquadra").val();
+    namesquadra = form.find("#namesquadra").val();
+    $.ajax({
+        url: 'SquadraController',
+        type: 'POST',
+        dataType: 'html',
+        data: {
+            action: 'joinTeam',
+            idsquadra: idsquadra,
+            namesquadra: namesquadra
+        },
+        success: function (data) {
+            window.alert("Benvenuto in squadra!");
+            getMyTeamSection();
+            getMyPersonal();
+        },
+        error: function (xhr, status, error) {
+            alert(error);
+        }
+    });
+});
 
+$(document).on("click", "#leaveTeamBtn", function () {
+    $.ajax({
+        url: 'SquadraController',
+        type: 'POST',
+        dataType: 'html',
+        data: {
+            action: 'leaveTeam'
+        },
+        success: function (data) {
+            window.alert("Traditore!");
+            getMyTeamSection();
+            getMyPersonal();
+        },
+        error: function (xhr, status, error) {
+            alert(error);
+        }
+    });
+});

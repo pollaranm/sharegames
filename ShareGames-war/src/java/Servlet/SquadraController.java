@@ -65,7 +65,7 @@ public class SquadraController extends HttpServlet {
             if (result.isEmpty()) {
                 tmp += "<form onsubmit='return false'>"
                         + "<div class='col-1'>"
-                        + "    <label>Non ci sono risultati per questa ricerca!</label>"
+                        + "    <label>Non ci sono squadre con queste caratteristiche!</label>"
                         + "</div>"
                         + "<div class='col-submit'>"
                         + "    <button type='submit' class='submitbtn' id='returnCreateBtn'>Creala tu!</button>"
@@ -75,14 +75,13 @@ public class SquadraController extends HttpServlet {
                 out.close();
             } else {
                 for (Squadra t : result) {
-                    tmp += "<form action='SquadraController' method='POST'>"
-                            + "<input type='hidden' name='idsquadra' value='" + t.getIdsquadra() + "'>"
-                            + "<input type='hidden' name='namesquadra' value='" + t.getNomesquadra() + "'>"
-                            + "<input type='hidden' name='action' value='joinTeam'>"
+                    tmp += "<form onsubmit='return false'>"
+                            + "<input type='hidden' name='idsquadra' id='idsquadra' value='" + t.getIdsquadra() + "'>"
+                            + "<input type='hidden' name='namesquadra' id='namesquadra' value='" + t.getNomesquadra() + "'>"
                             + "<div class='col-2'><label>Squadra<input type='text' value='" + t.getNomesquadra() + "' readonly='true'></label></div>"
                             + "<div class='col-2'><label>Membri<input type='text' value='" + t.getNumerocomponenti() + "' readonly='true'></label></div>"
                             + "<div class='col-submit'>"
-                            + "<button class='button' onclick='joinTeam()'>Unisciti a questa squadra</button>"
+                            + "<button class='button joinTeam' >Entra in squadra!</button>"
                             + "</div>"
                             + "</form>";
                 }
@@ -97,30 +96,31 @@ public class SquadraController extends HttpServlet {
         if (action.equals("returnCreateTeam")) {
             String html = "";
             html += "<form onsubmit='return false'>"
-                    + "    <div class='col-4'>"
+                    + "    <div class='col-3'>"
                     + "        <label>Scegli la regione: "
                     + "            <select id='geo3' name='geo3' tabindex='4'>"
                     + "                <option>Scegli una regione</option>"
                     + "            </select>"
                     + "        </label>"
                     + "    </div> "
-                    + "    <div class='col-4'>"
+                    + "    <div class='col-3'>"
                     + "        <label> Scegli la provincia:  "
                     + "            <select id='geo4' name='geo4' tabindex='5'>"
                     + "                <option>...</option>"
                     + "            </select>"
                     + "        </label>"
                     + "    </div>"
-                    + "    <div class='col-4'>"
+                    + "    <div class='col-3'>"
                     + "        <label> Scegli lo sport:"
                     + "            <select id='team_sport2' name='team_sport2' tabindex='6'></select>"
                     + "        </label>"
                     + "    </div>"
-                    + "    <div class='col-4'>"
-                    + "        <label> Scegli il nome:"
-                    + "            <input placeholder='Libera la fantasia!' id='newteamname' name='newteamname' tabindex='7'>"
+                    + "    <div class='col-1'>"
+                    + "        <label>"
+                    + "           <input placeholder='Inserisci qui il nome...' id='newteamname' name='newteamname' tabindex='7'>"
                     + "        </label>"
                     + "    </div>"
+                    + "    <hr>"
                     + "    <div class='col-submit'>"
                     + "        <button class='button' id='createTeamBtn'>Crea una squadra</button>"
                     + "    </div>"
@@ -134,8 +134,6 @@ public class SquadraController extends HttpServlet {
             String namesquadra = request.getParameter("namesquadra");
             gestoreUtente.joinSquadra(gestoreUtente.getObjUtente(id, social), new Integer(idsquadra));
             request.getSession().setAttribute("team", namesquadra);
-            rdErr = ctx.getRequestDispatcher("/personal.jsp");
-            rdErr.forward(request, response);
         }
 
         if (action.equals("createTeam")) {
@@ -154,7 +152,7 @@ public class SquadraController extends HttpServlet {
             }
         }
 
-        if (action.equals("getMyTeam")) {
+        if (action.equals("getMyTeamSection")) {
             if (request.getSession().getAttribute("team") != null) {
                 Squadra myTeam = gestoreSquadra.getObjSquadraByName((String) request.getSession().getAttribute("team"));
                 String tipo = "";
@@ -167,7 +165,9 @@ public class SquadraController extends HttpServlet {
                 } else {
                     tipo = myTeam.getTipologia();
                 }
-                String tmp = "<div class='col-4'>"
+                String tmp = "<div id='wrapper'>"
+                        + "<form onsubmit='return false'>"
+                        + "<div class='col-4'>"
                         + "    <label> Nome"
                         + "        <input value='" + myTeam.getNomesquadra() + "' id='myTeamName' name='myTeamName' tabindex='1' readonly='true'>"
                         + "    </label>"
@@ -190,8 +190,61 @@ public class SquadraController extends HttpServlet {
                         + "<div class='col-submit'>"
                         + "    <button type='submit' class='button' style='background-color: red' id='leaveTeamBtn'>Lascia la squadra</button>"
                         + "</div>"
-                        + "<input type='hidden' name='action' value='leaveTeam'>";
+                        + "</form>"
+                        + "</div>";
                 out.write(tmp);
+                out.close();
+            } else {
+                String html = ""
+                        + "<form onsubmit='return false'>"
+                        + "    <div class='col-3'>"
+                        + "        <label>Seleziona la regione: "
+                        + "            <select id='geo1' name='geo1' tabindex='1'></select>"
+                        + "        </label>"
+                        + "    </div> "
+                        + "    <div class='col-3'>"
+                        + "        <label> Seleziona la provincia:  "
+                        + "            <select id='geo2' name='geo2' tabindex='2'></select>"
+                        + "        </label>"
+                        + "    </div>"
+                        + "    <div class='col-3'>"
+                        + "        <label> Seleziona lo sport:"
+                        + "            <select id='team_sport' name='team_sport' tabindex='3'></select>"
+                        + "        </label>"
+                        + "    </div>"
+                        + "    <div class='col-submit'>"
+                        + "        <button class='submitbtn' id='searchTeam' onclick='retrieveTeams()'>Cerca una squadra</button>"
+                        + "    </div>"
+                        + "</form>"
+                        + "<div id='team_div_res'>"
+                        + "    <form onsubmit='return false'>"
+                        + "        <div class='col-3'>"
+                        + "            <label>Scegli la regione: "
+                        + "                <select id='geo3' name='geo3' tabindex='4'></select>"
+                        + "            </label>"
+                        + "        </div> "
+                        + "        <div class='col-3'>"
+                        + "            <label> Scegli la provincia:  "
+                        + "                <select id='geo4' name='geo4' tabindex='5'></select>"
+                        + "            </label>"
+                        + "        </div>"
+                        + "        <div class='col-3'>"
+                        + "            <label> Scegli lo sport:"
+                        + "                <select id='team_sport2' name='team_sport2' tabindex='6'></select>"
+                        + "            </label>"
+                        + "        </div>"
+                        + "        <div class='col-1'>"
+                        + "            <label>"
+                        + "                <input placeholder='Inserisci qui il nome...' id='newteamname' name='newteamname' tabindex='7'>"
+                        + "            </label>"
+                        + "        </div>"
+                        + "        <hr>"
+                        + "        <div class='col-submit'>"
+                        + "            <button class='button' id='createTeamBtn'>Crea una squadra</button>"
+                        + "        </div>"
+                        + "    </form>"
+                        + "</div> ";
+                out.write(html);
                 out.close();
             }
         }
@@ -199,8 +252,6 @@ public class SquadraController extends HttpServlet {
         if (action.equals("leaveTeam")) {
             gestoreUtente.leaveSquadra(gestoreUtente.getObjUtente(id, social));
             request.getSession().setAttribute("team", null);
-
-            request.getRequestDispatcher("/personal.jsp").forward(request, response);
         }
     }
 

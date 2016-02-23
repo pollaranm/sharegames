@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-2">
                         <label> Seleziona l'ora:
-                            <select id="createOra" name="createOra">
+                            <select id="createOra" name="createOra"  style="margin-bottom: 9px;" >
                             </select>
                         </label>
                     </div>

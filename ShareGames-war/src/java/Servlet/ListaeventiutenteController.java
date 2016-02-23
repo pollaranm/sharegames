@@ -80,26 +80,31 @@ public class ListaeventiutenteController extends HttpServlet {
                         } else {
                             tipo = rs.getString("sport");
                         }
-                        html += "   <div class='col-4'>"
+                        html += ""
+                                + "<form>"
+                                + "<div class='col-2'>"
                                 + "    <label>"
                                 + "        <input value='" + rs.getString("data") + "' readonly='true' style='text-align:center'>"
-                                + "    </label>"
-                                + "</div>"
-                                + "<div class='col-4'>"
-                                + "    <label>"
                                 + "        <input value='" + tipo + "' readonly='true' style='text-align:center'>"
                                 + "    </label>"
                                 + "</div>"
-                                + "<div class='col-4'>"
+//                                + "<div class='col-4'>"
+//                                + "    <label>"
+//                                + "        <input value='" + tipo + "' readonly='true' style='text-align:center'>"
+//                                + "    </label>"
+//                                + "</div>"
+                                + "<div class='col-2'>"
                                 + "    <label>"
                                 + "        <input value='" + rs.getString("impianto.nome") + "' readonly='true' style='text-align:center'>"
-                                + "    </label>"
-                                + "</div>"
-                                + "<div class='col-4'>"
-                                + "    <label>"
                                 + "        <input value='" + rs.getString("impianto.provincia") + " - " + rs.getString("impianto.indirizzo") + "' readonly='true' style='text-align:center'>"
                                 + "    </label>"
-                                + "</div>";
+                                + "</div>"
+//                                + "<div class='col-4'>"
+//                                + "    <label>"
+//                                + "        <input value='" + rs.getString("impianto.provincia") + " - " + rs.getString("impianto.indirizzo") + "' readonly='true' style='text-align:center'>"
+//                                + "    </label>"
+//                                + "</div>"
+                                + "</form>";
                     }
                 } else {
                     html = "Non hai ancora partecipato a nessun evento...";
