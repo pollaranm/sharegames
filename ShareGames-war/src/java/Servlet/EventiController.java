@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import manager.GestoreEventoLocal;
 
-
 @WebServlet(name = "EventiController", urlPatterns = {"/EventiController"})
 public class EventiController extends HttpServlet {
 
@@ -161,7 +160,7 @@ public class EventiController extends HttpServlet {
                 } else {
                     html = "Nessun evento presente con queste caratteristiche!";
                 }
-                
+
                 try (PrintWriter out = response.getWriter()) {
                     out.write(html);
                     out.close();
@@ -181,7 +180,7 @@ public class EventiController extends HttpServlet {
             String data = (String) request.getParameter("dataE");
             String ora = (String) request.getParameter("ora");
             String sport = (String) request.getParameter("sport");
-            
+
             try {
                 String myDriver = "com.mysql.jdbc.Driver";
                 String myUrl = "jdbc:mysql://localhost:3306/newsharegames?zeroDateTimeBehavior=convertToNull";
@@ -203,7 +202,7 @@ public class EventiController extends HttpServlet {
                         + "ORDER BY impianto.idimpianto ";
                 java.sql.Statement st = conn.createStatement();
                 ResultSet rs = st.executeQuery(query);
-                
+
                 String html = "<div id='wrapper' style='float:left;width: 50%'>"
                         + "  <form onsubmit='return false'>";
                 int imp = -1;
@@ -224,6 +223,7 @@ public class EventiController extends HttpServlet {
                             + "        <input type='hidden' id='idImpianto' name='idImpianto' value='" + rs.getString("idimpianto") + "'>"
                             + "        <select id='idCampo' name='idCampo'>"
                             + "            <option value='" + rs.getString("idcampo") + "'>Campo n°" + rs.getString("idcampo") + " - " + actualPrice + "&euro; a testa";
+                    imp = rs.getInt("idimpianto");
                     while (rs.next()) {
                         if (imp == rs.getInt("idimpianto")) {
                             tempPrice = new Double(rs.getDouble("prezzo") * (Double) (100.00 - rs.getDouble("sconto")) / 100);
@@ -265,7 +265,7 @@ public class EventiController extends HttpServlet {
                     html = "Nessun campo disponibile per questa richiesta!";
                 }
                 html += "</form></div>";
-                
+
                 try (PrintWriter out = response.getWriter()) {
                     out.write(html);
                     out.close();
