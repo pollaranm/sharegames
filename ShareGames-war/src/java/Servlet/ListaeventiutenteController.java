@@ -167,7 +167,7 @@ public class ListaeventiutenteController extends HttpServlet {
                                 + "      <li><span>Data: " + rs.getString("data") + " - " + rs.getString("ora") + "</span></li>"
                                 + "      <li><span>Sport: " + tipo + "</span></li>"
                                 + "      <li><span>Giocatori: " + rs.getString("giocatoripagato") + "</span></li>" //usare 'completo' per fare fare la spunta ok o meno
-                                + "      <li><span>Costo: " + actualPrice + " &euro;</span></li>"
+                                + "      <li><span>Campo: " + rs.getString("prezziario.idcampo") + " - " + actualPrice + " &euro;</span></li>"
                                 + "      <li><span>" + rs.getString("nome") + "</span></li>"
                                 + "      <li><span>" + rs.getString("indirizzo") + ", " + rs.getString("citta") + "</span></li>"
                                 + "      <li> <img class='gmaps' style='width:94%;height:auto' "

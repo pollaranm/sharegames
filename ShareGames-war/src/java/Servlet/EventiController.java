@@ -128,7 +128,7 @@ public class EventiController extends HttpServlet {
                                 + "  <header>"
                                 + "    <ul style='text - align: left;margin - left: 5%'>"
                                 + "      <li><span>Data: " + rs.getString("data") + " - " + rs.getString("ora") + "</span></li>"
-                                + "      <li><span>Costo: " + actualPrice + " &euro;</span></li>"
+                                + "      <li><span>Campo: " + rs.getString("prezziario.idcampo") + " - " + actualPrice + " &euro;</span></li>"
                                 + "      <li><span>Giocatori: " + rs.getString("giocatoripagato") + "</span></li>"
                                 + "      <li><span>" + rs.getString("nome") + "</span></li>"
                                 + "      <li><span>" + rs.getString("indirizzo") + ", " + rs.getString("citta") + "</span></li>"

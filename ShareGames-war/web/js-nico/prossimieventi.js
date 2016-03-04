@@ -27,7 +27,7 @@ $(document).on("click", ".cancellaE", function () {
         data: {action: "deleteEvento", idEvento: idEvento},
         success: function (data) {
             setTimeout(function () {
-                alert("Evento cancellato!");
+                alertify.log("Evento cancellato!");
                 getNextEvents();
                 ;
             }, 1000);
@@ -48,7 +48,7 @@ $(document).on("click", ".ritiratiE", function () {
         data: {action: "withdrawEvento", idEvento: idEvento},
         success: function (data) {
             setTimeout(function () {
-                alert("Partecipazione annullata!");
+                alertify.log("Partecipazione annullata!", "", 0);
                 getNextEvents();
             }, 1000);
         },

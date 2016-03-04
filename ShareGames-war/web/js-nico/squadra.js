@@ -164,7 +164,7 @@ $(document).on("click", "#createTeamBtn", function () {
             newname: $('#newteamname').val()
         },
         success: function (data) {
-            window.alert(data);
+            alertify.success(data, "", 0);
             getMyTeamSection();
             getMyPersonal();
         },
@@ -188,7 +188,7 @@ $(document).on("click", ".joinTeam", function () {
             namesquadra: namesquadra
         },
         success: function (data) {
-            window.alert("Benvenuto in squadra!");
+            alertify.log("Benvenuto in squadra!", "", 0);
             getMyTeamSection();
             getMyPersonal();
         },
@@ -207,7 +207,7 @@ $(document).on("click", "#leaveTeamBtn", function () {
             action: 'leaveTeam'
         },
         success: function (data) {
-            window.alert("Traditore!");
+            alertify.log("Squadra abbandonata...", "", 0);
             getMyTeamSection();
             getMyPersonal();
         },

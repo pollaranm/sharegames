@@ -68,7 +68,7 @@ function updateForm() {
 //                    alertify.error("You've clicked Cancel");
 //                }
 //            });
-            alertify.success("Valori aggiornati!", "", 0);
+            alertify.log("Valori aggiornati!", "", 0);
             $("#menu_profileName").html("Benvenuto<br>" + $("#namePersonal").val());
         },
         error: function (xhr, status, error) {

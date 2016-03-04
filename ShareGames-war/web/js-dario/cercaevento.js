@@ -35,7 +35,7 @@ $(document).on("click", ".partecipa", function () {
         data: {action: "joinEvento", idEvento: idEvento},
         success: function (data) {
             setTimeout(function () {
-                alert("Partecipazione registrata!");
+                alertify.log("Partecipazione registrata!", "", 0);
                 searchEvento();
                 getNextEvents();
             }, 1000);

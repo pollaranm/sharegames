@@ -140,7 +140,7 @@ $(document).on("click", ".createE", function () {
     data = $("#createData").val();
     sport = $("#createSport").val();
     if (idC === "") {
-        alert("Devi scegliere un campo in cui giocare!");
+        alertify.log("Devi scegliere un campo in cui giocare!", "", 0);
     } else {
         form.closest("div").fadeOut("slow");
         $.ajax({
@@ -157,7 +157,7 @@ $(document).on("click", ".createE", function () {
             success: function (data) {
                 setTimeout(function () {
                     getNextEvents();
-                    alert("Nuovo evento creato!");
+                    alertify.log("Nuovo evento creato!", "", 0);
                 }, 1000);
             },
             error: function (xhr, status, error) {
