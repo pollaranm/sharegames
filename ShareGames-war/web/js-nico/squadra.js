@@ -3,7 +3,7 @@ $(document).ready(function () {
     
     //Al cambio della regione nel form di ricerca squadre carica le
     //provincie nella selezione
-    $("#geo1").change(function () {
+    $(document).on("change", "#geo1", function () {
         idregione = document.getElementById("geo1").value;
         $.ajax({
             type: "POST",
@@ -20,7 +20,7 @@ $(document).ready(function () {
 
     //Al cambio della regione nel form di creazione squadre carica le
     //provincie nella selezione
-    $("#geo3").change(function () {
+    $(document).on("change", "#geo3", function () {
         idregione = document.getElementById("geo3").value;
         $.ajax({
             type: "POST",
