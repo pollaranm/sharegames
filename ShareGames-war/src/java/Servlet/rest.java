@@ -116,11 +116,14 @@ public class rest extends HttpServlet {
                         String provincia = (json1.get("provincia").toString());
                         String citta = (json1.get("citta").toString());
                         String indirizzo = (json1.get("indirizzo").toString());
+                        indirizzo = indirizzo.replace("_", " ");
                         String telefono = (json1.get("telefono").toString());
                         String partitaiva = (json1.get("partitaiva").toString());
                         String nomeamministratore = (json1.get("nomeamministratore").toString());
                         String cognomeamministratore = (json1.get("cognomeamministratore").toString());
                         String psw  = json1.get("psw").toString();
+                        
+                        System.out.println(indirizzo);
                         
                         Impianto i = null;
                         Amministratore a = null;
